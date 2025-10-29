@@ -1,5 +1,7 @@
 const express = require('express');
+const path = require('path');
 const app = express();
+const routes = require('./routes/index');
 const { engine } = require('express-handlebars');
 const PORT = 3000;
 
@@ -7,25 +9,18 @@ app.engine('hbs', engine({
     extname: 'hbs',
     defaultLayout: 'main',
     layoutsDir: './views/layouts',
+    partialsDir: './views/partials'
 }));
 
 app.set('view engine', 'hbs');
-app.set('views', './views')
+app.set('views', path.join(__dirname, 'views'));
 
-app.get('/', (req, res) => {
-    const buttons = [
-            { text: 'Service Plan', link: '/serviceplan' },
-            { text: 'Another Page', link: '/anotherpage' },
-        ];
-    res.render('dashboard-admin', { title: 'Dashboard', buttons
-        
-    });
-});
+// Middleware
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/serviceplan', (req, res) => {
-    res.render('serviceplan', { title: 'Service Plan' });
-});
-
+app.use('/', routes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
