@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
-const DashboardController = require('../controllers/dashboardController');
+const DashboardController = require('../controllers/admin/dashboardController');
 const ServicePlanController = require('../controllers/user/serviceplanController');
 
 // Midlertidig database
@@ -18,7 +18,11 @@ router.get('/', DashboardController.renderDashboard);
 router.get('/serviceplan', ServicePlanController.renderServicePlan);
 
 router.get('/products', (req, res) => {
-    res.render('products', { title: 'Products' });
+    res.render('admin/products/products', { title: 'Products' });
+});
+
+router.get('/orders', (req, res) => {
+    res.render('admin/orders/orders', { title: 'Orders' });
 });
 
 // READ - viser liste over brugere

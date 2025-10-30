@@ -1,6 +1,6 @@
 class ProductsController {
     static renderProductsPage(req, res) {
-        res.render('products', { title: 'Products' });
+        res.render('admin/products/products', { title: 'Products' });
     }
 }
 
