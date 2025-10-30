@@ -1,7 +1,14 @@
 const express = require('express');
 const router = express.Router();
+const path = require('path');
 const DashboardController = require('../controllers/dashboardController');
-const ServicePlanController = require('../controllers/serviceplanController');
+const ServicePlanController = require('../controllers/user/serviceplanController');
+
+// Midlertidig database
+const getUsers = [
+    { "id": 1, "name": "Alice", "role": "admin" },
+    { "id": 2, "name": "Bob", "role": "user" }
+  ]
 
 
 // Route for dashboard
@@ -14,8 +21,11 @@ router.get('/products', (req, res) => {
     res.render('products', { title: 'Products' });
 });
 
+// READ - viser liste over brugere
 router.get('/users', (req, res) => {
-    res.render('users', { title: 'Users' });
+
+    res.render('partials/list', { title: 'Brugeroversigt', users: getUsers });
 });
+
 
 module.exports = router;
