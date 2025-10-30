@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const path = require('path');
 const DashboardController = require('../controllers/admin/dashboardController');
 const ServicePlanController = require('../controllers/user/serviceplanController');
-const UsersController = require('../controllers/admin/usersController')
+const UsersController = require('../controllers/admin/usersController');
 const LoginController = require('../controllers/loginController');
+const StationsController = require('../controllers/admin/stationsController');
+const stationsController = require('../controllers/admin/stationsController');
 
 // Midlertidig database
 const getUsers = [
@@ -22,7 +23,20 @@ router.get('/dashboard', DashboardController.renderDashboard);
 router.get('/serviceplan', ServicePlanController.renderServicePlan);
 
 // Route for brugeroversigt
-router.get('/brugeroversigt', UsersController.renderUsers);
+router.get('/brugeroversigt', UsersController.renderUsersPage);
+
+// Route for stationer
+router.get('/stationer', stationsController.renderStationsPage);
+
+
+
+router.get('/stations', (req, res) => {
+    res.render('admin/stations/stations', {title: 'Stationer'});
+});
+
+router.get('/users', (req, res) => {
+        res.render('admin/users/users', {title: 'Users'});
+});
 
 router.get('/products', (req, res) => {
     res.render('admin/products/products', { title: 'Products' });
@@ -30,11 +44,6 @@ router.get('/products', (req, res) => {
 
 router.get('/orders', (req, res) => {
     res.render('admin/orders/orders', { title: 'Orders' });
-});
-
-// READ - viser liste over brugere
-router.get('/users', (req, res) => {
-    res.render('partials/list', { title: 'Brugeroversigt', users: getUsers });
 });
 
 module.exports = router;
