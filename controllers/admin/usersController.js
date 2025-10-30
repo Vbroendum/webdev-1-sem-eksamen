@@ -1,7 +1,7 @@
 class UsersController {
     static renderUsers(req, res) {
-        res.render('users', { title: 'Users' });
+        res.render('/admin/users/users', { title: 'Users' });
     }
 }
 
-export default UsersController;
+module.exports = UsersController;
