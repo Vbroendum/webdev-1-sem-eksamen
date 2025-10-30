@@ -5,12 +5,8 @@ const DashboardController = require('../controllers/admin/dashboardController');
 const ServicePlanController = require('../controllers/user/serviceplanController');
 const UsersController = require('../controllers/admin/usersController')
 const LoginController = require('../controllers/loginController');
-
-// Midlertidig database
-const getUsers = [
-    { "id": 1, "name": "Alice", "role": "admin" },
-    { "id": 2, "name": "Bob", "role": "user" }
-  ]
+const ProductsController = require('../controllers/admin/productsController');
+const OrdersController = require('../controllers/admin/ordersController');
 
 // Route for Login
 router.get('/', LoginController.renderLogin);
@@ -24,17 +20,11 @@ router.get('/serviceplan', ServicePlanController.renderServicePlan);
 // Route for brugeroversigt
 router.get('/brugeroversigt', UsersController.renderUsers);
 
-router.get('/products', (req, res) => {
-    res.render('admin/products/products', { title: 'Products' });
-});
+router.get('/products', ProductsController.renderProductsPage);
 
-router.get('/orders', (req, res) => {
-    res.render('admin/orders/orders', { title: 'Orders' });
-});
+router.get('/orders', OrdersController.renderOrdersPage);
 
 // READ - viser liste over brugere
-router.get('/users', (req, res) => {
-    res.render('partials/list', { title: 'Brugeroversigt', users: getUsers });
-});
+router.get('/users', UsersController.renderUsers);
 
 module.exports = router;

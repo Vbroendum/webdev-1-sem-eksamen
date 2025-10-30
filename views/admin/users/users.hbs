@@ -1,1 +1,6 @@
 <h1> hello users</h1>
+<ul>
+    {{#each users}}
+        <li>{{this.name}} - {{this.role}}</li>
+    {{/each}}
+</ul>
