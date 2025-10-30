@@ -3,6 +3,7 @@ const router = express.Router();
 const path = require('path');
 const DashboardController = require('../controllers/admin/dashboardController');
 const ServicePlanController = require('../controllers/user/serviceplanController');
+const UsersController = require('../controllers/admin/usersController')
 
 // Midlertidig database
 const getUsers = [
@@ -16,6 +17,9 @@ router.get('/', DashboardController.renderDashboard);
 
 // Route for service plan
 router.get('/serviceplan', ServicePlanController.renderServicePlan);
+
+// Route for brugeroversigt
+router.get('/brugeroversigt', UsersController.renderUsersController);
 
 router.get('/products', (req, res) => {
     res.render('admin/products/products', { title: 'Products' });
