@@ -19,7 +19,7 @@ router.get('/', DashboardController.renderDashboard);
 router.get('/serviceplan', ServicePlanController.renderServicePlan);
 
 // Route for brugeroversigt
-router.get('/brugeroversigt', UsersController.renderUsersController);
+router.get('/brugeroversigt', UsersController.renderUsers);
 
 router.get('/products', (req, res) => {
     res.render('admin/products/products', { title: 'Products' });
@@ -31,9 +31,7 @@ router.get('/orders', (req, res) => {
 
 // READ - viser liste over brugere
 router.get('/users', (req, res) => {
-
     res.render('partials/list', { title: 'Brugeroversigt', users: getUsers });
 });
-
 
 module.exports = router;
