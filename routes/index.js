@@ -7,6 +7,7 @@ const UsersController = require('../controllers/admin/usersController')
 const LoginController = require('../controllers/loginController');
 const ProductsController = require('../controllers/admin/productsController');
 const OrdersController = require('../controllers/admin/ordersController');
+const StationsController = require('../controllers/admin/stationsController');
 
 // Route for Login
 router.get('/', LoginController.renderLogin);
@@ -16,6 +17,8 @@ router.get('/dashboard', DashboardController.renderDashboard);
 
 // Route for service plan
 router.get('/serviceplan', ServicePlanController.renderServicePlan);
+
+router.get('/stations', StationsController.renderStations);
 
 // Route for brugeroversigt
 router.get('/brugeroversigt', UsersController.renderUsers);

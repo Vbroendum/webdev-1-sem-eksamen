@@ -1,3 +1,8 @@
 <h1>
     liste af ting rengøringspersoner skal klare
 </h1>
+<ul>
+    {{#each tasks}}
+        <li>{{this.description}} - {{this.status}}</li>
+    {{/each}}
+</ul>
