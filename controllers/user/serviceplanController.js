@@ -1,6 +1,6 @@
 class ServicePlanController {
     static renderServicePlan(req, res) {
-        res.render('serviceplan', { title: 'Service Plan' });
+        res.render('users/serviceplan', { title: 'Service Plan' });
     }
 }
 
