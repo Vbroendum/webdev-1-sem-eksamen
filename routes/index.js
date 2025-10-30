@@ -4,6 +4,7 @@ const path = require('path');
 const DashboardController = require('../controllers/admin/dashboardController');
 const ServicePlanController = require('../controllers/user/serviceplanController');
 const UsersController = require('../controllers/admin/usersController')
+const LoginController = require('../controllers/loginController');
 
 // Midlertidig database
 const getUsers = [
@@ -11,9 +12,11 @@ const getUsers = [
     { "id": 2, "name": "Bob", "role": "user" }
   ]
 
+// Route for Login
+router.get('/', LoginController.renderLogin);
 
 // Route for dashboard
-router.get('/', DashboardController.renderDashboard);
+router.get('/dashboard', DashboardController.renderDashboard);
 
 // Route for service plan
 router.get('/serviceplan', ServicePlanController.renderServicePlan);
