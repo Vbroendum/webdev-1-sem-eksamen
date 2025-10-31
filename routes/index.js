@@ -8,6 +8,7 @@ const LoginController = require('../controllers/loginController');
 const ProductsController = require('../controllers/admin/productsController');
 const OrdersController = require('../controllers/admin/ordersController');
 const StationsController = require('../controllers/admin/stationsController');
+const HistorikController = require('../controllers/historikController');
 
 // Route for Login
 router.get('/', LoginController.renderLogin);
@@ -29,5 +30,7 @@ router.get('/orders', OrdersController.renderOrdersPage);
 
 // READ - viser liste over brugere
 router.get('/users', UsersController.renderUsers);
+
+router.get('/historik', HistorikController.renderHistorik);
 
 module.exports = router;
