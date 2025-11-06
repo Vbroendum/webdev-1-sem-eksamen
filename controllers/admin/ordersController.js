@@ -13,9 +13,9 @@ class OrdersController {
          });
     }
 
-    static newOrder(req, res) {
+    static renderNewOrder(req, res) {
         res.render('admin/orders/new-order', {
-            title: 'Opret ny bruger'
+            title: 'Opret ny ordre'
         })
        }
    }

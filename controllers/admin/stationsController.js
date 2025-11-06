@@ -11,6 +11,12 @@ class StationsController {
             fields: ['pName', 'unit']
          });
     }
+
+    static renderNewStation(req, res) {
+        res.render('admin/stations/new-station', {
+            title: 'Opret ny station'
+        })
+       }
 }
 
 module.exports = StationsController;

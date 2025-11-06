@@ -11,6 +11,12 @@ class UsersController {
             fields: ['name', 'email', 'role']
          });
     }
+
+    static renderNewUser(req, res) {
+        res.render('admin/users/new-user', {
+            title: 'Opret ny bruger'
+        })
+       }
 }
 
 module.exports = UsersController;

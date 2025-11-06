@@ -12,6 +12,12 @@ class ProductsController {
             fields: ['pName', 'unit']
          });
     }
+
+    static renderNewProduct(req, res) {
+        res.render('admin/products/new-product', {
+            title: 'Opret nyt produkt'
+        })
+       }
 }
 
 module.exports = ProductsController;
