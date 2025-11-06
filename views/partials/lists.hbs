@@ -1,0 +1,21 @@
+{{!liste til test af brugeroversigt}}
+<table>
+    <thead>
+        <tr>
+            {{#each fields}}
+            <th>{{this}}</th>
+            {{/each}}
+        </tr>
+    </thead>
+    <tbody>
+        {{#each items}}
+        <tr>
+            {{#each ../fields}}
+            <td>
+                {{lookup ../this this}}
+            </td>
+            {{/each}}
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

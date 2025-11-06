@@ -33,4 +33,6 @@ router.get('/users', UsersController.renderUsers);
 
 router.get('/historik', HistorikController.renderHistorik);
 
+router.get('/new-order', OrdersController.newOrder);
+
 module.exports = router;
