@@ -1,6 +1,77 @@
-/*
-Her er der CSS KEKW
-*/
+.sidenav {
+    width: 220px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #333;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    z-index: 1000;
+  }
+  
+  .sidenav button {
+    display: none;
+  }
+  
+  .nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+  }
+  
+  .nav-links a {
+    display: block;
+    padding: 1rem;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .nav-links a:hover {
+    background: #555;
+  }
+  
+  .content {
+    margin-left: 220px;
+    padding: 2rem;
+    width: calc(100% - 220px);
+  }
+  
+  @media (max-width: 768px) {
+    .sidenav {
+      top: 0;
+      left: auto;
+      right: -220px;
+      width: 220px;
+    }
+  
+    .sidenav.open {
+      right: 0;
+    }
+  
+    .sidenav button {
+      display: block;
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      z-index: 1100;
+      background: #333;
+      color: white;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+    }
+  
+    .content {
+      margin-left: 0;
+      width: 100%;
+    }
+  }
+  
 
 .test-btn {
     background-color: #ff1493;
@@ -25,3 +96,5 @@ Her er der CSS KEKW
     border: none;
     padding: 10px;
 }
+
+
