@@ -41,7 +41,6 @@ router.get('/new-product', ProductsController.renderNewProduct);
 
 router.get('/new-station', StationsController.renderNewStation);
 
-router.get('/new-user', UsersController.renderNewUser);
 
 
 
