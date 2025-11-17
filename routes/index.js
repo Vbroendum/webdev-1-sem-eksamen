@@ -33,7 +33,6 @@ router.get('/users', UsersController.renderUsers);
 
 router.get('/historik', HistorikController.renderHistorik);
 
-
 //new pages
 router.get('/new-order', OrdersController.renderNewOrder);
 
@@ -42,7 +41,5 @@ router.get('/new-product', ProductsController.renderNewProduct);
 router.get('/new-station', StationsController.renderNewStation);
 
 router.get('/new-user', UsersController.renderNewUser);
-
-
 
 module.exports = router;
