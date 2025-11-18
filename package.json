@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Vbroendum/webdev-1-sem-eksamen#readme",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "express-handlebars": "^8.0.3",
