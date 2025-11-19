@@ -17,5 +17,5 @@ exports.renderUsers = async (req, res) => {
 };
 
 exports.renderNewUser = (req, res) => {
-    res.render('admin/users/newUser', { title: 'Opret ny bruger' });
+    res.render('admin/users/new-user', { title: 'Opret ny bruger' });
 };
