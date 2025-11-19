@@ -15,3 +15,7 @@ exports.renderUsers = async (req, res) => {
         res.status(500).send('Der opstod en fejl ved hentning af brugere.');
     }
 };
+
+exports.renderNewUser = (req, res) => {
+    res.render('admin/users/newUser', { title: 'Opret ny bruger' });
+};
