@@ -3,7 +3,8 @@ const router = express.Router();
 const path = require('path');
 const DashboardController = require('../controllers/admin/dashboardController');
 const ServicePlanController = require('../controllers/user/serviceplanController');
-const UsersController = require('../controllers/admin/usersController')
+const UserController = require('../controllers/admin/userController');
+const UsersController = require('../controllers/admin/usersController');
 const LoginController = require('../controllers/loginController');
 const ProductsController = require('../controllers/admin/productsController');
 const OrdersController = require('../controllers/admin/ordersController');
@@ -29,7 +30,7 @@ router.get('/products', ProductsController.renderProductsPage);
 router.get('/orders', OrdersController.renderOrdersPage);
 
 // READ - viser liste over brugere
-router.get('/users', UsersController.renderUsers);
+router.get('/users', UserController.renderUsers);
 
 router.get('/historik', HistorikController.renderHistorik);
 
