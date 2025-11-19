@@ -1,6 +1,11 @@
 /*
 Her er der CSS KEKW
 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap');
+
+*{
+    font-family: "Inter", sans-serif;
+}
 
 .test-btn {
     background-color: #ff1493;
@@ -25,3 +30,13 @@ Her er der CSS KEKW
     border: none;
     padding: 10px;
 }
+
+.new-btn {
+    background-color: #1B98E0;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+}
+

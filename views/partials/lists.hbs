@@ -1,14 +1,16 @@
 {{!liste til test af brugeroversigt}}
 <ul class="list">
     {{#each items}}
-    <li class="item">
+    <li class="list-item">
+    <div class="list-content">
         {{#each ../fields}}
-        <div class="item-field">
+        <div class="list-field">
              {{lookup ../this this}}
         </div>
         {{/each}}
+    </div>
 
-        <div class="actions">
+        <div class="list-actions">
             <button><a href="{{../editUrl}}/{{id}}">Rediger</a></button>
             <form action="/delete/{{id}}" method="POST">
             <button type="submit">Slet</button>

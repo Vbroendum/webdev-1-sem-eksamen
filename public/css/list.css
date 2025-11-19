@@ -1,0 +1,31 @@
+.list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.list-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.list-field {
+    margin: 2px 0;
+}
+
+.list-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.action-divider {
+    height: 100px;
+}
