@@ -1,6 +1,9 @@
+const db = require('../../config/database');
+
 class UsersController {
-    static renderUsers(req, res) {
-        // Midlertidig database
+    static async renderUsers(req, res) {
+        
+        /* // Midlertidig database
         const users = [
             { "id": 1, "name": "Alice", 'email': 'hej@gmail.com', "role": "admin" },
             { "id": 2, "name": "Bob", 'email': 'hej2@gmail.com', "role": "user" }
@@ -9,7 +12,37 @@ class UsersController {
             title: 'Brugeroversigt', 
             items: users,
             fields: ['name', 'email', 'role']
-         });
+         }); */
+
+        // Hent brugere fra den rigtige database med SQL query
+        // CONCAT bruges til at kombinere first_name og last_name til et fuldt navn
+        try {
+            const [users] = await db.query('CALL GetAllUsers()');
+            
+            const userData = users[0];
+            console.log(userData);
+            
+            // giv rolle navne baseret på role_id
+            userData.forEach(user => {
+                user.name = `${user.first_name} ${user.last_name}`;
+                if (user.role_id === 1) {
+                    user.role = 'Admin';
+                } else {
+                    user.role = 'Rengøringspersonale';
+                }
+            });
+            
+            res.render('admin/users/users', { 
+                title: 'Brugeroversigt', 
+                items: userData,
+                fields: ['name', 'user_email', 'role']
+            });
+            
+        } catch (error) {
+            console.error('Fejl ved hentning af brugere fra databasen:', error);
+            res.status(500).send('Der opstod en fejl ved hentning af brugere.');
+        }
+
     }
 
     static renderNewUser(req, res) {
