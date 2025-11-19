@@ -7,7 +7,7 @@ exports.renderUsers = async (req, res) => {
         res.render('admin/users/users', {
             title: 'Brugeroversigt',
             items: users,
-            fields: ['name', 'user_email', 'role']
+            fields: ['first_name', 'user_email', 'role_id']
         });
         console.log('users:', users);
     } catch (error) {
