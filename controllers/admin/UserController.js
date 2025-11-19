@@ -7,7 +7,8 @@ exports.renderUsers = async (req, res) => {
         res.render('admin/users/users', {
             title: 'Brugeroversigt',
             items: users,
-            fields: ['first_name', 'user_email', 'role_id']
+            fields: ['first_name', 'user_email', 'role_id'],
+            editUrl: '/edit-user',
         });
         console.log('users:', users);
     } catch (error) {
@@ -19,3 +20,19 @@ exports.renderUsers = async (req, res) => {
 exports.renderNewUser = (req, res) => {
     res.render('admin/users/new-user', { title: 'Opret ny bruger' });
 };
+
+exports.renderEditUser = (req, res) => {
+    res.render('admin/users/edit-user', { title: 'Rediger bruger' });
+};
+
+exports.deleteUser = async (req, res) => {
+    const userId = req.params.id;
+
+    try {
+        await userModel.deleteUserById(userId);
+        res.redirect('admin/users');
+    } catch(error) {
+        console.error('Fejl', error);
+        res.status(500).send('Kunne ikke slette bruger');
+    }
+}

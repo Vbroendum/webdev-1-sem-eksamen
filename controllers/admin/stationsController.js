@@ -17,6 +17,12 @@ class StationsController {
             title: 'Opret ny station'
         })
        }
+
+       static renderEditStation(req, res) {
+        res.render('admin/stations/edit-station', {
+            title: 'Rediger station'
+        })
+       }
 }
 
 module.exports = StationsController;

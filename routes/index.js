@@ -42,4 +42,17 @@ router.get('/new-station', StationsController.renderNewStation);
 
 router.get('/new-user', UsersController.renderNewUser);
 
+//edit pages
+router.get('/edit-user', UsersController.renderEditUser);
+
+router.get('/edit-product', ProductsController.renderEditProduct);
+
+router.get('/edit-station', StationsController.renderEditStation);
+
+router.get('/edit/order', OrdersController.renderEditOrder);
+
+//delete routes
+router.post('/delete/:id', UsersController.deleteUser);
+
+
 module.exports = router;

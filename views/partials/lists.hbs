@@ -7,6 +7,13 @@
              {{lookup ../this this}}
         </div>
         {{/each}}
+
+        <div class="actions">
+            <button><a href="{{../editUrl}}/{{id}}">Rediger</a></button>
+            <form action="/delete/{{id}}" method="POST">
+            <button type="submit">Slet</button>
+            </form>
+        </div>
     </li>
     {{/each}}
 </ul>

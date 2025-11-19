@@ -22,3 +22,5 @@ exports.getAllUsers = async () => {
         throw error;
     }
 };
+
+exports.deleteUserById //Sletning af bruger

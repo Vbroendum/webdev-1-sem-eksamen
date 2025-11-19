@@ -18,6 +18,12 @@ class OrdersController {
             title: 'Opret ny ordre'
         })
        }
+
+       static renderEditOrder(req, res) {
+        res.render('admin/orders/edit-order', {
+            title: 'Rediger ordre'
+        })
+       }
    }
 
 module.exports = OrdersController;

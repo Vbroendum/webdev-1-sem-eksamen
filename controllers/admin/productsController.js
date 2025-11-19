@@ -18,6 +18,12 @@ class ProductsController {
             title: 'Opret nyt produkt'
         })
        }
+
+       static renderEditProduct(req, res) {
+        res.render('admin/products/edit-product', {
+            title: 'Rediger produkt'
+        })
+       }
 }
 
 module.exports = ProductsController;
