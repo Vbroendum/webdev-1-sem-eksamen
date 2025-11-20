@@ -1,0 +1,25 @@
+<form action="/products" method="POST" enctype="multipart/form-data" class="input-form">
+
+    <div class="form-group">
+        <label for="product-name">Produktnavn</label>
+        <input type="text" name="produktnavn" id="product-name" placeholder="fek.s Auto Glanz Piste">
+    </div>
+
+    <div class="form-group">
+        <label for="product-type">Produkttype</label>
+        <select name="product-types" id="product-type">
+            <option value="forvask">Forvask</option>
+            <option value="glans">glans</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="amount">Mængdeindikator</label>
+        <select name="amount" id="amount">
+            <option value="Ml/L">ML/L</option>
+            <option value="G/KG">KG/G</option>
+        </select>
+    </div>
+
+    <button type="submit" class="submit-btn">Opret nyt produkt</button>
+</form>

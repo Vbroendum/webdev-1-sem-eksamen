@@ -1,0 +1,32 @@
+<form action="/orders" method="POST" enctype="multipart/form-data" class="input-form">
+    <div class="form-group">
+        <label for="deadline">Deadline</label>
+        <input type="date" id="order-deadline" required placeholder="Vælg dato">
+    </div>
+
+    <div class="form-group">
+        <label for="order-station">Station</label>
+        <select name="stationer" id="order-stations">
+            <option value="7eleven">7eleven</option>
+            <option value="q8">q8</option>
+            <option value="" selected>Vælg station</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+		<label class="checkbox">
+			<input class="checkbox_forplads" type="checkbox" name="forplads" />
+			<span class="checkbox__label">Forplads</span>
+		</label>
+		<label class="checkbox">
+			<input class="checkbox_vaskelahl" type="checkbox" name="vaskehal" />
+			<span class="checkbox_vaskehal">Vaskehal</span>
+		</label>
+		<label class="checkbox">
+			<input class="checkbox-påfyldning" type="checkbox" name="påfyldning" />
+			<span class="checkbox_påfyldning">Påfyldning</span>
+		</label>
+    </div>
+
+    <button type="submit" class="submit-btn">Opret rengøringsordre</button>
+</form>

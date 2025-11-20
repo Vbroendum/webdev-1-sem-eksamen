@@ -1,0 +1,35 @@
+<form action="/stations" method="POST" enctype="multipart/form-data" class="input-form"> 
+
+    <div class="form-group">
+        <label for="station-name">Stationsnavn</label>
+        <input type="text" name="stationsnavn" id="station-name" required placeholder="Indtast navn på station">
+    </div>
+
+    <div class="form-group">
+        <label for="company">Firma</label>
+        <select name="companies" id="companies">
+            <option value="7eleven">7eleven</option>
+            <option value="q8">q8</option>
+            <option value="" selected>Vælg firma</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="adress">Adresse</label>
+        <input type="text" name="addresse" id="address" required placeholder="Indtast adresse"> 
+    </div>
+
+    <div class="form-group">
+        <label for="postcode">Postnummer</label>
+        <input type="number" name="postnummer" id="postcode" maxlength="4" placeholder="Postnummer (fek.s 5000)">
+    </div>
+
+    <div class="form-group">
+        		<label class="checkbox">
+			<input class="checkbox_forplads" type="checkbox" name="forplads" />
+			<span class="checkbox__label">Har forplads</span>
+		</label>
+    </div>
+
+        <button type="submit" class="submit-btn">Opret station</button>
+</form>
