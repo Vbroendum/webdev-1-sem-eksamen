@@ -1,7 +1,6 @@
-class ServicePlanController {
-    static renderServicePlan(req, res) {
-        res.render('users/serviceplan', { title: 'Service Plan' });
-    }
-}
+const db = require('../../config/database');
+// model import her - ikke lavet endnu
 
-module.exports = ServicePlanController;
+exports.renderServicePlan = (req, res) => {
+    res.render('/serviceplan', { title: 'Service Plan' });
+}

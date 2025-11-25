@@ -1,7 +1,9 @@
-require('dotenv').config();
+require('dotenv').config({ debug: false, override: false });
 const express = require("express");
 const path = require("path");
 const { engine } = require('express-handlebars');
+const PORT = 3000;
+
 
 const routes = require("./routes");
 
@@ -27,4 +29,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use('/', routes);
 
+app.listen(PORT, () => {
+    console.log(`Server kører på: http://localhost:${PORT}`);
+})
 module.exports = app;
