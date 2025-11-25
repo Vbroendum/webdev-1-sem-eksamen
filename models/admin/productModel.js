@@ -30,7 +30,8 @@ exports.createProduct = async (productData) => {
             INSERT INTO products (products_name, unit_id)
             VALUES (?, ?)
         `;
-        
+        // spørgsmålstegn i values er for at undgå SQL injection
+        // bruger array til at indsætte værdierne sikkert
         const [result] = await db.query(query, [
             productData.products_name,
             productData.unit_id
