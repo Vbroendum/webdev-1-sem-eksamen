@@ -4,7 +4,6 @@ const path = require("path");
 const { engine } = require('express-handlebars');
 const PORT = 3000;
 
-
 const routes = require("./routes");
 
 const app = express();
@@ -25,7 +24,6 @@ app.engine('hbs', engine({
 
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
-
 
 app.use('/', routes);
 
