@@ -1,21 +1,29 @@
 {{!liste til test af brugeroversigt}}
-<table>
-    <thead>
-        <tr>
-            {{#each fields}}
-            <th>{{this}}</th>
-            {{/each}}
-        </tr>
-    </thead>
-    <tbody>
-        {{#each items}}
-        <tr>
-            {{#each ../fields}}
-            <td>
-                {{lookup ../this this}}
-            </td>
-            {{/each}}
-        </tr>
+<ul class="list">
+    {{#each items}}
+    <li class="list-item">
+    <div class="list-content">
+        {{#each ../fields}}
+        <div class="list-field">
+             {{lookup ../this this}}
+        </div>
         {{/each}}
-    </tbody>
-</table>
+    </div>
+
+<div class="list-actions">
+    <!-- Rediger ikon -->
+    <a href="{{../editUrl}}/{{id}}" class="action-icon edit" title="Rediger">
+        <i class="fa-regular fa-pen-to-square"></i>
+    </a>
+<div class="separator"></div>
+    <!-- Slet ikon -->
+    <form action="/delete/{{id}}" method="POST" style="display:inline;">
+        <button type="submit" class="action-icon delete" title="Slet">
+            <i class="fa-regular fa-trash-can"></i>
+        </button>
+    </form>
+</div>
+
+    </li>
+    {{/each}}
+</ul>

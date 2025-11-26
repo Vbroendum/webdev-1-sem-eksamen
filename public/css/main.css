@@ -1,6 +1,47 @@
 /*
 Her er der CSS KEKW
 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap');
+
+*{
+    font-family: "Inter", sans-serif;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.layout {
+    display: flex;
+    height: 100vh;
+    padding: 2rem;
+}
+
+.page-content {
+    box-sizing: border-box;
+    width: calc(100% - 220px);
+    margin-left: 220px;
+    overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+
+    .page-content {
+        width: 100vw;
+        margin-left: 0;
+        padding: 0;
+    }
+}
+
+.title {
+ font-size: 14px;
+ display: flex;
+ justify-content: center;
+ font-weight: 500;
+}
 
 .test-btn {
     background-color: #ff1493;
@@ -26,6 +67,7 @@ Her er der CSS KEKW
     padding: 10px;
 }
 
+<<<<<<< HEAD
 .add-user {
     display: flex;
     flex-direction: column;
@@ -54,3 +96,18 @@ Her er der CSS KEKW
 #role_id {
     margin: 0;
 }
+=======
+.new-btn {
+    background-color: #1B98E0;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+
+
+>>>>>>> sofie-hamburger
