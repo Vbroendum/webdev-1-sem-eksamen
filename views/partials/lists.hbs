@@ -10,12 +10,20 @@
         {{/each}}
     </div>
 
-        <div class="list-actions">
-            <button><a href="{{../editUrl}}/{{id}}">Rediger</a></button>
-            <form action="/delete/{{id}}" method="POST">
-            <button type="submit">Slet</button>
-            </form>
-        </div>
+<div class="list-actions">
+    <!-- Rediger ikon -->
+    <a href="{{../editUrl}}/{{id}}" class="action-icon edit" title="Rediger">
+        <i class="fa-regular fa-pen-to-square"></i>
+    </a>
+<div class="separator"></div>
+    <!-- Slet ikon -->
+    <form action="/delete/{{id}}" method="POST" style="display:inline;">
+        <button type="submit" class="action-icon delete" title="Slet">
+            <i class="fa-regular fa-trash-can"></i>
+        </button>
+    </form>
+</div>
+
     </li>
     {{/each}}
 </ul>

@@ -7,6 +7,42 @@ Her er der CSS KEKW
     font-family: "Inter", sans-serif;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.layout {
+    display: flex;
+    height: 100vh;
+    padding: 2rem;
+}
+
+.page-content {
+    box-sizing: border-box;
+    width: calc(100% - 220px);
+    margin-left: 220px;
+    overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+
+    .page-content {
+        width: 100vw;
+        margin-left: 0;
+        padding: 0;
+    }
+}
+
+.title {
+ font-size: 14px;
+ display: flex;
+ justify-content: center;
+ font-weight: 500;
+}
+
 .test-btn {
     background-color: #ff1493;
     color: #ffffff;
@@ -38,5 +74,9 @@ Her er der CSS KEKW
     border-radius: 5px;
     text-decoration: none;
     font-size: 14px;
+    display: inline-block;
+    margin-bottom: 20px;
 }
+
+
 
