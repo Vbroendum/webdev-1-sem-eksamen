@@ -1,0 +1,36 @@
+<form class="new-station">
+    
+<div>
+    <label for="station">Station:</label>
+    <input type="text" name="station" placeholder="Indtast station">
+</div>
+
+<div>
+<label for="station">Adresse:</label>
+    <input type="text" name="adresse" placeholder="Indtast adresse">
+</div>
+
+<div>
+<label for="station">Postnummer:</label>
+    <input type="text" name="postnummer" placeholder="Indtast postnummer">
+</div>
+
+<div>
+<label for="station">Firmaliste:</label>
+    <select name="Firmlist">
+    {{#each items}}
+    <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>
+      {{this.name}}
+    </option>
+    {{/each}}
+    </select>
+</div>
+
+<div>
+<label for="station">Station har for plads:</label>
+    <input type="checkbox" name="Station-has-forecourt" {{#if isAccepted}}checked{{/if}}>
+</div>
+
+<button class="test-btn new-station-button" type="submit">Gem ny station</button>
+
+</form>

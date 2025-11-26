@@ -1,0 +1,38 @@
+<form class="edit-station">
+
+ {{!-- Denne side er ikke implementeret og er derfor ikke gyldig! --}}
+
+<div>
+    <label for="station">Station:</label>
+    <input type="text" name="station" placeholder="ændre station">
+</div>
+
+<div>
+<label for="station">Adresse:</label>
+    <input type="text" name="adresse" placeholder="ændre adresse">
+</div>
+
+<div>
+<label for="station">Postnummer:</label>
+    <input type="text" name="postnummer" placeholder="ændre postnummer">
+</div>
+
+<div>
+<label for="station">Firmaliste:</label>
+    <select name="Firmlist">
+    {{#each items}}
+    <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>
+      {{this.name}}
+    </option>
+    {{/each}}
+    </select>
+</div>
+
+<div>
+<label for="station">Station har for plads:</label>
+    <input type="checkbox" name="Station-has-forecourt" {{#if isAccepted}}checked{{/if}}>
+</div>
+
+<button class="test-btn edit-station-button" type="submit">Gem ændringer station</button>
+
+</form>
