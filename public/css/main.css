@@ -25,3 +25,32 @@ Her er der CSS KEKW
     border: none;
     padding: 10px;
 }
+
+.add-user {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.add-user .form-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.add-user label {
+    display: inline-block;
+    width: 100px;
+    text-align: left;
+}
+
+.add-user input[type="text"],
+.add-user input[type="email"],
+.add-user input[type="password"] {
+    flex: 1;
+}
+
+#role_id {
+    margin: 0;
+}

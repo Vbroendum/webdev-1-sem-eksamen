@@ -16,6 +16,35 @@ exports.renderUsers = async (req, res) => {
     }
 };
 
-exports.renderNewUser = (req, res) => {
-    res.render('admin/users/new-user', { title: 'Opret ny bruger' });
+exports.renderNewUser = async (req, res) => {
+    try {
+        res.render('admin/users/new-user', {
+            title: 'Ny Bruger'
+        });
+    } catch (error) {
+        console.error('Fejl:', error);
+        res.status(500).send('Der opstod en fejl.');
+    }
+};
+
+exports.createUser = async (req, res) => {
+    try {
+        console.log('Request body:', req.body);
+
+        const userData = {
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            user_email: req.body.user_email,
+            user_password: req.body.user_password,
+            role_id: req.body.role_id ? 1 : 2
+        };
+
+        console.log('User data to be created:', userData);
+        
+        await userModel.CreateUser(userData); 
+        res.redirect('/users');
+    } catch (error) {
+        console.error('Fejl ved oprettelse af bruger:', error);
+        res.status(500).send('Der opstod en fejl ved oprettelse af bruger.');
+    }
 };
