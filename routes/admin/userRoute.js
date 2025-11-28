@@ -10,4 +10,11 @@ router.get('/new-user', UsersController.renderNewUser);
 // POST - opret ny bruger
 router.post('/', UsersController.createUser);
 
+// GET - vis redigeringsformular for en bruger
+router.get('/edit/:id', UsersController.renderEditUser);
+
+// POST - opdater bruger
+router.post('/edit/:id', UsersController.updateUser);
+
+
 module.exports = router;

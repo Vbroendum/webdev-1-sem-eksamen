@@ -1,6 +1,7 @@
 const db = require('../../config/database');
 const bcrypt = require('bcrypt');
 
+// Hent alle brugere
 exports.getAllUsers = async () => {
     try {
         const query = `
@@ -26,6 +27,13 @@ exports.getAllUsers = async () => {
     }
 };
 
+// Hent bruger med med deres Id
+exports.findUserById = async (id) => {
+    const [users] = await db.query('SELECT * FROM users WHERE user_id = ?', [id]);
+    return users[0];
+} 
+
+// Opret ny bruger
 exports.CreateUser = async (userData) => {
     try {
         console.log('Opretter bruger med data i model:', userData);
@@ -56,3 +64,29 @@ exports.CreateUser = async (userData) => {
         throw error;
     }
 };
+
+// opdatere bruger
+exports.updateUser = async (id, userData) => {
+    try {
+        const query = `
+        UPDATE users 
+        SET first_name = ?, last_name = ?, user_email = ?, role_id = ?
+        WHERE user_id = ?
+    `;
+    await db.query(query, [
+        userData.first_name,
+        userData.last_name,
+        userData.user_email,
+        userData.role_id,
+        id
+    ])
+
+
+    } catch(error) {
+
+
+    }
+}
+
+
+

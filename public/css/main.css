@@ -67,7 +67,6 @@ html, body {
     padding: 10px;
 }
 
-<<<<<<< HEAD
 .add-user {
     display: flex;
     flex-direction: column;
@@ -96,7 +95,6 @@ html, body {
 #role_id {
     margin: 0;
 }
-=======
 .new-btn {
     background-color: #1B98E0;
     color: #ffffff;
@@ -110,4 +108,3 @@ html, body {
 
 
 
->>>>>>> sofie-hamburger
