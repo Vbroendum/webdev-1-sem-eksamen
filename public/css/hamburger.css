@@ -38,6 +38,7 @@
     left: 0;
     right: 0;
 
+
     height: 60px;
     background: #fff;
     border-bottom: 1px solid #E2E2E2;
@@ -63,7 +64,6 @@
         width: 260px;
     }
 
-    /* Åben menu */
     .sidebar.open {
         transform: translateX(0);
     }
@@ -77,3 +77,6 @@
     }
 }
 
+.page-content {
+    padding-top: 60px; /* højde på header */
+}
