@@ -8,7 +8,9 @@ exports.renderUsers = async (req, res) => {
         res.render('admin/users/users', {
             title: 'Brugeroversigt',
             items: users,
-            fields: ['name', 'user_email', 'role']
+            fields: ['name', 'user_email', 'role'],
+            editUrl: '/users/edit',
+            deleteUrl: '/users'
         });
 
     } catch (error) {
@@ -75,10 +77,31 @@ exports.renderEditUser = async (req, res) => {
 // UPDATE - Opdatere brugeroplysninger
 exports.updateUser = async (req, res) => {
     try {
-        await userModel.updateUser(req.params.id, req.body);
+        const id = parseInt(req.params.id);
+
+        const userData = {
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            user_email: req.body.user_email,
+            role_id: req.body.role_id ? 1 : 2
+        }
+
+        await userModel.updateUser(id, userData);
         res.redirect('/users');
     } catch(error) {
         console.error('Fejl ved opdatering af bruger:', error);
         res.status(500).send('Der opstod en fejl ved opdatering af bruger');
     }
 }
+
+// DELETE - sletter bruger
+exports.deleteUser = async (req, res) => {
+    try {
+        const id = parseInt(req.params.id);
+        await userModel.deleteUser(id);
+        res.redirect('/users');
+    } catch(error) {
+        console.error('Fejl ved sletning af bruger:', error);
+        res.status(500).send('Der opstod en fejl ved sletning af bruger');
+    }
+};

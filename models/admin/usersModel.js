@@ -79,12 +79,23 @@ exports.updateUser = async (id, userData) => {
         userData.user_email,
         userData.role_id,
         id
-    ])
-
-
+    ]);
+    return true;
     } catch(error) {
+        console.error('Fejl ved opdatering af bruger:', error);
+        throw error;
 
+    }
+}
 
+// Sletter bruger
+exports.deleteUser = async (id) => {
+    try {
+        const [user] = await db.query('DELETE FROM users WHERE user_id = ?', [id]);
+        return true;
+    } catch(error) {
+        console.error('Fejl ved sletning af bruger:', error);
+        throw error;
     }
 }
 
