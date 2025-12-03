@@ -9,6 +9,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      unit: {
+        type: Sequelize.STRING
+      },
       short_unit: {
         type: Sequelize.STRING
       },
