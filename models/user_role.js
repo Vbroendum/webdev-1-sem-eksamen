@@ -15,8 +15,6 @@ module.exports = (sequelize, DataTypes) => {
       user_role.hasMany(models.user, {
         foreignKey: 'role_id',
         as: 'users',
-        onDelete: 'RESTRICT',
-        onUpdate: 'CASCADE',
       });
     }
   }

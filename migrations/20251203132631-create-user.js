@@ -13,7 +13,13 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       role_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+          references: {
+          model: 'user_roles',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'RESTRICT'
       },
       first_name: {
         type: Sequelize.STRING
