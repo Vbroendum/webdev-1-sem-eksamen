@@ -11,8 +11,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
+      unit.hasMany(models.product, {
+        foreignKey: 'unit_id',
+        as: 'products',
+        onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE',
+      });
     }
   }
+  
   unit.init({
     unit: DataTypes.STRING,
     short_unit: DataTypes.STRING

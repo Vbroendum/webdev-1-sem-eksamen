@@ -11,6 +11,50 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
+      serviceplan.belongsTo(models.station, {
+        foreignKey: 'station_id',
+        as: 'station',
+        onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE',
+      });
+
+      serviceplan.belongsTo(models.user, {
+        foreignKey: 'user_id',
+        as: 'user',
+        onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE',
+      });
+
+      serviceplan.belongsTo(models.company, {
+        foreignKey: 'company_id',
+        as: 'company',
+        onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE',
+      });
+
+      serviceplan.belongsTo(models.images, {
+        foreignKey: 'images_id',
+        as: 'images',
+        onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE',
+      });
+
+      serviceplan.hasOne(models.onetime_link, {
+        foreignKey: 'serviceplan_id',
+        as: 'onetime_link',
+        onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE',
+      });
+
+      serviceplan.belongsToMany(models.product, {
+        through: models.serviceplan_product,
+        foreignKey: 'serviceplan_id',
+        sourceKey: 'serviceplans_id',
+        as: 'serviceplan_products',
+        onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE',
+      });
     }
   }
   serviceplan.init({

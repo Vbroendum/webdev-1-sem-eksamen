@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('serviceplans', {
-      id: {
+      serviceplans_id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -25,6 +25,9 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       images_id: {
+        type: Sequelize.INTEGER
+      },
+      onetime_link_id: {
         type: Sequelize.INTEGER
       },
       createdAt: {

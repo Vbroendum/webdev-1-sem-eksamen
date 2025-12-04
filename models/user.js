@@ -11,6 +11,26 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      user.belongsToMany(models.station, {
+        foreignKey: 'station_id',
+        as: 'station',
+        onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE',
+      });
+
+      user.belongsTo(models.user_role, {
+        foreignKey: 'role_id',
+        as: 'user_role',
+        onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE',
+      });
+
+      serviceplan.hasMany(models.serviceplan, {
+        foreignKey: 'user_id',
+        as: 'serviceplans',
+        onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE',
+      });
     }
   }
   user.init({

@@ -11,7 +11,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
+      image_state.hasMany(models.image, {
+        foreignKey: 'image_state_id',
+        as: 'images',
+        onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE',
+      });
     }
+    
   }
   image_state.init({
     image_state: DataTypes.BOOLEAN

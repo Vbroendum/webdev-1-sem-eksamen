@@ -11,7 +11,22 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
+      image.belongsTo(models.serviceplan, {
+        foreignKey: 'serviceplan_id',
+        as: 'serviceplan',
+        onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE',
+      });
+
+      image.belongsTo(models.image_state, {
+        foreignKey: 'image_state_id',
+        as: 'image_state',
+        onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE',
+      });
     }
+    
   }
   image.init({
     serviceplan_id: DataTypes.INTEGER,
