@@ -1,4 +1,3 @@
-const db = require('../../config/database');
 const productModel = require('../../models/admin/productModel');
 
 exports.renderProductsPage = async (req, res) => {

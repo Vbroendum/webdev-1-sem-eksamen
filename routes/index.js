@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const LoginController = require('../controllers/loginController');
-const DashboardController = require('../controllers/admin/dashboardController');
-const ServicePlanController = require('../controllers/user/serviceplanController');
-const HistorikController = require('../controllers/historikController');
+const LoginController = require('../controllers/LoginControlleroginController');
+const DashboardController = require('../controllers/admin/DashboardController');
+const ServicePlanController = require('../controllers/user/ServiceplanController');
+const HistorikController = require('../controllers/HistorikController');
 
 // importering af routes
 const usersRoutes = require('./admin/userRoute');

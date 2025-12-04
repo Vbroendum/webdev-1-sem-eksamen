@@ -1,4 +1,3 @@
-const db = require('../../config/database');
 const userModel = require('../../models/admin/usersModel');
 
 exports.renderUsers = async (req, res) => {

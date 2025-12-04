@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const ProductsController = require('../../controllers/admin/productsController');
+const ProductsController = require('../../controllers/admin/ProductController');
 
 router.get('/', ProductsController.renderProductsPage);
 

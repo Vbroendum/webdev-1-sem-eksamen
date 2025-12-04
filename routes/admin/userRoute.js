@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const UsersController = require('../../controllers/admin/userController');
+const UsersController = require('../../controllers/admin/UserController');
 
 // READ - viser liste over brugere
 router.get('/', UsersController.renderUsers);
