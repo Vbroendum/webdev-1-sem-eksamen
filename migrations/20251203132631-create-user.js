@@ -10,7 +10,13 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       station_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+          references: {
+          model: 'stations',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'RESTRICT'
       },
       role_id: {
         type: Sequelize.INTEGER,

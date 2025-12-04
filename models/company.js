@@ -13,9 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       company.hasMany(models.station, {
         foreignKey: 'company_id',
-        as: 'stations',
-        onDelete: 'RESTRICT',
-        onUpdate: 'CASCADE',
+        as: 'stations'
       });
 
     }
