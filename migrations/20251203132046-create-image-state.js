@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('image_states', {
-      image_state_id: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
