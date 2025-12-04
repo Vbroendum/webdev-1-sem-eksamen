@@ -20,16 +20,12 @@ module.exports = (sequelize, DataTypes) => {
 
       user.belongsTo(models.user_role, {
         foreignKey: 'role_id',
-        as: 'user_role',
-        onDelete: 'RESTRICT',
-        onUpdate: 'CASCADE',
+        as: 'user_role'
       });
 
       serviceplan.hasMany(models.serviceplan, {
         foreignKey: 'user_id',
-        as: 'serviceplans',
-        onDelete: 'RESTRICT',
-        onUpdate: 'CASCADE',
+        as: 'serviceplans'
       });
     }
   }
