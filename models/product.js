@@ -21,8 +21,8 @@ module.exports = (sequelize, DataTypes) => {
 
       product.belongsToMany(models.serviceplan, {
         through: models.serviceplan_product,
-        foreignKey: 'product_id',
-        sourceKey: 'products_id',
+        foreignKey: 'id',
+        sourceKey: 'id',
         as: 'serviceplans',
         onDelete: 'RESTRICT',
         onUpdate: 'CASCADE',

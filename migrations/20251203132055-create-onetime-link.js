@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('onetime_links', {
-      onetime_link_id: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,

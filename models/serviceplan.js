@@ -50,7 +50,7 @@ module.exports = (sequelize, DataTypes) => {
       serviceplan.belongsToMany(models.product, {
         through: models.serviceplan_product,
         foreignKey: 'serviceplan_id',
-        sourceKey: 'serviceplans_id',
+        sourceKey: 'id',
         as: 'serviceplan_products',
         onDelete: 'RESTRICT',
         onUpdate: 'CASCADE',
