@@ -10,17 +10,12 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
-
+      // Unit har mange Produkter
       unit.hasMany(models.product, {
         foreignKey: 'unit_id',
-        as: 'products',
-        onDelete: 'RESTRICT',
-        onUpdate: 'CASCADE',
       });
     }
   }
-  
   unit.init({
     unit: DataTypes.STRING,
     short_unit: DataTypes.STRING

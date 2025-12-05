@@ -10,22 +10,19 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
-      user.belongsToMany(models.station, {
-        foreignKey: 'station_id',
-        as: 'station',
-        onDelete: 'RESTRICT',
-        onUpdate: 'CASCADE',
-      });
-
+      // User tilhører en User_role 
       user.belongsTo(models.user_role, {
         foreignKey: 'role_id',
-        as: 'user_role'
       });
 
-      serviceplan.hasMany(models.serviceplan, {
+      // User tilhører en Station
+      user.belongsTo(models.station, {
+        foreignKey: 'station_id',
+      });
+
+      // User har mange Serviceplaner
+      user.hasMany(models.serviceplan, {
         foreignKey: 'user_id',
-        as: 'serviceplans'
       });
     }
   }

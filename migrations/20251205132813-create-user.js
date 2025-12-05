@@ -11,21 +11,21 @@ module.exports = {
       },
       station_id: {
         type: Sequelize.INTEGER,
-          references: {
-          model: 'stations',
-          key: 'id'
+        references: {
+          model: 'stations', // Navnet på den tabel der refereres til
+          key: 'id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'RESTRICT'
+        onDelete: 'RESTRICT',
       },
       role_id: {
         type: Sequelize.INTEGER,
-          references: {
-          model: 'user_roles',
-          key: 'id'
+        references: {
+          model: 'user_roles', // Navnet på den tabel der refereres til
+          key: 'id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'RESTRICT'
+        onDelete: 'RESTRICT',
       },
       first_name: {
         type: Sequelize.STRING

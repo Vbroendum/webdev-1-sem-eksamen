@@ -10,18 +10,14 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
-
+      // OnetimeLink tilhører en Serviceplan
       onetime_link.belongsTo(models.serviceplan, {
-        foreignKey: 'serviceplan_id', 
-        as: 'serviceplan',
-        onDelete: 'RESTRICT',
-        onUpdate: 'CASCADE',
+        foreignKey: 'serviceplan_id',
       });
     }
   }
   onetime_link.init({
-    uuid: DataTypes.STRING,
+    uuid: DataTypes.UUID,
     serviceplan_id: DataTypes.INTEGER,
     is_used: DataTypes.BOOLEAN
   }, {

@@ -2,31 +2,33 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('stations', {
+    await queryInterface.createTable('images', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      company_id: {
-        type: Sequelize.INTEGER,
-          references: {
-          model: 'companies',
-          key: 'id'
-        },
-      },
-      station_address: {
-        type: Sequelize.STRING
-      },
-      station_postal_code: {
+      serviceplan_id: {
         type: Sequelize.INTEGER
       },
-      station_has_bay: {
-        type: Sequelize.BOOLEAN
+      upload_date: {
+        type: Sequelize.DATE
       },
-      station_name: {
+      image_state_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'serviceplans', // Navnet på den tabel der refereres til
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'RESTRICT',
+      },
+      filepath: {
         type: Sequelize.STRING
+      },
+      delete_date: {
+        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,
@@ -39,6 +41,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('stations');
+    await queryInterface.dropTable('images');
   }
 };

@@ -10,19 +10,14 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
-
+      // Har mange Billeder
       image_state.hasMany(models.image, {
         foreignKey: 'image_state_id',
-        as: 'images',
-        onDelete: 'RESTRICT',
-        onUpdate: 'CASCADE',
       });
     }
-    
   }
   image_state.init({
-    image_state: DataTypes.BOOLEAN
+    image_state: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'image_state',

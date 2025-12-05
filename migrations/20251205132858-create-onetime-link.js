@@ -2,24 +2,27 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('products', {
+    await queryInterface.createTable('onetime_links', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      products_name: {
-        type: Sequelize.STRING
+      uuid: {
+        type: Sequelize.UUID
       },
-      unit_id: {
+      serviceplan_id: {
         type: Sequelize.INTEGER,
-          references: {
-          model: 'units',
-          key: 'id'
+        references: {
+          model: 'serviceplans', // Navnet på den tabel der refereres til
+          key: 'id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'RESTRICT'
+        onDelete: 'RESTRICT',
+      },
+      is_used: {
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
@@ -32,6 +35,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('products');
+    await queryInterface.dropTable('onetime_links');
   }
 };

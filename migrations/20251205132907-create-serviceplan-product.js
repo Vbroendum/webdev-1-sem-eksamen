@@ -9,14 +9,23 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      product_id: {
+      serviceplan_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'products',
+          model: 'serviceplans', // Navnet på den tabel der refereres til
           key: 'id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'RESTRICT'
+        onDelete: 'RESTRICT',
+      },
+      product_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'products', // Navnet på den tabel der refereres til
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'RESTRICT',
       },
       quantity: {
         type: Sequelize.INTEGER

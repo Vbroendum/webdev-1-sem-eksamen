@@ -17,38 +17,39 @@ module.exports = {
       },
       station_id: {
         type: Sequelize.INTEGER,
-          references: {
-          model: 'stations',
-          key: 'id'
-        }
+        references: {
+          model: 'stations', // Navnet på den tabel der refereres til
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'RESTRICT',
       },
       user_id: {
         type: Sequelize.INTEGER,
-          references: {
-          model: 'users',
-          key: 'id'
-        }
+        references: {
+          model: 'users', // Navnet på den tabel der refereres til
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'RESTRICT',
+      },
+      company_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'companies', // Navnet på den tabel der refereres til
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'RESTRICT',
       },
       images_id: {
         type: Sequelize.INTEGER,
-          references: {
-          model: 'images',
-          key: 'id'
-        }
-      },
-      onetime_link_id: {
-        type: Sequelize.INTEGER,
         references: {
-          model: 'onetime_links',
-          key: 'id'
-        }
-      },
-      serviceplan_products_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'serviceplan_products',
-          key: 'id'
-        }
+          model: 'images', // Navnet på den tabel der refereres til
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'RESTRICT',
       },
       createdAt: {
         allowNull: false,

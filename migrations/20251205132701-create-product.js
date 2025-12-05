@@ -2,31 +2,24 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('images', {
+    await queryInterface.createTable('products', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      serviceplan_id: {
-        type: Sequelize.INTEGER
-      },
-      upload_date: {
-        type: Sequelize.DATE
-      },
-      image_state_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'image_states',
-          key: 'id'
-        }
-      },
-      filepath: {
+      products_name: {
         type: Sequelize.STRING
       },
-      delete_date: {
-        type: Sequelize.DATE
+      unit_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'units', // Navnet på den tabel der refereres til
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'RESTRICT',
       },
       createdAt: {
         allowNull: false,
@@ -39,6 +32,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('images');
+    await queryInterface.dropTable('products');
   }
 };

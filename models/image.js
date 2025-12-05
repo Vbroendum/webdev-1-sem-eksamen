@@ -10,23 +10,16 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
-
-      image.belongsTo(models.serviceplan, {
-        foreignKey: 'serviceplan_id',
-        as: 'serviceplan',
-        onDelete: 'RESTRICT',
-        onUpdate: 'CASCADE',
-      });
-
+      // Image tilhører en Image_state
       image.belongsTo(models.image_state, {
         foreignKey: 'image_state_id',
-        as: 'image_state',
-        onDelete: 'RESTRICT',
-        onUpdate: 'CASCADE',
+      });
+
+      // Image tilhører en Serviceplan (billedet er en del af denne plan?)
+      image.belongsTo(models.serviceplan, {
+        foreignKey: 'serviceplan_id',
       });
     }
-    
   }
   image.init({
     serviceplan_id: DataTypes.INTEGER,

@@ -10,25 +10,22 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
-
+      // Product tilhører en Unit
       product.belongsTo(models.unit, {
         foreignKey: 'unit_id',
-        as: 'unit',
-        onDelete: 'RESTRICT',
-        onUpdate: 'CASCADE',
       });
 
+      // Many-to-Many med Serviceplan via ServiceplanProduct
       product.belongsToMany(models.serviceplan, {
-        through: models.serviceplan_product,
-        foreignKey: 'id',
-        sourceKey: 'id',
-        as: 'serviceplans',
-        onDelete: 'RESTRICT',
-        onUpdate: 'CASCADE',
+        through: 'serviceplan_product',
+        foreignKey: 'product_id',
+      });
+      
+      // Har mange ServiceplanProduct (composite table)
+      product.hasMany(models.serviceplan_product, {
+        foreignKey: 'product_id',
       });
     }
-
   }
   product.init({
     products_name: DataTypes.STRING,
