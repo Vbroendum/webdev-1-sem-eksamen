@@ -1,25 +1,19 @@
 'use strict';
+const { v4: uuidv4 } = require('uuid'); // Kræver 'uuid' npm-pakken
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
+ async up (queryInterface, Sequelize) {
+    await queryInterface.bulkInsert('onetime_links', [
+      {
+        uuid: uuidv4(), 
+        serviceplan_id: 10000, // FK til Serviceplan 10000
+        is_used: false,
+        createdAt: new Date(), updatedAt: new Date()
+      }
+    ], {});
   },
-
   async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+    await queryInterface.bulkDelete('onetime_links', null, {});
   }
 };
