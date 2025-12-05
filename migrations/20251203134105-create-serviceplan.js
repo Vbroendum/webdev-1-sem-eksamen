@@ -29,13 +29,6 @@ module.exports = {
           key: 'id'
         }
       },
-      company_id: {
-        type: Sequelize.INTEGER,
-          references: {
-          model: 'companies',
-          key: 'id'
-        }
-      },
       images_id: {
         type: Sequelize.INTEGER,
           references: {
@@ -47,6 +40,13 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: 'onetime_links',
+          key: 'id'
+        }
+      },
+      serviceplan_products_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'serviceplan_products',
           key: 'id'
         }
       },

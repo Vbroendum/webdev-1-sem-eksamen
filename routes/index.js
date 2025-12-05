@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const LoginController = require('../controllers/LoginControlleroginController');
+const LoginController = require('../controllers/LoginController');
 const DashboardController = require('../controllers/admin/DashboardController');
 const ServicePlanController = require('../controllers/user/ServiceplanController');
 const HistorikController = require('../controllers/HistorikController');
