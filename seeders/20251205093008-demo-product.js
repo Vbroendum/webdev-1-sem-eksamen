@@ -3,23 +3,59 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
+    await queryInterface.bulkInsert('products', [
+      {
+        products_name: 'Oliefilter',
+        unit_id: 1,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        products_name: 'Bremsevæske',
+        unit_id: 2,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        products_name: 'Motorolie 5W-30',
+        unit_id: 2,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        products_name: 'Tændrør',
+        unit_id: 1,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        products_name: 'Luftfilter',
+        unit_id: 1,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        products_name: 'Kølevæske',
+        unit_id: 2,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        products_name: 'Viskerblade',
+        unit_id: 1,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        products_name: 'Batteri 12V',
+        unit_id: 1,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+    ], {});
   },
 
   async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+    await queryInterface.bulkDelete('products', null, {});
   }
 };
