@@ -10,22 +10,21 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // En Company kan have mange Stationer
-      company.hasMany(models.station, {
-        foreignKey: 'company_id',
+      company.hasMany(models.station, { 
+        foreignKey: 'company_id' 
       });
-      // En Company kan have mange Serviceplaner
-      company.hasMany(models.serviceplan, {
-        foreignKey: 'company_id',
+      company.hasMany(models.serviceplan, { 
+        foreignKey: 'company_id' 
       });
     }
   }
-  company.init({
-    name: DataTypes.STRING,
-    cvr: DataTypes.INTEGER
+  Company.init({
+    name: { type: DataTypes.STRING, allowNull: false },
+    cvr: { type: DataTypes.INTEGER, unique: true, allowNull: false },
   }, {
     sequelize,
     modelName: 'company',
+    tableName: 'companies',
   });
-  return company;
+  return Company;
 };

@@ -11,24 +11,31 @@ module.exports = {
       },
       company_id: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
-          model: 'companies', // Navnet på den tabel der refereres til
+          model: 'companies',
           key: 'id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'RESTRICT',
+        onDelete: 'SET NULL',
       },
       station_address: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       station_postal_code: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
       },
       station_has_bay: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
       },
       station_name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true
       },
       createdAt: {
         allowNull: false,

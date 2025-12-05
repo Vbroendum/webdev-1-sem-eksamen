@@ -11,33 +11,40 @@ module.exports = {
       },
       station_id: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
-          model: 'stations', // Navnet på den tabel der refereres til
+          model: 'stations', 
           key: 'id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'RESTRICT',
+        onDelete: 'SET NULL',
       },
       role_id: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
-          model: 'user_roles', // Navnet på den tabel der refereres til
+          model: 'user_roles',
           key: 'id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'RESTRICT',
+        onDelete: 'SET NULL',
       },
       first_name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       last_name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       user_email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true
       },
       user_password: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,

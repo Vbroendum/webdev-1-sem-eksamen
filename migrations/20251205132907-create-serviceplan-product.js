@@ -11,24 +11,27 @@ module.exports = {
       },
       serviceplan_id: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
-          model: 'serviceplans', // Navnet på den tabel der refereres til
+          model: 'serviceplans', 
           key: 'id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'RESTRICT',
+        onDelete: 'CASCADE',
       },
       product_id: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
-          model: 'products', // Navnet på den tabel der refereres til
+          model: 'products',
           key: 'id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'RESTRICT',
+        onDelete: 'CASCADE',
       },
       quantity: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,

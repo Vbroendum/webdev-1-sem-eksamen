@@ -10,31 +10,27 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // Station tilhører en Company
-      station.belongsTo(models.company, {
-        foreignKey: 'company_id',
+      station.belongsTo(models.company, { 
+        foreignKey: 'company_id' 
       });
-
-      // Station har mange Brugere
-      station.hasMany(models.user, {
-        foreignKey: 'station_id',
+      station.hasMany(models.user, { 
+        foreignKey: 'station_id' 
       });
-
-      // Station har mange Serviceplaner
-      station.hasMany(models.serviceplan, {
-        foreignKey: 'station_id',
+      station.hasMany(models.serviceplan, { 
+        foreignKey: 'station_id' 
       });
     }
   }
-  station.init({
-    company_id: DataTypes.INTEGER,
-    station_address: DataTypes.STRING,
-    station_postal_code: DataTypes.INTEGER,
-    station_has_bay: DataTypes.BOOLEAN,
-    station_name: DataTypes.STRING
+  Station.init({
+    company_id: { type: DataTypes.INTEGER, allowNull: false },
+    station_address: { type: DataTypes.STRING, allowNull: false },
+    station_postal_code: { type: DataTypes.INTEGER, allowNull: false },
+    station_has_bay: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false },
+    station_name: { type: DataTypes.STRING, allowNull: false, unique: true },
   }, {
     sequelize,
     modelName: 'station',
+    tableName: 'stations',
   });
-  return station;
+  return Station;
 };

@@ -10,32 +10,28 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // User tilhører en User_role 
-      user.belongsTo(models.user_role, {
-        foreignKey: 'role_id',
+      user.belongsTo(models.user_role, { 
+        foreignKey: 'role_id' 
       });
-
-      // User tilhører en Station
-      user.belongsTo(models.station, {
-        foreignKey: 'station_id',
+      user.belongsTo(models.station, { 
+        foreignKey: 'station_id' 
       });
-
-      // User har mange Serviceplaner
-      user.hasMany(models.serviceplan, {
-        foreignKey: 'user_id',
+      user.hasMany(models.serviceplan, { 
+        foreignKey: 'user_id' 
       });
     }
   }
-  user.init({
-    station_id: DataTypes.INTEGER,
-    role_id: DataTypes.INTEGER,
-    first_name: DataTypes.STRING,
-    last_name: DataTypes.STRING,
-    user_email: DataTypes.STRING,
-    user_password: DataTypes.STRING
+  User.init({
+    station_id: { type: DataTypes.INTEGER, allowNull: true },
+    role_id: { type: DataTypes.INTEGER, allowNull: false },
+    first_name: { type: DataTypes.STRING, allowNull: false },
+    last_name: { type: DataTypes.STRING, allowNull: false },
+    user_email: { type: DataTypes.STRING, allowNull: false, unique: true },
+    user_password: { type: DataTypes.STRING, allowNull: false },
   }, {
     sequelize,
     modelName: 'user',
+    tableName: 'users',
   });
-  return user;
+  return User;
 };

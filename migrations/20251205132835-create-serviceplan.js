@@ -13,43 +13,38 @@ module.exports = {
         type: Sequelize.DATE
       },
       serviceplan_expired_at: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: false
       },
       station_id: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
-          model: 'stations', // Navnet på den tabel der refereres til
+          model: 'stations', 
           key: 'id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'RESTRICT',
+        onDelete: 'SET NULL',
       },
       user_id: {
         type: Sequelize.INTEGER,
+          allowNull: false,
         references: {
-          model: 'users', // Navnet på den tabel der refereres til
+          model: 'users', 
           key: 'id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'RESTRICT',
+        onDelete: 'SET NULL',
       },
       company_id: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
-          model: 'companies', // Navnet på den tabel der refereres til
+          model: 'companies', 
           key: 'id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'RESTRICT',
-      },
-      images_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'images', // Navnet på den tabel der refereres til
-          key: 'id',
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'RESTRICT',
+        onDelete: 'SET NULL',
       },
       createdAt: {
         allowNull: false,

@@ -10,25 +10,31 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       serviceplan_id: {
-        type: Sequelize.INTEGER
-      },
-      upload_date: {
-        type: Sequelize.DATE
-      },
-      image_state_id: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
-          model: 'serviceplans', // Navnet på den tabel der refereres til
+          model: 'serviceplans',
           key: 'id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'RESTRICT',
+        onDelete: 'CASCADE',
+      },
+      image_state_id: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        defaultValue: 'Pending',
+      },
+      upload_date: {
+        type: Sequelize.DATE,
+        allowNull: false,
       },
       filepath: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       delete_date: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: true,
       },
       createdAt: {
         allowNull: false,

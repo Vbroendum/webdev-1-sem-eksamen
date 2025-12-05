@@ -10,24 +10,22 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // composite tabel tilhører en Serviceplan
-      serviceplan_product.belongsTo(models.serviceplan, {
-        foreignKey: 'serviceplan_id',
+      serviceplan_product.belongsTo(models.serviceplan, { 
+        foreignKey: 'serviceplan_id' 
       });
-
-      // composite tabel tilhører et Product
-      serviceplan_product.belongsTo(models.product, {
-        foreignKey: 'product_id',
+      serviceplan_product.belongsTo(models.product, { 
+        foreignKey: 'product_id' 
       });
     }
   }
-  serviceplan_product.init({
-    serviceplan_id: DataTypes.INTEGER,
-    product_id: DataTypes.INTEGER,
-    quantity: DataTypes.INTEGER
+  ServiceplanProduct.init({
+    serviceplan_id: { type: DataTypes.INTEGER, allowNull: false },
+    product_id: { type: DataTypes.INTEGER, allowNull: false },
+    quantity: { type: DataTypes.INTEGER, allowNull: false },
   }, {
     sequelize,
     modelName: 'serviceplan_product',
+    tableName: 'serviceplan_products',
   });
-  return serviceplan_product;
+  return ServiceplanProduct;
 };

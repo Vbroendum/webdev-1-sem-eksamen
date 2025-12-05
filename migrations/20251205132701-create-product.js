@@ -10,16 +10,19 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       products_name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true
       },
       unit_id: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
-          model: 'units', // Navnet på den tabel der refereres til
+          model: 'units', 
           key: 'id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'RESTRICT',
+        onDelete: 'SET NULL',
       },
       createdAt: {
         allowNull: false,

@@ -19,13 +19,12 @@ module.exports = (sequelize, DataTypes) => {
       serviceplan.belongsTo(models.company, { 
         foreignKey: 'company_id' 
       });
-      serviceplan.hasMany(models.onetime_link, { 
-        foreignKey: 'serviceplan_id' 
-      });
       serviceplan.hasMany(models.image, { 
         foreignKey: 'serviceplan_id' 
       });
-      // Many-to-Many med Product via ServiceplanProduct
+      serviceplan.hasMany(models.onetime_link, { 
+        foreignKey: 'serviceplan_id' 
+      });
       serviceplan.belongsToMany(models.product, {
         through: 'serviceplan_product',
         foreignKey: 'serviceplan_id',
@@ -35,16 +34,16 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
-  serviceplan.init({
-    serviceplan_done_at: DataTypes.DATE,
-    serviceplan_expired_at: DataTypes.DATE,
-    station_id: DataTypes.INTEGER,
-    user_id: DataTypes.INTEGER,
-    company_id: DataTypes.INTEGER,
-    images_id: DataTypes.INTEGER
+  Serviceplan.init({
+    serviceplan_done_at: { type: DataTypes.DATE, allowNull: true },
+    serviceplan_expired_at: { type: DataTypes.DATE, allowNull: false },
+    station_id: { type: DataTypes.INTEGER, allowNull: false },
+    user_id: { type: DataTypes.INTEGER, allowNull: false },
+    company_id: { type: DataTypes.INTEGER, allowNull: false },
   }, {
     sequelize,
     modelName: 'serviceplan',
+    tableName: 'serviceplans',
   });
-  return serviceplan;
+  return Serviceplan;
 };

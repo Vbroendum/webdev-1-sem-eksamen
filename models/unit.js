@@ -10,18 +10,18 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // Unit har mange Produkter
-      unit.hasMany(models.product, {
-        foreignKey: 'unit_id',
+      unit.hasMany(models.product, { 
+        foreignKey: 'unit_id' 
       });
     }
   }
-  unit.init({
-    unit: DataTypes.STRING,
-    short_unit: DataTypes.STRING
+  Unit.init({
+    unit: { type: DataTypes.STRING, allowNull: false, unique: true },
+    short_unit: { type: DataTypes.STRING, allowNull: false, unique: true },
   }, {
     sequelize,
     modelName: 'unit',
+    tableName: 'units',
   });
-  return unit;
+  return Unit;
 };

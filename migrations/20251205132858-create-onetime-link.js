@@ -10,19 +10,25 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       uuid: {
-        type: Sequelize.UUID
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
+        allowNull: false,
+        unique: true
       },
       serviceplan_id: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
-          model: 'serviceplans', // Navnet på den tabel der refereres til
+          model: 'serviceplans', 
           key: 'id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'RESTRICT',
+        onDelete: 'CASCADE',
       },
       is_used: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
       },
       createdAt: {
         allowNull: false,
