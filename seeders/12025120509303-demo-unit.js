@@ -4,9 +4,9 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
     return queryInterface.bulkInsert('units', [
-      { id: 1, unit_name: 'Stk', createdAt: new Date(), updatedAt: new Date() },
-      { id: 2, unit_name: 'Liter', createdAt: new Date(), updatedAt: new Date() },
-      { id: 3, unit_name: 'Kg', createdAt: new Date(), updatedAt: new Date() }
+      {  unit: 'Styk', short_unit: 'stk', createdAt: new Date(), updatedAt: new Date() },
+      {  unit: 'Liter', short_unit: 'L', createdAt: new Date(), updatedAt: new Date() },
+      {  unit: 'Kil', short_unit: 'kg', createdAt: new Date(), updatedAt: new Date() }
     ]);
   },
 

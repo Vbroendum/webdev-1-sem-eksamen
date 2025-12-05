@@ -18,37 +18,37 @@ module.exports = {
       },
       {
         products_name: 'Motorolie 5W-30',
-        unit_id: 2,
+        unit_id: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         products_name: 'Tændrør',
-        unit_id: 1,
+        
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         products_name: 'Luftfilter',
-        unit_id: 1,
+        
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         products_name: 'Kølevæske',
-        unit_id: 2,
+        
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         products_name: 'Viskerblade',
-        unit_id: 1,
+        
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         products_name: 'Batteri 12V',
-        unit_id: 1,
+        
         createdAt: new Date(),
         updatedAt: new Date()
       }

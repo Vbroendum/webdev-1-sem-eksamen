@@ -4,14 +4,14 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.bulkInsert('image_states', [
-      { id: 1, image_state: 'Pending', 
+      {  image_state: '0', 
         createdAt: new Date(), 
         updatedAt: new Date() },
       { 
-        id: 2, image_state: 'Approved', 
+         image_state: '1', 
         createdAt: new Date(), 
         updatedAt: new Date() },
-      { id: 3, image_state: 'Rejected', 
+      {  image_state: '1', 
         createdAt: new Date(), 
         updatedAt: new Date() }
     ], {});

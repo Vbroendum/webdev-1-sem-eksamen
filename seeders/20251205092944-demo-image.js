@@ -5,8 +5,8 @@ module.exports = {
   async up (queryInterface, Sequelize) {
    await queryInterface.bulkInsert('images', [
       {
-        id: 1,
-        serviceplan_id: 10000, // FK til Serviceplan 10000
+        
+        
         upload_date: new Date(),
         image_state_id: 2, // FK til Approved
         filepath: '',
