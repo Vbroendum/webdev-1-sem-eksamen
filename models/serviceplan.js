@@ -26,13 +26,6 @@ module.exports = (sequelize, DataTypes) => {
         onUpdate: 'CASCADE',
       });
 
-      serviceplan.belongsTo(models.company, {
-        foreignKey: 'company_id',
-        as: 'company',
-        onDelete: 'RESTRICT',
-        onUpdate: 'CASCADE',
-      });
-
       serviceplan.belongsTo(models.images, {
         foreignKey: 'images_id',
         as: 'images',
@@ -47,13 +40,11 @@ module.exports = (sequelize, DataTypes) => {
         onUpdate: 'CASCADE',
       });
 
-      serviceplan.belongsToMany(models.product, {
+      serviceplan.hasMany(models.product, {
         through: models.serviceplan_product,
-        foreignKey: 'serviceplan_id',
-        sourceKey: 'id',
-        as: 'serviceplan_products',
-        onDelete: 'RESTRICT',
-        onUpdate: 'CASCADE',
+        foreignKey: 'serviceplan_product_id',
+        //sourceKey: 'id',
+        as: 'serviceplan_product',
       });
     }
   }

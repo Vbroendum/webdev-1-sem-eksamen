@@ -19,12 +19,12 @@ module.exports = (sequelize, DataTypes) => {
         onUpdate: 'CASCADE',
       });
 
-      serviceplan_product.belongsTo(models.serviceplan, {
-        foreignKey: 'serviceplan_id',
-        as: 'serviceplan',
-        onDelete: 'RESTRICT',
-        onUpdate: 'CASCADE',
-      });
+      //serviceplan_product.belongsTo(models.serviceplan, {
+        //foreignKey: 'serviceplan_id',
+        //as: 'serviceplan',
+        //onDelete: 'RESTRICT',
+        //onUpdate: 'CASCADE',
+      //});
     }
   }
   serviceplan_product.init({
