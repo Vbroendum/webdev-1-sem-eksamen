@@ -40,12 +40,13 @@ module.exports = (sequelize, DataTypes) => {
         onUpdate: 'CASCADE',
       });
 
-      serviceplan.hasMany(models.product, {
-        through: models.serviceplan_product,
-        foreignKey: 'serviceplan_product_id',
-        //sourceKey: 'id',
-        as: 'serviceplan_product',
-      });
+      serviceplan.belongsToMany(models.product, {
+  through: models.serviceplan_product,
+  foreignKey: 'serviceplan_id',   // FK i join-tabellen
+  otherKey: 'product_id',         // FK i join-tabellen
+  as: 'products',                 // alias når du henter products
+});
+
     }
   }
   serviceplan.init({
@@ -53,9 +54,8 @@ module.exports = (sequelize, DataTypes) => {
     serviceplan_expired_at: DataTypes.DATE,
     station_id: DataTypes.INTEGER,
     user_id: DataTypes.INTEGER,
-    company_id: DataTypes.INTEGER,
     images_id: DataTypes.INTEGER,
-    serviceplan_product_id: DataTypes.INTEGER
+    //serviceplan_product_id: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'serviceplan',

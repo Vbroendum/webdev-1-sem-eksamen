@@ -13,10 +13,13 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
 
       serviceplan_product.belongsTo(models.product, {
-        foreignKey: 'product_id',
-        as: 'product',
-        onDelete: 'RESTRICT',
-        onUpdate: 'CASCADE',
+      foreignKey: 'product_id',
+      as: 'product',
+      });
+
+      serviceplan_product.belongsTo(models.serviceplan, {
+      foreignKey: 'serviceplan_id',
+      as: 'serviceplan',
       });
 
       //serviceplan_product.belongsTo(models.serviceplan, {
