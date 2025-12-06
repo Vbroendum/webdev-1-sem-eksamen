@@ -1,26 +1,26 @@
-const db = require('../../models/index');
+const db = require('../../models');
 const { Product } = require('../../models');
 
 exports.renderProductsPage = async (req, res) => {
-    try {
-        const products = await productModel.getAllProducts();
-        
-        res.render('admin/products/products', {
+try {
+        const products = await db.Product.findAll({
             title: 'Produktoversigt',
             items: products,
-            fields: ['product_name', 'unit_name']  // fra unit id to unit_name
+            fields: ['product_name', 'unit_name']
         });
+        res.render('admin/products.hbs', { products });
     } catch (error) {
-        console.error('Fejl:', error);
-        res.status(500).send('Der opstod en fejl ved hentning af produkter.');
+        console.error("Fejl ved hentning af produkter:", error);
+        res.status(500).send("Der opstod en fejl under indlæsningen af produkter.");
     }
 };
 
 exports.renderNewProduct = async (req, res) => {
     try {
-        res.render('admin/products/new-product', {
+        const products = await db.Product.findAll({
             title: 'Nyt Produkt'
         });
+        res.render('admin/products.hbs', { products });
     } catch (error) {
         console.error('Fejl:', error);
         res.status(500).send('Der opstod en fejl.');
@@ -29,15 +29,11 @@ exports.renderNewProduct = async (req, res) => {
 
 exports.createProduct = async (req, res) => {
     try {
-        const productData = {
-            products_name: req.body.products_name,
-            unit_id: req.body.unit_id
-        };
-        
-        await productModel.createProduct(productData);
-        res.redirect('/products');
+        const products = await Product.findAll({ 
+        });
+        res.render('admin/products.hbs', { products });
     } catch (error) {
-        console.error('Fejl ved oprettelse af produkt:', error);
-        res.status(500).send('Der opstod en fejl ved oprettelse af produkt.');
+        console.error("Fejl ved hentning af produkter:", error);
+        res.status(500).send("Der opstod en fejl under indlæsningen af produkter.");
     }
 };

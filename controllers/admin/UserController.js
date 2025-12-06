@@ -1,26 +1,26 @@
-const db = require('../../models/index');
+const db = require('../../models');
 const { User } = require('../../models');
 
 exports.renderUsers = async (req, res) => {
     try {
-        const users = await userModel.getAllUsers();
-        res.render('admin/users/users', {
+        const users = await db.User.findAll({
             title: 'Brugeroversigt',
             items: users,
             fields: ['name', 'user_email', 'role']
         });
-        console.log('users:', users);
+        res.render('admin/users.hbs', { users });
     } catch (error) {
-        console.error('Fejl:', error);
-        res.status(500).send('Der opstod en fejl ved hentning af brugere.');
+        console.error("Fejl ved hentning af brugere:", error);
+        res.status(500).send("Der opstod en fejl under indlæsningen af brugere.");
     }
 };
 
 exports.renderNewUser = async (req, res) => {
     try {
-        res.render('admin/users/new-user', {
+        const users = await db.User.findAll({
             title: 'Ny Bruger'
         });
+        res.render('admin/users.hbs', { users });
     } catch (error) {
         console.error('Fejl:', error);
         res.status(500).send('Der opstod en fejl.');
