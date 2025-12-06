@@ -14,9 +14,7 @@ module.exports = (sequelize, DataTypes) => {
 
       image.belongsTo(models.serviceplan, {
         foreignKey: 'serviceplan_id',
-        as: 'serviceplan',
-        onDelete: 'RESTRICT',
-        onUpdate: 'CASCADE',
+        as: 'serviceplan'
       });
 
     }
@@ -31,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'image',
+    tableName: 'images'
   });
   return image;
 };

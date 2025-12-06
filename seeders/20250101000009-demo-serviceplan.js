@@ -31,7 +31,6 @@ module.exports = {
         serviceplan_expired_at: new Date('2025-02-10'),
         station_id: stations[0].id,
         user_id: users[0].id,
-        images_id: images[0].id,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -40,7 +39,6 @@ module.exports = {
         serviceplan_expired_at: new Date('2025-04-15'),
         station_id: stations[1].id,
         user_id: users[1].id,
-        images_id: images[1].id,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -49,7 +47,6 @@ module.exports = {
         serviceplan_expired_at: new Date('2025-06-01'),
         station_id: stations[2].id,
         user_id: users[2].id,
-        images_id: images[2].id,
         createdAt: new Date(),
         updatedAt: new Date()
       }

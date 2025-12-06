@@ -15,11 +15,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.engine('hbs', engine({
     extname: '.hbs',
     defaultLayout: 'main',
-    layoutsDir: './views/layouts',
-    partialsDir: './views/partials',
+    layoutsDir: path.join(__dirname, 'views/layouts'),
+    partialsDir: path.join(__dirname, 'views/partials'),
+    runtimeOptions: {
+        allowProtoPropertiesByDefault: true,
+        allowProtoMethodsByDefault: true
+      },
     helpers: {
         json: (context) => { return JSON.stringify(context); }
     }
+    
 }));
 
 app.set('view engine', 'hbs');

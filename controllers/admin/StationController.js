@@ -1,22 +1,20 @@
-class StationsController {
-    static renderStations(req, res) {
-        const stations = [
-            { "id": 1, "pName": "Salt", 'unit': 'l'},
-            { "id": 2, "pName": "Citronsyre", 'unit': 'kg'}
-        ];
+// StationController.js
+const db = require('../../models');
 
-        res.render('admin/stations/stations', { 
-            title: 'Stationsoversigt', 
-            items: stations,
-            fields: ['pName', 'unit']
-         });
-    }
+// READ - Viser alle stationer
+exports.renderStations = async (req, res) => {
+    try {
+        const stations = await db.station.findAll({
+            attributes: ['station_name']
+        });
 
-    static renderNewStation(req, res) {
-        res.render('admin/stations/new-station', {
-            title: 'Opret ny station'
-        })
-       }
-}
+        res.render('admin/stations/stations', {
+            title: 'Stationer',
+            stations
+        });
 
-module.exports = StationsController;
+        } catch (error) {
+            console.error('Fejl ved hentning af stationer:', error);
+            res.status(500).send('Databasefejl');
+        }
+    };
