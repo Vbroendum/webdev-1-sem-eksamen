@@ -15,12 +15,8 @@ module.exports = {
       upload_date: {
         type: Sequelize.DATE
       },
-      image_state_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'image_states',
-          key: 'id'
-        }
+      is_after: {
+        type: Sequelize.BOOLEAN
       },
       filepath: {
         type: Sequelize.STRING

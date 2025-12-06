@@ -19,19 +19,13 @@ module.exports = (sequelize, DataTypes) => {
         onUpdate: 'CASCADE',
       });
 
-      image.belongsTo(models.image_state, {
-        foreignKey: 'image_state_id',
-        as: 'image_state',
-        onDelete: 'RESTRICT',
-        onUpdate: 'CASCADE',
-      });
     }
     
   }
   image.init({
     serviceplan_id: DataTypes.INTEGER,
     upload_date: DataTypes.DATE,
-    image_state_id: DataTypes.INTEGER,
+    is_after: DataTypes.BOOLEAN,
     filepath: DataTypes.STRING,
     delete_date: DataTypes.DATE
   }, {
