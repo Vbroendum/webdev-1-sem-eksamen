@@ -18,6 +18,15 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'RESTRICT'
       },
+      serviceplan_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'serviceplans',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'RESTRICT'
+      },
       quantity: {
         type: Sequelize.INTEGER
       },

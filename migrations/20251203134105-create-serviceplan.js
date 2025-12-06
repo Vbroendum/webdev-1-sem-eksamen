@@ -43,13 +43,6 @@ module.exports = {
           key: 'id'
         }
       },
-      serviceplan_products_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'serviceplan_products',
-          key: 'id'
-        }
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

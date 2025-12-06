@@ -55,7 +55,6 @@ module.exports = (sequelize, DataTypes) => {
     station_id: DataTypes.INTEGER,
     user_id: DataTypes.INTEGER,
     images_id: DataTypes.INTEGER,
-    //serviceplan_product_id: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'serviceplan',
