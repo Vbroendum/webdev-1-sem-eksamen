@@ -6,9 +6,9 @@ module.exports = {
     const [users] = await queryInterface.sequelize.query(`SELECT id FROM users ORDER BY id ASC`);
 
     await queryInterface.bulkInsert('images', [
-      { filepath: 'image1.jpg', upload_date: new Date(), is_after: '1', serviceplan_id: null, delete_date: null, createdAt: new Date(), updatedAt: new Date() },
-      { filepath: 'image2.jpg', upload_date: new Date(), is_after: '0', serviceplan_id: null, delete_date: null, createdAt: new Date(), updatedAt: new Date() },
-      { filepath: 'image3.jpg', upload_date: new Date(), is_after: '1', serviceplan_id: null, delete_date: null, createdAt: new Date(), updatedAt: new Date() }
+      { filepath: 'image1.jpg', upload_date: new Date(), is_after: '1', serviceplan_id: '', delete_date: null, createdAt: new Date(), updatedAt: new Date() },
+      { filepath: 'image2.jpg', upload_date: new Date(), is_after: '0', serviceplan_id: '', delete_date: null, createdAt: new Date(), updatedAt: new Date() },
+      { filepath: 'image3.jpg', upload_date: new Date(), is_after: '1', serviceplan_id: '', delete_date: null, createdAt: new Date(), updatedAt: new Date() }
     ], {});
   },
 
