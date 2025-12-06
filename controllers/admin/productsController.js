@@ -1,5 +1,5 @@
-const db = require('../../config/database');
-const productModel = require('../../models/admin/productModel');
+const db = require('../../models/index');
+const { Product } = require('../../models');
 
 exports.renderProductsPage = async (req, res) => {
     try {

@@ -1,4 +1,4 @@
-const db = require('../../config/database');
+const db = require('../../models/index');
 // model import her - ikke lavet endnu
 
 exports.renderServicePlan = (req, res) => {

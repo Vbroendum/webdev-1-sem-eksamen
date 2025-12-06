@@ -1,5 +1,5 @@
-const db = require('../../config/database');
-const userModel = require('../../models/admin/usersModel');
+const db = require('../../models/index');
+const { User } = require('../../models');
 
 exports.renderUsers = async (req, res) => {
     try {
