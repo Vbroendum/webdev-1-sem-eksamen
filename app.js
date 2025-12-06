@@ -5,15 +5,15 @@ const { engine } = require('express-handlebars');
 const PORT = 3000;
 
 const routes = require("./routes");
-
 const app = express();
+
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.engine('hbs', engine({
-    extname: 'hbs',
+    extname: '.hbs',
     defaultLayout: 'main',
     layoutsDir: './views/layouts',
     partialsDir: './views/partials',
