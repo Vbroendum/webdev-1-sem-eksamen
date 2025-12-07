@@ -3,12 +3,10 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    const [units] = await queryInterface.sequelize.query(`SELECT id FROM units ORDER BY id ASC`);
-
     await queryInterface.bulkInsert('products', [
-      { products_name: 'Olie', unit_id: units[0].id, createdAt: new Date(), updatedAt: new Date() },
-      { products_name: 'Filter', unit_id: units[4].id, createdAt: new Date(), updatedAt: new Date() },
-      { products_name: 'Vand', unit_id: units[2].id, createdAt: new Date(), updatedAt: new Date() }
+      { products_name: 'Olie', unit_id: '1', createdAt: new Date(), updatedAt: new Date() },
+      { products_name: 'Filter', unit_id: '2', createdAt: new Date(), updatedAt: new Date() },
+      { products_name: 'Vand', unit_id: '3', createdAt: new Date(), updatedAt: new Date() }
     ], {});
   },
 

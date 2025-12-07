@@ -3,7 +3,6 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    // Indsæt serviceplaner med dynamiske FK'er
     await queryInterface.bulkInsert('serviceplans', [
       {
         serviceplan_done_at: new Date('2025-01-10'),
