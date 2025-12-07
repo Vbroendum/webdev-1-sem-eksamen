@@ -13,7 +13,11 @@ module.exports = {
         type: Sequelize.STRING
       },
       serviceplan_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+          references: {
+          model: 'serviceplans',
+          key: 'id'
+        }
       },
       is_used: {
         type: Sequelize.BOOLEAN

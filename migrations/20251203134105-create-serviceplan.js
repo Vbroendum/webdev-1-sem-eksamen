@@ -29,20 +29,6 @@ module.exports = {
           key: 'id'
         }
       },
-      images_id: {
-        type: Sequelize.INTEGER,
-          references: {
-          model: 'images',
-          key: 'id'
-        }
-      },
-      onetime_link_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'onetime_links',
-          key: 'id'
-        }
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

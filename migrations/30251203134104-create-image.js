@@ -10,7 +10,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       serviceplan_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+          references: {
+          model: 'serviceplans',
+          key: 'id'
+        }
       },
       upload_date: {
         type: Sequelize.DATE
