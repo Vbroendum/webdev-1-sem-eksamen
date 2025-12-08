@@ -2,31 +2,18 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('images', {
+    await queryInterface.createTable('units', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      serviceplan_id: {
-        type: Sequelize.INTEGER,
-          references: {
-          model: 'serviceplans',
-          key: 'id'
-        }
-      },
-      upload_date: {
-        type: Sequelize.DATE
-      },
-      is_after: {
-        type: Sequelize.BOOLEAN
-      },
-      filepath: {
+      unit: {
         type: Sequelize.STRING
       },
-      delete_date: {
-        type: Sequelize.DATE
+      short_unit: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -39,6 +26,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('images');
+    await queryInterface.dropTable('units');
   }
 };

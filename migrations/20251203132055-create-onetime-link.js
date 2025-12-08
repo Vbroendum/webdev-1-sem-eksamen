@@ -2,31 +2,21 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('stations', {
+    await queryInterface.createTable('onetime_links', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      company_id: {
-        type: Sequelize.INTEGER,
-          references: {
-          model: 'companies',
-          key: 'id'
-        },
-      },
-      station_address: {
+      uuid: {
         type: Sequelize.STRING
       },
-      station_postal_code: {
+      serviceplan_id: {
         type: Sequelize.INTEGER
       },
-      station_has_bay: {
+      is_used: {
         type: Sequelize.BOOLEAN
-      },
-      station_name: {
-        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -39,6 +29,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('stations');
+    await queryInterface.dropTable('onetime_links');
   }
 };

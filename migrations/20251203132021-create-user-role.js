@@ -10,10 +10,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       role_name: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        onDelete: 'RESTRICT',
-        onUpdate: 'CASCADE',
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

@@ -11,13 +11,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-
-      onetime_link.belongsTo(models.serviceplan, {
-        foreignKey: 'serviceplan_id', 
-        as: 'serviceplan',
-        onDelete: 'RESTRICT',
-        onUpdate: 'CASCADE',
-      });
     }
   }
   onetime_link.init({
