@@ -1,24 +1,39 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
-  class serviceplan_product extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
+  const serviceplan_product = sequelize.define('serviceplan_product', {
+    serviceplan_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true
+    },
+    product_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true
+    },
+    quantity: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
-  }
-  serviceplan_product.init({
-    product_id: DataTypes.INTEGER,
-    quantity: DataTypes.INTEGER
   }, {
-    sequelize,
-    modelName: 'serviceplan_product',
+    tableName: 'serviceplan_products',
+    timestamps: true
   });
+
+  serviceplan_product.associate = (models) => {
+
+    serviceplan_product.belongsTo(models.serviceplan, {
+      foreignKey: 'serviceplan_id',
+      as: 'serviceplan'
+    });
+
+    serviceplan_product.belongsTo(models.product, {
+      foreignKey: 'product_id',
+      as: 'product'
+    });
+
+  };
+
   return serviceplan_product;
 };
