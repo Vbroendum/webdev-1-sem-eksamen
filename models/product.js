@@ -11,7 +11,22 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
+      product.belongsTo(models.unit, {
+        foreignKey: 'unit_id',
+        as: 'unit',
+        onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE',
+      });
+
+      product.belongsToMany(models.serviceplan, {
+        through: models.serviceplan_product,
+        foreignKey: 'product_id',
+        otherKey: 'serviceplan_id',
+        as: 'serviceplans'
+      });
     }
+
   }
   product.init({
     products_name: DataTypes.STRING,

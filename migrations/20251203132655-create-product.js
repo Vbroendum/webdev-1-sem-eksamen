@@ -13,7 +13,13 @@ module.exports = {
         type: Sequelize.STRING
       },
       unit_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+          references: {
+          model: 'units',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'RESTRICT'
       },
       createdAt: {
         allowNull: false,

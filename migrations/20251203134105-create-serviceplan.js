@@ -16,16 +16,18 @@ module.exports = {
         type: Sequelize.DATE
       },
       station_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+          references: {
+          model: 'stations',
+          key: 'id'
+        }
       },
       user_id: {
-        type: Sequelize.INTEGER
-      },
-      company_id: {
-        type: Sequelize.INTEGER
-      },
-      images_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+          references: {
+          model: 'users',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,

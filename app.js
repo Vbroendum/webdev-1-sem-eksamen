@@ -5,21 +5,26 @@ const { engine } = require('express-handlebars');
 const PORT = 3000;
 
 const routes = require("./routes");
-
 const app = express();
+
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.engine('hbs', engine({
-    extname: 'hbs',
+    extname: '.hbs',
     defaultLayout: 'main',
-    layoutsDir: './views/layouts',
-    partialsDir: './views/partials',
+    layoutsDir: path.join(__dirname, 'views/layouts'),
+    partialsDir: path.join(__dirname, 'views/partials'),
+    runtimeOptions: {
+        allowProtoPropertiesByDefault: true,
+        allowProtoMethodsByDefault: true
+      },
     helpers: {
         json: (context) => { return JSON.stringify(context); }
     }
+    
 }));
 
 app.set('view engine', 'hbs');
