@@ -9,15 +9,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      station_id: {
-        type: Sequelize.INTEGER,
-          references: {
-          model: 'stations',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'RESTRICT'
-      },
       role_id: {
         type: Sequelize.INTEGER,
           references: {
