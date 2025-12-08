@@ -14,23 +14,17 @@ module.exports = (sequelize, DataTypes) => {
 
       serviceplan.belongsTo(models.station, {
         foreignKey: 'station_id',
-        as: 'station',
-        onDelete: 'RESTRICT',
-        onUpdate: 'CASCADE',
+        as: 'station'
       });
 
       serviceplan.belongsTo(models.user, {
         foreignKey: 'user_id',
-        as: 'user',
-        onDelete: 'RESTRICT',
-        onUpdate: 'CASCADE',
+        as: 'user'
       });
 
-      serviceplan.belongsTo(models.images, {
-        foreignKey: 'images_id',
-        as: 'images',
-        onDelete: 'RESTRICT',
-        onUpdate: 'CASCADE',
+      serviceplan.hasMany(models.image, {
+        foreignKey: 'serviceplan_id',
+        as: 'images'
       });
 
       serviceplan.hasOne(models.onetime_link, {

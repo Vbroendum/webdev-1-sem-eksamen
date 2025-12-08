@@ -20,11 +20,11 @@ module.exports = (sequelize, DataTypes) => {
       });
 
       product.belongsToMany(models.serviceplan, {
-  through: models.serviceplan_product,
-  foreignKey: 'product_id',       // FK i join-tabellen
-  otherKey: 'serviceplan_id',     // FK i join-tabellen
-  as: 'serviceplans',             // alias når du henter serviceplans
-});
+        through: models.serviceplan_product,
+        foreignKey: 'product_id',
+        otherKey: 'serviceplan_id',
+        as: 'serviceplans'
+      });
     }
 
   }

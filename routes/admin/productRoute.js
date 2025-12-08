@@ -1,11 +1,9 @@
+// productRoute.js
 const express = require('express');
 const router = express.Router();
-const ProductsController = require('../../controllers/admin/ProductController');
+const ProductController = require('../../controllers/admin/ProductController');
 
-router.get('/', ProductsController.renderProductsPage);
-
-router.get('/new-product', ProductsController.renderNewProduct);
-
-router.post('/', ProductsController.createProduct);
+// GET - Viser alle produkter
+router.get('/', ProductController.renderProducts);
 
 module.exports = router;
