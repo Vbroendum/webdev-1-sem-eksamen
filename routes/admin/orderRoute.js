@@ -1,9 +1,8 @@
-// orderRoute.js
 const express = require('express');
 const router = express.Router();
-const OrderController = require('../../controllers/admin/OrderController');
+const OrdersController = require('../../controllers/admin/ordersController');
 
-// GET - Viser alle ordre
-router.get('/', OrderController.renderOrders);
+router.get('/', OrdersController.renderOrdersPage);
+router.get('/new-order', OrdersController.renderNewOrder);
 
 module.exports = router;

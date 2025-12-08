@@ -2,29 +2,17 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('serviceplans', {
+    await queryInterface.createTable('companies', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      serviceplan_done_at: {
-        type: Sequelize.DATE
+      name: {
+        type: Sequelize.STRING
       },
-      serviceplan_expired_at: {
-        type: Sequelize.DATE
-      },
-      station_id: {
-        type: Sequelize.INTEGER
-      },
-      user_id: {
-        type: Sequelize.INTEGER
-      },
-      company_id: {
-        type: Sequelize.INTEGER
-      },
-      images_id: {
+      cvr: {
         type: Sequelize.INTEGER
       },
       createdAt: {
@@ -38,6 +26,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('serviceplans');
+    await queryInterface.dropTable('companies');
   }
 };

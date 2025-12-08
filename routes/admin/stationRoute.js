@@ -1,9 +1,9 @@
-// stationRoute.js
 const express = require('express');
 const router = express.Router();
-const StationController = require('../../controllers/admin/StationController');
+const StationsController = require('../../controllers/admin/stationsController');
 
-// GET - Viser alle stationer
-router.get('/', StationController.renderStations);
+router.get('/', StationsController.renderStations);
+
+router.get('/new-station', StationsController.renderNewStation);
 
 module.exports = router;

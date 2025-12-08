@@ -11,25 +11,17 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-
-      image.belongsTo(models.serviceplan, {
-        foreignKey: 'serviceplan_id',
-        as: 'serviceplan'
-      });
-
     }
-    
   }
   image.init({
     serviceplan_id: DataTypes.INTEGER,
     upload_date: DataTypes.DATE,
-    is_after: DataTypes.BOOLEAN,
+    image_state_id: DataTypes.INTEGER,
     filepath: DataTypes.STRING,
     delete_date: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'image',
-    tableName: 'images'
   });
   return image;
 };

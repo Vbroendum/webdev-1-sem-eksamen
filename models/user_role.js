@@ -11,16 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-
-      user_role.hasMany(models.user, {
-        foreignKey: 'role_id',
-        as: 'users',
-      });
     }
   }
-  
   user_role.init({
-    role_name: DataTypes.STRING
+    role_name: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'user_role',

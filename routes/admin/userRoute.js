@@ -1,9 +1,13 @@
-// userRoute.js
 const express = require('express');
 const router = express.Router();
-const UserController = require('../../controllers/admin/UserController');
+const UsersController = require('../../controllers/admin/userController');
 
-// GET - viser alle brugere
-router.get('/', UserController.renderUsers);
+// READ - viser liste over brugere
+router.get('/', UsersController.renderUsers);
+
+router.get('/new-user', UsersController.renderNewUser);
+
+// POST - opret ny bruger
+router.post('/', UsersController.createUser);
 
 module.exports = router;

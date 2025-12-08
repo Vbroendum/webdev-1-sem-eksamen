@@ -10,22 +10,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       station_id: {
-        type: Sequelize.INTEGER,
-          references: {
-          model: 'stations',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'RESTRICT'
+        type: Sequelize.INTEGER
       },
       role_id: {
-        type: Sequelize.INTEGER,
-          references: {
-          model: 'user_roles',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'RESTRICT'
+        type: Sequelize.INTEGER
       },
       first_name: {
         type: Sequelize.STRING
