@@ -1,3 +1,5 @@
-<a href="products/new-product" class="new-btn">Opret nyt produkt</a>
-
-{{> lists items=items fields=fields }}
+<ul>
+  {{#each products}}
+    <li>{{products_name}}</li>
+  {{/each}}
+</ul>

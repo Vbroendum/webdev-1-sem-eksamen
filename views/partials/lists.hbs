@@ -1,25 +1,21 @@
-{{!Dynamisk liste til oversigter}}
-
-<ul class="list">
-    {{#each items}}
-    <li class="list-item">
-    <div class="list-content">
-        {{#each ../fields}}
-        <div class="list-field">
-             {{lookup ../this this}}
-        </div>
+{{!liste til test af brugeroversigt}}
+<table>
+    <thead>
+        <tr>
+            {{#each fields}}
+            <th>{{this}}</th>
+            {{/each}}
+        </tr>
+    </thead>
+    <tbody>
+        {{#each items}}
+        <tr>
+            {{#each ../fields}}
+            <td>
+                {{lookup ../this this}}
+            </td>
+            {{/each}}
+        </tr>
         {{/each}}
-    </div>
-
-    {{! Rediger}}
-        <div class="list-actions">
-            <a href="{{../editUrl}}/{{this.user_id}}" class="action-icon edit" title="Rediger">Rediger</a>
-                <div class="separator"></div>
-        {{! Slet}}
-<form action="{{../deleteUrl}}/{{this.user_id}}/delete" method="POST" onsubmit="return confirm('Er du sikker på, du vil slette brugeren?');">
-    <button type="submit" class="action-icon delete" title="Slet">Slet</button>
-</form>
-        </div>
-    </li>
-    {{/each}}
-    </ul>
+    </tbody>
+</table>

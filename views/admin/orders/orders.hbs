@@ -1,3 +1,7 @@
-<a href="orders/new-order" class="new-btn">Opret ny ordre</a>
-
-{{> lists items=items fields=fields }}
+<ul>
+  {{#each orders}}
+    <li>
+      Opgave #{{id}} — Station: {{station_id}}
+    </li>
+  {{/each}}
+</ul>
