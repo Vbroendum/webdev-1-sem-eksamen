@@ -20,10 +20,19 @@ exports.renderProducts = async (req, res) => {
 };
 
 // Render formular til oprettelse af nyt produkt
-exports.renderCreateProduct = (req, res) => {
-    res.render('admin/products/new-product', {
-        title: 'Opret nyt produkt'
-    });
+exports.renderCreateProduct = async (req, res) => {
+    try {
+        const units = await db.unit.findAll({
+            attributes: ['id', 'unit', 'short_unit']
+        });
+        res.render('admin/products/new-product', {
+            title: 'Opret nyt produkt',
+            units
+        });
+    } catch (error) {
+        console.error('Fejl ved hentning af enheder:', error);
+        res.status(500).send('Databasefejl');
+    }
 }
 
 // Create 
@@ -43,13 +52,17 @@ exports.renderEditProduct = async (req, res) => {
     try {
         const product = await db.product.findByPk(req.params.id, {
             attributes: ['id', 'products_name', 'unit_id']
-        }); 
+        });
+        const units = await db.unit.findAll({
+            attributes: ['id', 'unit', 'short_unit']
+        });
         if (!product) {
             return res.status(404).send('Produkt ikke fundet');
         }
         res.render('admin/products/edit-product', {
             title: 'Rediger produkt',
-            product
+            product,
+            units
         });
     } catch (error) {
         console.error('Fejl ved hentning af produkt:', error);

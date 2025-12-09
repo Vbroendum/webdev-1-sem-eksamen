@@ -33,7 +33,8 @@ app.engine('hbs', engine({
         allowProtoMethodsByDefault: true
       },
     helpers: {
-        json: (context) => { return JSON.stringify(context); }
+        json: (context) => { return JSON.stringify(context); },
+        eq: (a, b) => { return a == b; }
     }
     
 }));
