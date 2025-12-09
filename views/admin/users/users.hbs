@@ -1,5 +1,23 @@
 <ul>
   {{#each users}}
     <li>{{this.first_name}} {{this.last_name}}</li>
+    <button onclick="location.href='/users/edit-user/{{this.id}}'">Edit:</button>
+    <button onclick="deleteUser({{this.id}})">Slet</button>
   {{/each}}
 </ul>
+<a href="/users/new-user">Opret ny bruger</a>
+
+<script>
+  function deleteUser(user_id) {
+    fetch(`/users/${user_id}/delete`, {
+      method: 'POST'
+    })
+    .then(response => {
+      if (response.ok) {
+        location.reload();
+      } else {
+        alert('Fejl ved sletning af bruger');
+      }
+    });
+  }
+</script>

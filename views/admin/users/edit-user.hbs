@@ -1,4 +1,4 @@
-<form action="/users/{{user.user_id}}/edit" method="post" class="input-form">
+<form action="/users/{{user.id}}/edit-user" method="post" class="input-form">
     
     <div class="form-group">
         <label for="firstname">Fornavn</label>
@@ -13,6 +13,10 @@
     <div class="form-group">
         <label for="email">Email</label>
         <input type="text" name="user_email" value="{{user.user_email}}" required>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" name="user_password" required>
     </div>
 
     <div class="form-group">
