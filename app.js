@@ -3,6 +3,7 @@ const express = require("express");
 const path = require("path");
 const { engine } = require('express-handlebars');
 const PORT = 3000;
+const session = require('express-session');
 
 const routes = require("./routes");
 const app = express();
@@ -11,6 +12,14 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  cookie: {
+    secure: process.env.SECURE,
+    maxAge: 1000 * 60 * 60 * 24 // 24 timer
+  }
+}));
 
 app.engine('hbs', engine({
     extname: '.hbs',

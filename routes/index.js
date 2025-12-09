@@ -1,7 +1,7 @@
 // index.js
 const express = require('express');
 const router = express.Router();
-const LoginController = require('../controllers/LoginController');
+const LoginController = require('../controllers/loginController');
 const DashboardController = require('../controllers/admin/DashboardController');
 const ServiceplanController = require('../controllers/user/ServiceplanController');
 const HistorikController = require('../controllers/HistorikController');
@@ -12,9 +12,10 @@ const productsRoutes = require('./admin/productRoute');
 const ordersRoutes = require('./admin/orderRoute');
 const stationsRoutes = require('./admin/stationRoute');
 const companiesRoutes = require('./admin/companyRoute')
+const { isNotAuthenticated } = require('../middleware/auth');
 
 // Route for Login
-router.get('/', LoginController.renderLogin);
+router.get('/', isNotAuthenticated, LoginController.renderLogin);
 
 // Route for dashboard
 router.get('/dashboard', DashboardController.renderDashboard);
