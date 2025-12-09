@@ -1,7 +1,23 @@
 <ul>
   {{#each companies}}
-    <li>
-      ID: {{id}} | Navn: {{name}} | CVR: {{cvr}}
-    </li>
+    <li> {{this.name}} {{this.cvr}}</li>
+    <button onclick="location.href='/companies/edit-company/{{this.id}}'">Opdater:</button>
+    <button onclick="deleteCompany({{this.id}})">Slet</button>
   {{/each}}
 </ul>
+<a href="/companies/new-company">Opret ny virksomhed</a>
+
+<script>
+  function deleteCompany(company_id) {
+    fetch(`/companies/${company_id}/delete`, {
+      method: 'POST'
+    })
+    .then(response => {
+      if (response.ok) {
+        location.reload();
+      } else {
+        alert('Fejl ved sletning af virksomhed');
+      }
+    });
+  }
+</script>
