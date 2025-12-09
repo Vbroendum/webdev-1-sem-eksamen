@@ -5,12 +5,19 @@ const db = require('../../models');
 exports.renderUsers = async (req, res) => {
     try {
         const users = await db.user.findAll({
-            attributes: ['id', 'first_name', 'last_name']
+            attributes: ['id', 'first_name', 'last_name', 'user_email', 'role_id']
         });
+
+        users.forEach(user => {
+            user.role_id = user.role_id === 1 ? 'Admin' : 'Rengøringspersonale';
+          });
 
         res.render('admin/users/users', {
             title: 'Brugeroversigt',
-            users
+            items: users,
+            fields: ['first_name', 'user_email', 'role_id'],
+            editUrl: '/users/edit-user',
+            deleteUrl: '/users'
         });
 
         } catch (error) {
