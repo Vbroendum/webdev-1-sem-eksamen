@@ -1,10 +1,10 @@
 class HistorikController {
-    static renderHistorik(req, rest) {
+    static renderHistorik(req, res) {
         const buttons = [
             { text: 'Admin', link: '/dashboard' },
             { text: 'RengUser', link: '/serviceplan' },
         ];
-        rest.render('admin/historik', { title: 'Historik side', buttons }); 
+        res.render('admin/historik', { title: 'Historik side', buttons }); 
     }
 }
 
