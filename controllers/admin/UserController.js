@@ -1,5 +1,6 @@
 // UserController.js
 const db = require('../../models');
+const bcrypt = require('bcrypt');
 
 // READ - Viser alle brugere
 exports.renderUsers = async (req, res) => {
@@ -36,7 +37,8 @@ exports.renderCreateUserForm = (req, res) => {
 exports.createUser = async (req, res) => {
     try {
         const { first_name, last_name, user_email, user_password, role_id } = req.body;
-        await db.user.create({ first_name, last_name, user_email, user_password, role_id });
+        const hashedPassword = await bcrypt.hash(user_password, 10);
+        await db.user.create({ first_name, last_name, user_email, user_password: hashedPassword, role_id });
         res.redirect('/users');
     } catch (error) {
         console.error('Fejl ved oprettelse af bruger:', error);
@@ -68,8 +70,9 @@ exports.renderEditUser = async (req, res) => {
 exports.editUser = async (req, res) => {
     try {
         const { first_name, last_name, user_email, user_password, role_id } = req.body;
+        const hashedPassword = await bcrypt.hash(user_password, 10);
         await db.user.update(
-            { first_name, last_name, user_email, user_password, role_id },
+            { first_name, last_name, user_email, user_password: hashedPassword, role_id },
             { where: { id: req.params.id } }
         );
         res.redirect('/users');
