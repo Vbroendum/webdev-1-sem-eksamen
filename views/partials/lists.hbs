@@ -1,21 +1,50 @@
-{{!liste til test af brugeroversigt}}
-<table>
-    <thead>
-        <tr>
-            {{#each fields}}
-            <th>{{this}}</th>
-            {{/each}}
-        </tr>
-    </thead>
-    <tbody>
-        {{#each items}}
-        <tr>
+{{!Dynamisk liste til oversigter}}
+<ul class="list">
+    {{#each items}}
+    <li class="list-item">
+        <div class="list-content">
             {{#each ../fields}}
-            <td>
+            <div class="list-field">
                 {{lookup ../this this}}
-            </td>
+            </div>
             {{/each}}
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+        </div>
+
+        <div class="list-actions">
+            {{!-- Rediger fra liste --}}
+            <button>
+                <a href="{{../editUrl}}/{{this.id}}"
+                class="action-icon edit"
+                title="Rediger">
+                Rediger
+                </a>
+            </button>
+            
+            <div class="separator"></div>
+
+            {{!-- Slet fra liste --}}  
+            <button>
+                <a href="{{../deleteUrl}}/{{this.id}}/delete"
+                onclick="return confirm('Er du sikker på du vil slette?')">
+                Slet
+                </a>
+            </button>
+        </div>
+    </li>
+{{/each}}
+</ul>
+
+    {{!-- <script>
+  function deleteUser(user_id) {
+    fetch(`/users/${user_id}/delete`, {
+      method: 'POST'
+    })
+    .then(response => {
+      if (response.ok) {
+        location.reload();
+      } else {
+        alert('Fejl ved sletning af bruger');
+      }
+    });
+  }
+</script> --}}

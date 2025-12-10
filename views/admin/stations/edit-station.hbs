@@ -1,38 +1,58 @@
-<form class="edit-station">
+<form class="edit-station input-form"
+      method="POST"
+      action="/stations/{{station.id}}/edit-station">
 
- {{!-- Denne side er ikke implementeret og er derfor ikke gyldig! --}}
+    <div class="form-group">
+        <label for="station_name">Station</label>
+        <input type="text"
+               id="station_name"
+               name="station_name"
+               value="{{station.station_name}}"
+               required>
+    </div>
 
-<div>
-    <label for="station">Station:</label>
-    <input type="text" name="station" placeholder="ændre station">
-</div>
+    <div class="form-group">
+        <label for="station_address">Adresse</label>
+        <input type="text"
+               id="station_address"
+               name="station_address"
+               value="{{station.station_address}}"
+               required>
+    </div>
 
-<div>
-<label for="station">Adresse:</label>
-    <input type="text" name="adresse" placeholder="ændre adresse">
-</div>
+    <div class="form-group">
+        <label for="station_postal_code">Postnummer</label>
+        <input type="text"
+               id="station_postal_code"
+               name="station_postal_code"
+               value="{{station.station_postal_code}}"
+               required>
+    </div>
 
-<div>
-<label for="station">Postnummer:</label>
-    <input type="text" name="postnummer" placeholder="ændre postnummer">
-</div>
-
-<div>
-<label for="station">Firmaliste:</label>
-    <select name="Firmlist">
-    {{#each items}}
-    <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>
+    <div class="form-group">
+        <label for="company_id">Vælg firma</label>
+<select name="company_id">
+  {{#each companies}}
+    <option value="{{this.id}}">
       {{this.name}}
     </option>
-    {{/each}}
-    </select>
-</div>
+  {{/each}}
+</select>
 
-<div>
-<label for="station">Station har for plads:</label>
-    <input type="checkbox" name="Station-has-forecourt" {{#if isAccepted}}checked{{/if}}>
-</div>
+    </div>
 
-<button class="test-btn edit-station-button" type="submit">Gem ændringer station</button>
+    <div class="form-group">
+        <label>
+            <input type="checkbox"
+                   name="station_has_bay"
+                   value="on"
+                   {{#if station.station_has_bay}}checked{{/if}}>
+            Station har forplads
+        </label>
+    </div>
+
+    <button class="test-btn edit-station-button" type="submit">
+        Gem ændringer
+    </button>
 
 </form>
