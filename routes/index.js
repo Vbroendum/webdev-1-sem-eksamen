@@ -12,23 +12,24 @@ const productsRoutes = require('./admin/productRoute');
 const ordersRoutes = require('./admin/orderRoute');
 const stationsRoutes = require('./admin/stationRoute');
 const companiesRoutes = require('./admin/companyRoute')
-const { isNotAuthenticated } = require('../middleware/auth');
+const { isNotAuthenticated, isAuthenticated, isAdmin, isRengUser } = require('../middleware/auth');
 
 // Route for Login
 router.get('/', isNotAuthenticated, LoginController.renderLogin);
+router.post('/', isNotAuthenticated, LoginController.login);
+
 
 // Route for dashboard
-router.get('/dashboard', DashboardController.renderDashboard);
+router.get('/dashboard', isAdmin, DashboardController.renderDashboard);
 
 // Route for service plan
-router.get('/serviceplan', ServiceplanController.renderServiceplans);
+router.get('/serviceplan', isRengUser, ServiceplanController.renderServiceplans);
 
-router.get('/historik', HistorikController.renderHistorik);
+router.get('/historik', isAuthenticated, HistorikController.renderHistorik);
 
-router.use('/users', usersRoutes);
+router.use('/users', isAdmin, usersRoutes);
 router.use('/products', productsRoutes);
 router.use('/orders', ordersRoutes);
 router.use('/stations', stationsRoutes);
 router.use('/companies', companiesRoutes);
-
 module.exports = router;

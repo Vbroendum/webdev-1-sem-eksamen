@@ -3,10 +3,10 @@
 {{/each}}
 
 <!-- Login Form husk at tilføje method og action -->
-<form class="login">
+<form class="login" method="POST" action="/">
     <h3>Login</h3>
-    <input type="email" placeholder="Email">
-    <input type="password" placeholder="Password">
+    <input type="email" placeholder="Email" name="email">
+    <input type="password" placeholder="Password" name="password">
     <button class="test-btn login-button" type="submit">Login</button>
     <a href="#">glemt kodeord</a>
 </form>

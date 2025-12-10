@@ -19,9 +19,16 @@ app.use(session({
   saveUninitialized: false,
   cookie: {
     secure: process.env.SECURE,
-    maxAge: 1000 * 60 * 60 * 24 // 24 timer
+    maxAge: 1000 * 60 * 60 * 24, // 24 timer
   }
 }));
+
+// Gør brugerdata tilgængelig i alle views via middleware
+app.use((req, res, next) => {
+  res.locals.user = req.session.user || null;
+  console.log(req.session);
+  next();
+});
 
 app.engine('hbs', engine({
     extname: '.hbs',
@@ -43,6 +50,10 @@ app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use('/', routes);
+app.get('/', (req, res) => {
+  console.log(req.session); // <-- viser hele sessionen i terminalen
+  res.render('home');
+});
 
 app.listen(PORT, () => {
     console.log(`Server kører på: http://localhost:${PORT}`);
