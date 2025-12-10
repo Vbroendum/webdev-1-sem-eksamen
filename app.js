@@ -6,6 +6,7 @@ const PORT = 3000;
 const session = require('express-session');
 
 const routes = require("./routes");
+const { notFound, internalError } = require('./middleware/errorHandler');
 const app = express();
 
 // Middleware
@@ -55,7 +56,14 @@ app.get('/', (req, res) => {
   res.render('home');
 });
 
+// 404 handler
+app.use(notFound);
+
+// 500 error handler
+app.use(internalError);
+
 app.listen(PORT, () => {
     console.log(`Server kører på: http://localhost:${PORT}`);
-})
+});
+
 module.exports = app;
