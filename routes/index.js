@@ -31,8 +31,8 @@ router.get('/serviceplan', isRengUser, ServiceplanController.renderServiceplans)
 router.get('/historik', isAuthenticated, HistorikController.renderHistorik);
 
 router.use('/users', isAdmin, usersRoutes);
-router.use('/products', productsRoutes);
-router.use('/orders', ordersRoutes);
-router.use('/stations', stationsRoutes);
-router.use('/companies', companiesRoutes);
+router.use('/products', isAdmin, productsRoutes);
+router.use('/orders', isAdmin, ordersRoutes);
+router.use('/stations', isAdmin, stationsRoutes);
+router.use('/companies', isAdmin, companiesRoutes);
 module.exports = router;
