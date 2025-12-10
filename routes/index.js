@@ -12,18 +12,22 @@ const productsRoutes = require('./admin/productRoute');
 const ordersRoutes = require('./admin/orderRoute');
 const stationsRoutes = require('./admin/stationRoute');
 const companiesRoutes = require('./admin/companyRoute')
-const { isNotAuthenticated } = require('../middleware/auth');
+const { isNotAuthenticated, isAuthenticated } = require('../middleware/auth');
 
 // Route for Login
 router.get('/', isNotAuthenticated, LoginController.renderLogin);
+router.post('/', isNotAuthenticated, LoginController.login);
+
+// Route for Logout
+router.post('/logout', isAuthenticated, LoginController.logout);
 
 // Route for dashboard
 router.get('/dashboard', DashboardController.renderDashboard);
 
 // Route for service plan
-router.get('/serviceplan', ServiceplanController.renderServiceplans);
+router.get('/serviceplan', isAuthenticated,ServiceplanController.renderServiceplans);
 
-router.get('/historik', HistorikController.renderHistorik);
+router.get('/historik', isAuthenticated,HistorikController.renderHistorik);
 
 router.use('/users', usersRoutes);
 router.use('/products', productsRoutes);

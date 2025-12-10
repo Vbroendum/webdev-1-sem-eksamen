@@ -6,14 +6,8 @@
     </div>
 
     <div class="form-group">
-        <label for="unit_id">Enhed (Mængdeindikator)</label>
-        <select name="unit_id" required>
-            <option value="">-- Vælg enhed --</option>
-            {{#each units}}
-                <option value="{{this.id}}" {{#if (eq this.id product.unit_id)}}selected{{/if}}>{{this.unit}} ({{this.short_unit}})</option>
-            {{/each}}
-        </select>
+        <label for="unit_id">Enhed</label>
+        <input type="number" name="unit_id" value="{{product.unit_id}}" required>
     </div>
 
     <button type="submit" class="submit-btn">Opdater produkt</button>
-</form>
