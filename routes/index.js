@@ -18,6 +18,8 @@ const { isNotAuthenticated, isAuthenticated, isAdmin, isRengUser } = require('..
 router.get('/', isNotAuthenticated, LoginController.renderLogin);
 router.post('/', isNotAuthenticated, LoginController.login);
 
+router.post('/logout', isAuthenticated, LoginController.logout);
+
 // Base routes (home, error-test)
 const baseRoute = require('./baseRoute');
 router.use('/', baseRoute);

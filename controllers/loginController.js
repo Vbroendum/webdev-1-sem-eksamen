@@ -57,3 +57,13 @@ exports.login = async (req, res) => {
         console.error('Fejl ved login:', error);
         res.status(500).send('Serverfejl');
     }};
+
+    exports.logout = (req, res) => {
+        req.session.destroy((err) => {
+    if (err) {
+      console.error('Logout fejl:', err);
+    }
+    res.clearCookie('connect.sid');
+    res.redirect('/');
+    });
+    }
