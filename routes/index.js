@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const LoginController = require('../controllers/loginController');
 const DashboardController = require('../controllers/admin/DashboardController');
-const ServiceplanController = require('../controllers/user/ServiceplanController');
+const ServiceplanController = require('../controllers/user/serviceplanController');
 const HistorikController = require('../controllers/HistorikController');
 
 // importering af routes
