@@ -9,7 +9,7 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #ddd;
-    padding: 10px 0;
+    padding: 20px 0;
 }
 
 .list-content {
@@ -38,12 +38,55 @@
     padding: 0;
 }
 
+.action-icon.delete i {
+    stroke: #E53935;
+    color: #E53935;
+}
+
+
 .list-item .list-field:first-child {
-    font-size: 14px;
+    font-size: 18px;
     color: #39393A;
 }
 
 .list-item .list-field:not(:first-child) {
-    font-size: 12px;
+    font-size: 16px;
     color: #7F7F7F;
+}
+
+.list-actions button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.action-icon {
+    display: flex;
+    align-items: center;
+    color: #7F7F7F;
+    transition: color 0.2s ease;
+}
+
+.list-actions .action-icon,
+.list-actions .action-icon:link,
+.list-actions .action-icon:visited {
+    color: #7F7F7F !important;
+}
+
+.action-icon {
+    display: flex;
+    align-items: center;
+    color: #7F7F7F;
+    transition: color 0.2s ease;
+}
+
+.list-actions .action-icon i {
+    color: #7F7F7F;
+    stroke: #7F7F7F;
+}
+
+.list-actions .action-icon:hover i {
+    color: #1B98E0;
+    stroke: #1B98E0;
 }

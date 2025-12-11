@@ -16,7 +16,7 @@
                 <a href="{{../editUrl}}/{{this.id}}"
                 class="action-icon edit"
                 title="Rediger">
-                Rediger
+                <i data-lucide="square-pen"></i>
                 </a>
             </button>
             
@@ -25,8 +25,9 @@
             {{!-- Slet fra liste --}}  
             <button>
                 <a href="{{../deleteUrl}}/{{this.id}}/delete"
-                onclick="return confirm('Er du sikker på du vil slette?')">
-                Slet
+                  class="action-icon delete"
+                  onclick="return confirm('Er du sikker på du vil slette?')">
+                    <i data-lucide="trash"></i>
                 </a>
             </button>
         </div>
