@@ -86,6 +86,7 @@ exports.renderServiceplanForm = async (req, res) => {
     });
 
     const products = await db.product.findAll({
+      attributes: ['id', 'products_name'],
       include: [
         {
           model: db.unit,
@@ -130,22 +131,29 @@ exports.submitServiceplanForm = async (req, res) => {
       return res.status(404).send("Serviceplan ikke fundet");
     }
 
-    const { done_date, product_id, amount, amount_unit } = req.body;
+    const { serviceplan_done_at, product, quantity, unit } = req.body;
 
     // Opdater serviceplan
     await plan.update({
-      serviceplan_done_at: done_date,
+      serviceplan_done_at,
     });
 
     // Tilføj produktforbrug hvis valgt
-    if (product_id && amount) {
-      await db.serviceplan_product.create({
+    
+      const productsArray = Array.isArray(product) ? product : [product];
+      const quantityArray = Array.isArray(quantity) ? quantity : [quantity];
+      const unitArray = Array.isArray(unit) ? unit : [unit];
+
+      for (let i = 0; i < productsArray.length; i++) {
+        if (productsArray[i] && quantityArray[i]) {
+      await db.serviceplan_product.upsert({
         serviceplan_id: plan.id,
-        product_id,
-        amount,
-        unit: amount_unit
+        product_id: productsArray[i],
+        quantity: quantityArray[i],
+        unit: unitArray[i]
       });
-    }
+      }}
+    
 
     return res.redirect('/serviceplan');
 
