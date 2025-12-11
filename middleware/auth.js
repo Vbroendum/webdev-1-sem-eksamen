@@ -16,9 +16,16 @@ function isAdmin(req, res, next) {
 }
 
 function isRengUser(req, res, next) {
-  if (req.session.user && req.session.user.role_id !== 2) {
+  // 1️⃣ Først tjek om brugeren overhovedet er logget ind
+  if (!req.session.user) {
+    return res.redirect('/');
+  }
+
+  // 2️⃣ Tjek om brugeren har den rigtige rolle
+  if (req.session.user.role_id !== 2) {
     return res.status(403).send('Adgang nægtet');
   }
+
   next();
 }
 

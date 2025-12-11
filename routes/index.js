@@ -20,15 +20,16 @@ router.post('/', isNotAuthenticated, LoginController.login);
 
 router.post('/logout', isAuthenticated, LoginController.logout);
 
-// Base routes (home, error-test)
-const baseRoute = require('./baseRoute');
-router.use('/', baseRoute);
-
 // Route for dashboard
 router.get('/dashboard', isAdmin, DashboardController.renderDashboard);
 
 // Route for service plan
 router.get('/serviceplan', isRengUser, ServiceplanController.renderServiceplans);
+router.post('/serviceplan/accept/:id', isRengUser, ServiceplanController.acceptServiceplan);
+router.get('/serviceplan/:id', isRengUser, ServiceplanController.renderServiceplanForm);
+router.post('/serviceplan/:id', isRengUser, ServiceplanController.submitServiceplanForm);
+
+
 
 router.get('/historik', isAuthenticated, HistorikController.renderHistorik);
 

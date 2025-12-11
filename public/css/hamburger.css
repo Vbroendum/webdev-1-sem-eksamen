@@ -1,26 +1,48 @@
-
-
 .sidebar {
-    width: 220px;
+    width: 240px;
     border-right: 1px solid #E2E2E2;
-    position: fixed;   
+    background-color: #fff;
+    position: fixed;
     box-sizing: border-box;
     top: 0;
     bottom: 0;
     left: 0;
-    background-color: #F8FAFB;
     z-index: 999;
 }
 
 .page-content {
-    margin-left: 220px;
+    margin-left: 240px;
 }
 
 .sidebar a {
     text-decoration: none;
     display: block;
-    padding: 10px 0;
+    color: #39393A;
+    font-weight: 500;
 }
+
+
+.sidebar ul {
+    list-style: none;
+    padding: 0 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.submenu-toggle:hover {
+    background-color: #e3f2fd;
+}
+
+.submenu-toggle:hover span,
+.submenu-toggle:hover i {
+    color: #1B98E0;
+    stroke: #1B98E0;
+}
+
+.submenu-toggle .chevron {
+    margin-left: auto;
+}
+
 
 .hamburger {
     display: none;
@@ -29,7 +51,7 @@
     background: transparent;
     font-size: 21px;
     border: none;
-    z-index: 1000;
+    z-index: 9999;
 }
 
 .topbar {
@@ -37,29 +59,177 @@
     top: 0;
     left: 0;
     right: 0;
-
-
     height: 60px;
     background: #fff;
     border-bottom: 1px solid #E2E2E2;
-
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
+    display: none;
+    justify-content: center;
+    align-items: center;
 }
+
+.sidebar li.active a {
+    color: #1B98E0;
+}
+
+.sidebar li.active svg {
+    stroke: #1B98E0;
+}
+
+.sidebar li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1.2rem;
+    padding: 10px 12px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.sidebar li i {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    stroke: currentColor;
+}
+
+.menu-category {
+    margin: 20px 0 20px 12px;
+    font-size: 14px;
+    color: #7F7F7F;
+    text-transform: uppercase;
+}
+
+.sidebar > nav > ul > li:not(.submenu-wrapper):not(.submenu-toggle):hover {
+    background-color: #e3f2fd;
+}
+
+.sidebar > nav > ul > li:not(.submenu-wrapper):not(.submenu-toggle):hover > a,
+.sidebar > nav > ul > li:not(.submenu-wrapper):not(.submenu-toggle):hover > i {
+    color: #1B98E0;
+    stroke: #1B98E0;
+}
+
+.sidebar li.submenu-wrapper {
+    display: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li.submenu-wrapper.open {
+    display: block;
+}
+
+
+.submenu {
+    display: flex;
+    flex-direction: column;
+
+    padding-left: 36px;
+    margin-left: 12px;
+    margin-top: -4px;
+
+    border-left: 1px solid #E2E2E2;
+    gap: 12px;
+}
+
+
+.submenu li {
+    padding: 6px 0;
+    margin: 0;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.submenu li a {
+    color: #39393A;
+    font-weight: 500;
+}
+
+.sidebar svg {
+    stroke: currentColor;
+}
+
+.sidebar li.active a {
+    color: #1B98E0;
+}
+
+.sidebar li:hover svg {
+    stroke: #1B98E0;
+}
+
+.submenu li:hover a {
+    color: #1B98E0;
+}
+
+
 @media (max-width: 768px) {
     .page-content {
         margin-left: 0;
         padding-top: 60px;
     }
-}
-
-/* ---------- MOBIL ---------- */
-@media (max-width: 768px) {
 
     .sidebar {
         transform: translateX(-100%);
-        transition: transform .3s ease;
+        transition: transform 0.3s ease;
+        width: 260px;
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .topbar {
+        display: flex;
+    }
+}
+
+
+.sidebar li {
+    border-radius: 8px;
+}
+
+.sidebar li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+/* Tilbage-pil – skjult som standard */
+.back-button {
+    display: none;
+    position: absolute;
+    left: 16px;
+    background: none;
+    border: none;
+    padding: 6px;
+    cursor: pointer;
+}
+
+.back-button i svg {
+    width: 22px;
+    height: 22px;
+    stroke: #39393A;
+}
+
+@media (max-width: 768px) {
+    .back-button {
+        display: block;
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    .sidebar {
+        left: auto;
+        right: 0;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
         width: 260px;
     }
 
@@ -74,13 +244,7 @@
     .hamburger {
         display: block;
     }
-}
 
-.topbar {
-    display: none;
-}
-
-@media (max-width: 768px) {
     .topbar {
         display: flex;
     }

@@ -1,0 +1,32 @@
+<h1>Opgave</h1>
+
+<form action="/serviceplan/{{plan.id}}" method="POST" class="input-form">
+    <p>Udført af: {{user.first_name}} {{user.last_name}}</p>
+
+    <div class="form-group">
+        <label for="serviceplan_done_date">Dato for udførelse</label>
+        <input type="date" name="serviceplan_done_at" value="{{defaultDate}}" required>
+    </div>
+
+    <div class="form-group">
+    <label for="amount_unit">Enhed</label>
+    <select name="amount_unit" required>
+        <option value="">Vælg enhed</option>
+        {{#each units}}
+        <option value="{{short_unit}}">{{unit}} ({{short_unit}})</option>
+        {{/each}}
+    </select>
+    </div>
+
+    <div class="image">
+        <label for="before_image">Før-billede</label>
+        <input type="file" name="before_image" id="before_image" accept="image/*">
+    </div>
+
+    <div class="image">
+        <label for="after_image">Efter-billede</label>
+        <input type="file" name="after_image" id="after_image" accept="image/*">
+    </div>
+
+    <button type="submit" class="submit-btn">bekræft upload</button>
+</form>
