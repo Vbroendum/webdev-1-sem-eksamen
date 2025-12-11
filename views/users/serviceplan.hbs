@@ -1,16 +1,24 @@
-<div class="opgave">
-{{#each stations}}
-  <h2>{{station_name}}</h2>
-  {{#each serviceplans}}
-      {{#if accepted_at}}
-          <a href="/serviceplan/{{id}}" class="btn">Udfyld opgave</a>
-      {{else}}
-        <form action="/serviceplan/accept/{{id}}" method="POST">
-            <button type="submit" value="Accepter">Accepter</button>
-        </form>
-      {{/if}}
-    </div>
-  {{/each}}
-{{/each}}
+<h1>Mine opgaver</h1>
 
+{{#if serviceplans.length}}
+    {{#each serviceplans}}
+        <div class="opgave">
 
+            <h3>{{station.station_name}}</h3>
+            <p>Opgave ID: {{id}}</p>
+
+            {{#if user_id}}
+                <a href="/serviceplan/{{id}}" class="btn">
+                    Udfyld opgave
+                </a>
+            {{else}}
+                <form action="/serviceplan/accept/{{id}}" method="POST">
+                    <button class="btn">Accepter</button>
+                </form>
+            {{/if}}
+
+        </div>
+    {{/each}}
+{{else}}
+    <p>Du har ingen opgaver endnu.</p>
+{{/if}}

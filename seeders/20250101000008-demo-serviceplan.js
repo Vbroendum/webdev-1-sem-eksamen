@@ -15,8 +15,8 @@ module.exports = {
       {
         serviceplan_done_at: new Date('2025-03-15'),
         serviceplan_expired_at: new Date('2025-04-15'),
-        station_id: '2',
-        user_id: '2',
+        station_id: 2,
+        user_id: null,
         createdAt: new Date(),
         updatedAt: new Date()
       },

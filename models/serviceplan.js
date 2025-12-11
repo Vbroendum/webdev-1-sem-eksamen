@@ -46,7 +46,6 @@ module.exports = (sequelize, DataTypes) => {
   serviceplan.init({
     serviceplan_done_at: DataTypes.DATE,
     serviceplan_expired_at: DataTypes.DATE,
-    accepted_at: DataTypes.DATE,
     station_id: DataTypes.INTEGER,
     user_id: DataTypes.INTEGER,
   }, {
