@@ -8,7 +8,8 @@ function isAuthenticated(req, res, next) {
   next();
 }
 
-function isAdmin(req, res, next) { 
+function isAdmin(req, res, next) {
+  //Tjek om brugeren har den rigtige rolle 1 
   if (req.session.user && req.session.user.role_id !== 1) {
     return res.status(403).send('Adgang nægtet');
   }
@@ -16,12 +17,7 @@ function isAdmin(req, res, next) {
 }
 
 function isRengUser(req, res, next) {
-  // 1️⃣ Først tjek om brugeren overhovedet er logget ind
-  if (!req.session.user) {
-    return res.redirect('/');
-  }
-
-  // 2️⃣ Tjek om brugeren har den rigtige rolle
+  //Tjek om brugeren har den rigtige rolle 2
   if (req.session.user.role_id !== 2) {
     return res.status(403).send('Adgang nægtet');
   }
