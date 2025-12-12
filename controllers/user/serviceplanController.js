@@ -120,8 +120,6 @@ exports.renderServiceplanForm = async (req, res) => {
   }
 };
 
-
-
 // UPDATE - Submitter formen
 exports.submitServiceplanForm = async (req, res) => {
   try {
@@ -139,21 +137,48 @@ exports.submitServiceplanForm = async (req, res) => {
     });
 
     // Tilføj produktforbrug hvis valgt
-    
-      const productsArray = Array.isArray(product) ? product : [product];
-      const quantityArray = Array.isArray(quantity) ? quantity : [quantity];
-      const unitArray = Array.isArray(unit) ? unit : [unit];
+    const productsArray = Array.isArray(product) ? product : [product];
+    const quantityArray = Array.isArray(quantity) ? quantity : [quantity];
+    const unitArray = Array.isArray(unit) ? unit : [unit];
 
-      for (let i = 0; i < productsArray.length; i++) {
-        if (productsArray[i] && quantityArray[i]) {
-      await db.serviceplan_product.upsert({
-        serviceplan_id: plan.id,
-        product_id: productsArray[i],
-        quantity: quantityArray[i],
-        unit: unitArray[i]
-      });
-      }}
-    
+    for (let i = 0; i < productsArray.length; i++) {
+      if (productsArray[i] && quantityArray[i]) {
+        await db.serviceplan_product.upsert({
+          serviceplan_id: plan.id,
+          product_id: productsArray[i],
+          quantity: quantityArray[i],
+          unit: unitArray[i]
+        });
+      }
+    }
+
+    // Håndter billede uploads
+    // req.files er et objekt med fieldnames som keys når man bruger upload.fields()
+    if (req.files) {
+      // Håndter før-billeder
+      if (req.files.before_image && Array.isArray(req.files.before_image)) {
+        for (const file of req.files.before_image) {
+          await db.image.create({
+            serviceplan_id: plan.id,
+            upload_date: new Date(),
+            is_after: false,
+            filepath: `/uploads/serviceplan-images/${file.filename}`
+          });
+        }
+      }
+
+      // Håndter efter-billeder
+      if (req.files.after_image && Array.isArray(req.files.after_image)) {
+        for (const file of req.files.after_image) {
+          await db.image.create({
+            serviceplan_id: plan.id,
+            upload_date: new Date(),
+            is_after: true,
+            filepath: `/uploads/serviceplan-images/${file.filename}`
+          });
+        }
+      }
+    }
 
     return res.redirect('/serviceplan');
 
