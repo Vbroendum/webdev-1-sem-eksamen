@@ -6,6 +6,7 @@ const PORT = 3000;
 const session = require('express-session');
 
 const routes = require("./routes");
+const { notFound, internalError } = require('./middleware/errorHandler');
 const app = express();
 
 // Middleware
@@ -18,10 +19,15 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    secure: process.env.SECURE,
+    secure: process.env.SECURE === "true",
     maxAge: 1000 * 60 * 60 * 24, // 24 timer
   }
 }));
+
+app.use((req, res, next) => {
+  console.log("REQUEST:", req.method, req.url);
+  next();
+});
 
 // Gør brugerdata tilgængelig i alle views via middleware
 app.use((req, res, next) => {
@@ -50,12 +56,15 @@ app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use('/', routes);
-app.get('/', (req, res) => {
-  console.log(req.session); // <-- viser hele sessionen i terminalen
-  res.render('home');
-});
+
+// 404 handler
+app.use(notFound);
+
+// 500 error handler
+app.use(internalError);
 
 app.listen(PORT, () => {
     console.log(`Server kører på: http://localhost:${PORT}`);
-})
+});
+
 module.exports = app;
