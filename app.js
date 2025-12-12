@@ -1,6 +1,8 @@
 require('dotenv').config({ debug: false, override: false });
 const express = require("express");
 const path = require("path");
+const multerLib = require("multer");
+const upload = require('./middleware/multer');
 const { engine } = require('express-handlebars');
 const PORT = 3000;
 const session = require('express-session');
@@ -55,7 +57,27 @@ app.engine('hbs', engine({
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
+// Demo upload route (instruktør-eksempel)
+app.post('/upload', upload.single('image'), (req, res) => {
+  res.send('Uploaded: ' + (req.file ? req.file.filename : 'ingen fil'));
+});
+
 app.use('/', routes);
+
+// Multer error handler
+app.use((err, req, res, next) => {
+  if (err instanceof multerLib.MulterError) {
+    // Multer fejl (fx filstørrelse)
+    if (err.code === 'LIMIT_FILE_SIZE') {
+      return res.status(400).send('Fil er for stor. Maks 5MB per fil.');
+    }
+    return res.status(400).send('Fejl ved filupload: ' + err.message);
+  } else if (err && err.message) {
+    // Custom fileFilter fejl
+    return res.status(400).send(err.message);
+  }
+  next(err);
+});
 
 // 404 handler
 app.use(notFound);

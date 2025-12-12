@@ -5,6 +5,7 @@ const LoginController = require('../controllers/loginController');
 const DashboardController = require('../controllers/admin/DashboardController');
 const ServiceplanController = require('../controllers/user/serviceplanController');
 const HistorikController = require('../controllers/HistorikController');
+const upload = require('../middleware/multer');
 
 // importering af routes
 const usersRoutes = require('./admin/userRoute');
@@ -27,7 +28,10 @@ router.get('/dashboard', isAdmin, DashboardController.renderDashboard);
 router.get('/serviceplan', isRengUser, ServiceplanController.renderServiceplans);
 router.post('/serviceplan/accept/:id', isRengUser, ServiceplanController.acceptServiceplan);
 router.get('/serviceplan/:id', isRengUser, ServiceplanController.renderServiceplanForm);
-router.post('/serviceplan/:id', isRengUser, ServiceplanController.submitServiceplanForm);
+router.post('/serviceplan/:id', isRengUser, upload.fields([
+  { name: 'before_image', maxCount: 10 },
+  { name: 'after_image', maxCount: 10 }
+]), ServiceplanController.submitServiceplanForm);
 
 
 // Route for historik
