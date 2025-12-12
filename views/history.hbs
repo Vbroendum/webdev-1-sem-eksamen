@@ -1,25 +1,24 @@
-{{!-- Hvis historikken er tom --}}
-{{#if (eq history.length 0)}}
-    <p>Der er ingen færdiggjorte opgaver endnu.</p>
-{{else}}
+<h1>Historik</h1>
 
-<table class="history-table">
-    <thead>
-        <tr>
-            <th>Dato</th>
-            <th>Station</th>
-            <th>Udført af</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each history}}
-            <tr>
-                <td>{{this.serviceplan_done_at}}</td>
-                <td>{{this.station.station_name}}</td>
-                <td>{{this.user.first_name}} {{this.user.last_name}}</td>
-            </tr>
-        {{/each}}
-    </tbody>
-</table>
+{{#each history}}
+<div class="history-item">
 
-{{/if}}
+    {{!-- Hvis der findes billeder, vis det første --}}
+    {{#if images.length}}
+        <img src="{{images.[0].filepath}}" class="history-img" alt="Billede">
+    {{else}}
+        <p>Ingen billeder</p>
+    {{/if}}
+
+    <h2>{{station.station_name}}</h2>
+
+    <p><strong>Udført:</strong> {{serviceplan_done_at}}</p>
+
+    {{!-- Kun admin ser udført af --}}
+    {{#if (eq ../session.user.role_id 1)}}
+        <p><strong>Udført af:</strong> {{user.first_name}} {{user.last_name}}</p>
+    {{/if}}
+
+</div>
+{{/each}}
+

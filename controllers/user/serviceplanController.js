@@ -130,42 +130,28 @@ exports.submitServiceplanForm = async (req, res) => {
     // Marker serviceplan som færdig
     await plan.update({ serviceplan_done_at });
 
-    // Loop igennem rækkerne (produkt + mængde + enhed)
+    // Loop igennem rækkerne
     for (let i = 0; i < product.length; i++) {
       const p = product[i];
       const q = quantity[i];
       const u = unit[i];
 
-      // ⭐ SPRING TOMME RÆKKER OVER (vigtigt!)
+      // Spring tomme rækker over
       if (!p || !q || !u) continue;
 
-      await db.serviceplan_product.create({
+      // Brug UPSERT i stedet for create — så undgår du duplicates
+      await db.serviceplan_product.upsert({
         serviceplan_id: plan.id,
         product_id: p,
-        quantity: q,   // <-- BRUG DET KORREKTE FELTNAVN
+        quantity: q,
         unit: u
       });
-    // Tilføj produktforbrug hvis valgt
-    const productsArray = Array.isArray(product) ? product : [product];
-    const quantityArray = Array.isArray(quantity) ? quantity : [quantity];
-    const unitArray = Array.isArray(unit) ? unit : [unit];
-
-    for (let i = 0; i < productsArray.length; i++) {
-      if (productsArray[i] && quantityArray[i]) {
-        await db.serviceplan_product.upsert({
-          serviceplan_id: plan.id,
-          product_id: productsArray[i],
-          quantity: quantityArray[i],
-          unit: unitArray[i]
-        });
-      }
     }
 
-    // Håndter billede uploads
-    // req.files er et objekt med fieldnames som keys når man bruger upload.fields()
+    // Billeder (multer)
     if (req.files) {
-      // Håndter før-billeder
-      if (req.files.before_image && Array.isArray(req.files.before_image)) {
+      // før-billeder
+      if (req.files.before_image) {
         for (const file of req.files.before_image) {
           await db.image.create({
             serviceplan_id: plan.id,
@@ -175,9 +161,8 @@ exports.submitServiceplanForm = async (req, res) => {
           });
         }
       }
-
-      // Håndter efter-billeder
-      if (req.files.after_image && Array.isArray(req.files.after_image)) {
+      // efter-billeder
+      if (req.files.after_image) {
         for (const file of req.files.after_image) {
           await db.image.create({
             serviceplan_id: plan.id,
@@ -193,7 +178,6 @@ exports.submitServiceplanForm = async (req, res) => {
 
   } catch (error) {
     console.error("Fejl i submitServiceplanForm:", error);
-    res.status(500).send("Serverfejl");
+    return res.status(500).send("Serverfejl");
   }
 };
-
