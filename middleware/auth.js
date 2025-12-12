@@ -1,3 +1,5 @@
+const e = require("express");
+
 // Middleware til at tjekke om bruger er logget ind
 function isAuthenticated(req, res, next) {
   if (!req.session.user) {
@@ -6,15 +8,36 @@ function isAuthenticated(req, res, next) {
   next();
 }
 
+function isAdmin(req, res, next) {
+  //Tjek om brugeren har den rigtige rolle 1 
+  if (req.session.user && req.session.user.role_id !== 1) {
+    return res.status(403).send('Adgang nægtet');
+  }
+  next();
+}
+
+function isRengUser(req, res, next) {
+  //Tjek om brugeren har den rigtige rolle 2
+  if (req.session.user.role_id !== 2) {
+    return res.status(403).send('Adgang nægtet');
+  }
+
+  next();
+}
+
 // Middleware til at redirecte hvis allerede logget ind
 function isNotAuthenticated(req, res, next) {
-  if (req.session.user) {
+  if (req.session.user && req.session.user.role_id === 1) {
     return res.redirect('/dashboard');
+  } else if (req.session.user && req.session.user.role_id === 2) {
+    return res.redirect('/serviceplan');
   }
   next();
 }
 
 module.exports = {
   isAuthenticated,
-  isNotAuthenticated
+  isNotAuthenticated,
+  isAdmin,
+  isRengUser
 };

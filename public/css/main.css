@@ -119,3 +119,7 @@ html, body {
     font-size: 30px;
     font-weight: 500;
 }
+.opgave {
+    background-color: #1B98E0;
+    padding: 50px;
+}

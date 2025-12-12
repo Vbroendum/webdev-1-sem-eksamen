@@ -1,12 +1,12 @@
 'use strict';
+const bcrypt = require('bcrypt');
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert('user_roles', [
       { role_name: 'Admin', createdAt: new Date(), updatedAt: new Date() },
-      { role_name: 'Tekniker', createdAt: new Date(), updatedAt: new Date() },
-      { role_name: 'Bruger', createdAt: new Date(), updatedAt: new Date() }
+      { role_name: 'Personale', createdAt: new Date(), updatedAt: new Date() }
     ], {});
   },
 
