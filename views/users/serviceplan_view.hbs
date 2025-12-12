@@ -1,0 +1,19 @@
+<h1>{{title}}</h1>
+
+<h2>Før-billeder</h2>
+<div>
+  {{#each images}}
+    {{#unless is_after}}
+      <img src="{{filepath}}" alt="Før billede" style="width:200px; margin:5px;">
+    {{/unless}}
+  {{/each}}
+</div>
+
+<h2>Efter-billeder</h2>
+<div>
+  {{#each images}}
+    {{#if is_after}}
+      <img src="{{filepath}}" alt="Efter billede" style="width:200px; margin:5px;">
+    {{/if}}
+  {{/each}}
+</div>
