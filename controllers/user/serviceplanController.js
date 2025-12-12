@@ -8,7 +8,7 @@ exports.renderServiceplans = async (req, res) => {
   try {
     const userId = req.session.user.id;
 
-    // 1️⃣ Find stationer som brugeren er tilknyttet
+    // Finder stationer som brugeren er tilknyttet
     const userStations = await db.user_station.findAll({
       where: { user_id: userId },
       attributes: ['station_id']
@@ -23,12 +23,10 @@ exports.renderServiceplans = async (req, res) => {
       });
     }
 
-    // 2️⃣ Find serviceplans der enten:
-    // - ikke er accepteret (user_id = null)
-    // - eller er accepteret af denne bruger
     const serviceplans = await db.serviceplan.findAll({
       where: {
         station_id: stationIds,
+        serviceplan_done_at: null,
         [Op.or]: [
           { user_id: null },
           { user_id: userId }
@@ -72,7 +70,7 @@ exports.acceptServiceplan = async (req, res) => {
 
 
 
-// RENDER - Viser serviceplan-formen
+// RENDER - Viser serviceplanformen
 exports.renderServiceplanForm = async (req, res) => {
   try {
     const plan = await db.serviceplan.findByPk(req.params.id, {
@@ -86,7 +84,6 @@ exports.renderServiceplanForm = async (req, res) => {
     });
 
     const products = await db.product.findAll({
-      attributes: ['id', 'products_name'],
       include: [
         {
           model: db.unit,
@@ -131,29 +128,20 @@ exports.submitServiceplanForm = async (req, res) => {
       return res.status(404).send("Serviceplan ikke fundet");
     }
 
-    const { serviceplan_done_at, product, quantity, unit } = req.body;
+    const { done_date, product_id, amount, amount_unit } = req.body;
 
-    // Opdater serviceplan
     await plan.update({
-      serviceplan_done_at,
+      serviceplan_done_at: done_date,
     });
 
-    // Tilføj produktforbrug hvis valgt
-    
-      const productsArray = Array.isArray(product) ? product : [product];
-      const quantityArray = Array.isArray(quantity) ? quantity : [quantity];
-      const unitArray = Array.isArray(unit) ? unit : [unit];
-
-      for (let i = 0; i < productsArray.length; i++) {
-        if (productsArray[i] && quantityArray[i]) {
-      await db.serviceplan_product.upsert({
+    if (product_id && amount) {
+      await db.serviceplan_product.create({
         serviceplan_id: plan.id,
-        product_id: productsArray[i],
-        quantity: quantityArray[i],
-        unit: unitArray[i]
+        product_id,
+        amount,
+        unit: amount_unit
       });
-      }}
-    
+    }
 
     return res.redirect('/serviceplan');
 

@@ -30,8 +30,8 @@ router.get('/serviceplan/:id', isRengUser, ServiceplanController.renderServicepl
 router.post('/serviceplan/:id', isRengUser, ServiceplanController.submitServiceplanForm);
 
 
-
-router.get('/historik', isAuthenticated, HistorikController.renderHistorik);
+// Route for historik
+router.get('/history', isAuthenticated, HistorikController.renderHistory);
 
 router.use('/users', isAdmin, usersRoutes);
 router.use('/products', isAdmin, productsRoutes);
