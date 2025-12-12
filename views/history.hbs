@@ -1,1 +1,25 @@
-<p>Her kommer historikken...</p>
+{{!-- Hvis historikken er tom --}}
+{{#if (eq history.length 0)}}
+    <p>Der er ingen færdiggjorte opgaver endnu.</p>
+{{else}}
+
+<table class="history-table">
+    <thead>
+        <tr>
+            <th>Dato</th>
+            <th>Station</th>
+            <th>Udført af</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each history}}
+            <tr>
+                <td>{{this.serviceplan_done_at}}</td>
+                <td>{{this.station.station_name}}</td>
+                <td>{{this.user.first_name}} {{this.user.last_name}}</td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{/if}}

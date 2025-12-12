@@ -119,27 +119,30 @@ exports.renderServiceplanForm = async (req, res) => {
 
 
 
-// UPDATE - Submitter formen
 exports.submitServiceplanForm = async (req, res) => {
   try {
     const plan = await db.serviceplan.findByPk(req.params.id);
+    if (!plan) return res.status(404).send("Serviceplan ikke fundet");
 
-    if (!plan) {
-      return res.status(404).send("Serviceplan ikke fundet");
-    }
+    const { serviceplan_done_at, product = [], quantity = [], unit = [] } = req.body;
 
-    const { done_date, product_id, amount, amount_unit } = req.body;
+    // Marker serviceplan som færdig
+    await plan.update({ serviceplan_done_at });
 
-    await plan.update({
-      serviceplan_done_at: done_date,
-    });
+    // Loop igennem rækkerne (produkt + mængde + enhed)
+    for (let i = 0; i < product.length; i++) {
+      const p = product[i];
+      const q = quantity[i];
+      const u = unit[i];
 
-    if (product_id && amount) {
+      // ⭐ SPRING TOMME RÆKKER OVER (vigtigt!)
+      if (!p || !q || !u) continue;
+
       await db.serviceplan_product.create({
         serviceplan_id: plan.id,
-        product_id,
-        amount,
-        unit: amount_unit
+        product_id: p,
+        quantity: q,   // <-- BRUG DET KORREKTE FELTNAVN
+        unit: u
       });
     }
 
@@ -147,6 +150,7 @@ exports.submitServiceplanForm = async (req, res) => {
 
   } catch (error) {
     console.error("Fejl i submitServiceplanForm:", error);
-    return res.status(500).send("Serverfejl");
+    res.status(500).send("Serverfejl");
   }
 };
+

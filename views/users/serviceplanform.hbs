@@ -1,6 +1,6 @@
 <h1>Opgave</h1>
 
-<form action="/serviceplan/{{plan.id}}" method="POST" class="input-form" enctype="multipart/form-data">
+<form action="/serviceplan/{{plan.id}}" method="POST" class="input-form">
     <p>Udført af: {{user.first_name}} {{user.last_name}}</p>
 
     <div class="form-group">
@@ -28,16 +28,6 @@
             </select>
         </div>
 
-    </div>
-
-    <div class="image">
-        <label for="before_image">Før-billede</label>
-        <input type="file" name="before_image" id="before_image" accept="image/*">
-    </div>
-
-    <div class="image">
-        <label for="after_image">Efter-billede</label>
-        <input type="file" name="after_image" id="after_image" accept="image/*">
     </div>
 
     <button type="submit" class="submit-btn">bekræft upload</button>
