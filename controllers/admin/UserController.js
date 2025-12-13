@@ -171,18 +171,21 @@ exports.editUser = async (req, res) => {
 // DELETE - Sletter en bruger
 exports.deleteUser = async (req, res) => {
     try {
-       const user = await db.user.findByPk(req.params.id, {
-            attributes: ['id', 'first_name', 'last_name', 'user_password', 'user_email', 'role_id']
-        });
+       const userId = req.params.id;
+       const user = await db.user.findByPk(userId);
 
         if (!user) {
             return res.status(404).send('Bruger ikke fundet');
         }
-        
-        await db.user.destroy({
-            where: { id: req.params.id }
+
+        await db.user_station.destroy({
+            where: { user_id: userId }
         });
-        res.redirect('/users');
+        
+        await user.destroy();
+
+        res.status(200).send('Bruger slettet');
+
     } catch (error) {
         console.error('Fejl ved sletning af bruger:', error);
         res.status(500).send('Databasefejl');

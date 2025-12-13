@@ -13,7 +13,7 @@ router.get('/new-user', UserController.renderCreateUserForm);
 router.get('/edit-user/:id', UserController.renderEditUser);
 
 // POST - Delete bruger
-router.post('/:id/delete', UserController.deleteUser);
+router.delete('/:id', UserController.deleteUser);
 
 // POST - opretter en ny bruger
 router.post('/', UserController.createUser);

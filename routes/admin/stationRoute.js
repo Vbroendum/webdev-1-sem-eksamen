@@ -12,8 +12,8 @@ router.get('/new-station', StationController.renderCreateStationForm);
 // GET - Edit station
 router.get('/edit-station/:id', StationController.renderEditStation);
 
-// POST - Delete station
-router.post('/:id/delete', StationController.deleteStation);
+// DELETE - Delete station
+router.delete('/:id', StationController.deleteStation);
 
 // POST - opretter en ny station
 router.post('/', StationController.createStation);
