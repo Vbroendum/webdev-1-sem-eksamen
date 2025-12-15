@@ -27,6 +27,7 @@ router.get('/dashboard', isAdmin, DashboardController.renderDashboard);
 // Route for service plan
 router.get('/serviceplan', isRengUser, ServiceplanController.renderServiceplans);
 router.post('/serviceplan/accept/:id', isRengUser, ServiceplanController.acceptServiceplan);
+router.post('/serviceplan/cancel/:id', isRengUser, ServiceplanController.cancelServiceplan);
 router.get('/serviceplan/:id', isRengUser, ServiceplanController.renderServiceplanForm);
 router.post('/serviceplan/:id', isRengUser, upload.fields([
   { name: 'before_image', maxCount: 10 },

@@ -1,77 +1,61 @@
-<h1>Opgave</h1>
 <form action="/serviceplan/{{plan.id}}" method="POST" class="input-form" enctype="multipart/form-data">
-    <p>Udført af: {{user.first_name}} {{user.last_name}}</p>
 
     <div class="form-group">
         <label for="serviceplan_done_at">Dato for udførelse</label>
         <input type="date" name="serviceplan_done_at" value="{{defaultDate}}" required>
     </div>
 
-    <div id="rows-container">
+    <div class="form-group">
+        <label for="">Påfyldning</label>
+            <div id="fill-row">
+                <select name="product[]" class="product-select">
+                    <option value="">Vælg produkt</option>
+                    {{#each products}}
+                    <option value="{{id}}">{{products_name}}</option>
+                    {{/each}}
+                </select>
 
-        <div class="row">
-            <select name="product[]" class="product-select">
-                <option value="">Vælg produkt</option>
-                {{#each products}}
-                <option value="{{id}}">{{products_name}}</option>
-                {{/each}}
-            </select>
+                <input type="number" name="quantity[]" class="quantity-input" placeholder="Mængde" min="0">
 
-            <input type="number" name="quantity[]" class="quantity-input" placeholder="Mængde" min="0">
+                <select name="unit[]" class="unit-select">
+                    <option value="">Vælg enhed</option>
+                    {{#each units}}
+                    <option value="{{short_unit}}">{{unit}} ({{short_unit}})</option>
+                    {{/each}}
+                </select>
+            </div>
 
-            <select name="unit[]" class="unit-select">
-                <option value="">Vælg enhed</option>
-                {{#each units}}
-                <option value="{{short_unit}}">{{unit}} ({{short_unit}})</option>
-                {{/each}}
-            </select>
+
+    <div class="image-sections">
+        <div class="form-group">
+            <label>Før billede</label>
+
+                <div class="upload-area">
+                    <input type="file" name="before_image" id="before_image" accept="image/*" multiple>
+                        <div class="upload-content">
+                            <div class="camera-icon"><i data-lucide="camera"></i></div>
+                            <button type="button" class="upload-btn">TAG FOTO ELLER UPLOAD</button>
+                            <small>Tilføj så mange billeder du vil</small>
+                        </div>
+                </div>
+
+        <div id="before-preview" class="preview-row"></div>
         </div>
 
+        <div class="form-group">
+            <label>Efter billede</label>
+                <div class="upload-area">
+                    <input type="file" name="after_image" id="after_image" accept="image/*" multiple>
+                        <div class="upload-content">
+                            <div class="camera-icon"><i data-lucide="camera"></i></div>
+                            <button type="button" class="upload-btn">TAG FOTO ELLER UPLOAD</button>
+                            <small>Tilføj så mange billeder du vil</small>
+                        </div>
+                </div>
+                <div id="after-preview" class="preview-row"></div>
+        </div>
     </div>
-
-    <div class="image">
-        <label for="before_image">Før-billede(r)</label>
-        <input type="file" name="before_image" id="before_image" accept="image/*" multiple>
-        <small>Upload et eller flere før-billeder. Alle uploadede billeder bliver markeret som før-billeder.</small>
-    </div>
-
-    <div class="image">
-        <label for="after_image">Efter-billede(r)</label>
-        <input type="file" name="after_image" id="after_image" accept="image/*" multiple>
-        <small>Upload et eller flere efter-billeder. Alle uploadede billeder bliver markeret som efter-billeder.</small>
-    </div>
-
-    <button type="submit" class="submit-btn">bekræft upload</button>
+    <button type="submit" class="submit-btn">Bekræft upload</button>
 </form>
 
-<script>
-document.addEventListener("change", function(e) {
-    if (
-        e.target.classList.contains("product-select") ||
-        e.target.classList.contains("quantity-input") ||
-        e.target.classList.contains("unit-select")
-    ) 
-    {
-        const container = document.getElementById("rows-container");
-        const rows = container.querySelectorAll(".row");
-        const last = rows[rows.length - 1];
-
-        // Tjek om sidste række er udfyldt
-        const product = last.querySelector(".product-select").value;
-        const quantity = last.querySelector(".quantity-input").value;
-        const unit = last.querySelector(".unit-select").value;
-
-        if (product && quantity && unit) {
-            // Klon rækken
-            const clone = last.cloneNode(true);
-
-            // Nulstil værdier
-            clone.querySelector(".product-select").value = "";
-            clone.querySelector(".quantity-input").value = "";
-            clone.querySelector(".unit-select").value = "";
-
-            container.appendChild(clone);
-        }
-    }
-});
-</script>
+<script src="/js/serviceplan.js"></script>

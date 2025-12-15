@@ -1,22 +1,3 @@
-<ul>
-  {{#each products}}
-    <li>{{this.products_name}}</li>
-    <button onclick="location.href='/products/edit/{{this.id}}'">Opdater:</button>
-    <button onclick="deleteProduct({{this.id}})">Slet</button>
-  {{/each}} 
-</ul>
-<a href="/products/create">Opret nyt produkt</a>
-<script>
-  function deleteProduct(product_id) {
-    fetch(`/products/delete/${product_id}`, {
-      method: 'POST'
-    })
-    .then(response => {
-      if (response.ok) {
-        location.reload();
-      } else {
-        alert('Fejl ved sletning af produkt');
-      }
-    });
-  }
-</script>
+<a href="/products/create" class="new-btn"> <i data-lucide="plus"></i>Opret nyt produkt</a>
+
+{{> lists items=items fields=fields }}

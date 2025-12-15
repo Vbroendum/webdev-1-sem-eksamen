@@ -10,7 +10,10 @@ exports.renderProducts = async (req, res) => {
 
         res.render('admin/products/products', {
             title: 'Produkter',
-            products
+            items: products,
+            fields: ['products_name'],
+            editUrl: '/products/edit-product',
+            deleteUrl: '/products'
         });
 
         } catch (error) {
@@ -61,7 +64,7 @@ exports.renderEditProduct = async (req, res) => {
         }
         res.render('admin/products/edit-product', {
             title: 'Rediger produkt',
-            product,
+            items: product,
             units
         });
     } catch (error) {

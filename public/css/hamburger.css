@@ -7,7 +7,6 @@
     top: 0;
     bottom: 0;
     left: 0;
-    z-index: 999;
 }
 
 .page-content {
@@ -20,8 +19,6 @@
     color: #39393A;
     font-weight: 500;
 }
-
-
 
 .sidebar ul {
     list-style: none;
@@ -66,6 +63,7 @@
     display: none;
     justify-content: center;
     align-items: center;
+    z-index: 1;
 }
 
 .sidebar li.active a {
@@ -85,6 +83,7 @@
     border-radius: 8px;
     transition: background-color 0.2s ease;
 }
+
 
 .sidebar li i {
     width: 18px;
@@ -200,7 +199,6 @@
     width: 100%;
 }
 
-/* Tilbage-pil – skjult som standard */
 .back-button {
     display: none;
     position: absolute;
@@ -209,6 +207,17 @@
     border: none;
     padding: 6px;
     cursor: pointer;
+}
+
+.logout-container {
+    margin-top: auto;
+    padding: 20px;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
 .back-button i svg {

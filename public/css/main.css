@@ -1,17 +1,19 @@
-/*
-Her er der CSS KEKW
-*/
+/* Main.css */
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap');
 
 *{
     font-family: "Inter", sans-serif;
 }
 
+body {
+    background-color: #FBFBFD;;
+}
+
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow: hidden;
 }
 
 .layout {
@@ -41,6 +43,11 @@ html, body {
  display: flex;
  justify-content: center;
  font-weight: 500;
+}
+
+.page-title {
+    font-size: 30px;
+    font-weight: 500;
 }
 
 .test-btn {
@@ -113,13 +120,4 @@ html, body {
     .page-title {
         display: none;
     }
-}
-
-.page-title {
-    font-size: 30px;
-    font-weight: 500;
-}
-.opgave {
-    background-color: #1B98E0;
-    padding: 50px;
 }

@@ -1,22 +1,32 @@
 {{#if serviceplans.length}}
+<div class="task-grid">
     {{#each serviceplans}}
-        <div class="opgave">
+        <div class="task-card">
+            <div class="task-header">
+                <div>
+                    <h3 class="task-title">{{station.station_name}}</h3>
+                    <p class="task-address">{{station.station_address}}</p> 
+                </div>
+            </div>
 
-            <h3>{{station.station_name}}</h3>
-            <p>Opgave ID: {{id}}</p>
-
+        <div class="serviceplan-actions {{#if user_id}}has-cancel{{/if}}">
             {{#if user_id}}
-                <a href="/serviceplan/{{id}}" class="btn">
-                    Udfyld opgave
-                </a>
+                <a href="/serviceplan/{{id}}" class="btn btn-primary">Udfyld opgave</a>
+
+                <form action="/serviceplan/cancel/{{id}}" method="POST">
+                    <button class="btn btn-danger" type="submit">Annuller</button>
+                </form>
             {{else}}
                 <form action="/serviceplan/accept/{{id}}" method="POST">
-                    <button class="btn">Accepter</button>
+                    <button class="btn btn-primary full-width" type="submit">Accepter</button>
                 </form>
             {{/if}}
-
         </div>
     {{/each}}
+</div>
+
 {{else}}
     <p>Du har ingen opgaver endnu.</p>
 {{/if}}
+
+<script src="/js/serviceplan.js"></script>

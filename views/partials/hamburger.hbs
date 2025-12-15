@@ -1,6 +1,5 @@
 {{#if user}}
 <div class="topbar">
-
     <button id="back-button" class="back-button">
         <i data-lucide="arrow-left"></i>
     </button>
@@ -10,34 +9,28 @@
     <button id="hamburger" class="hamburger">
         <i data-lucide="menu" id="hamburger-icon"></i>
     </button>
-
 </div>
 
 <aside class="sidebar">
     <nav>
         <ul>
-
             {{! admin menupunkter}}
             {{#if (eq user.role_id 1)}}
-
                 <p class="menu-category">Oversigt</p>
-
-                <li><i data-lucide="house"></i><a href="/dashboard">Dashboard</a></li>
-                <li><i data-lucide="user"></i><a href="/users">Brugere</a></li>
-                <li><i data-lucide="fuel"></i><a href="/stations">Stationer</a></li>
-                <li><i data-lucide="shopping-cart"></i><a href="/products">Produkter</a></li>
-                <li><i data-lucide="layout-list"></i><a href="/orders">Ordrer</a></li>
-                <li><i data-lucide="building-2"></i><a href="/companies">Virksomheder</a></li>
-
-                <li><i data-lucide="history"></i><a href="/history">Historik</a></li>
+                    <li><i data-lucide="house"></i><a href="/dashboard">Dashboard</a></li>
+                    <li><i data-lucide="user"></i><a href="/users">Brugere</a></li>
+                    <li><i data-lucide="fuel"></i><a href="/stations">Stationer</a></li>
+                    <li><i data-lucide="shopping-cart"></i><a href="/products">Produkter</a></li>
+                    <li><i data-lucide="layout-list"></i><a href="/orders">Ordrer</a></li>
+                    <li><i data-lucide="building-2"></i><a href="/companies">Virksomheder</a></li>
+                    <li><i data-lucide="history"></i><a href="/history">Historik</a></li>
 
                 <p class="menu-category">Genveje</p>
-
-                <li class="submenu-toggle">
-                    <i data-lucide="plus"></i>
-                    <span>Opret</span>
-                    <i data-lucide="chevron-down" class="chevron"></i>
-                </li>
+                    <li class="submenu-toggle">
+                        <i data-lucide="plus"></i>
+                        <span>Opret</span>
+                        <i data-lucide="chevron-down" class="chevron"></i>
+                    </li>
 
                 <li class="submenu-wrapper">
                     <ul class="submenu">
@@ -47,7 +40,6 @@
                         <li><a href="/companies/new-company">Opret virksomhed</a></li>
                     </ul>
                 </li>
-
             {{/if}}
 
 
@@ -55,43 +47,22 @@
             {{#if (eq user.role_id 2)}}
 
                 <p class="menu-category">Opgaver</p>
-
-                <li>
-                    <i data-lucide="check-square"></i>
-                    <a href="/serviceplan">Serviceplan</a>
-                </li>
-
-                <li>
-                    <i data-lucide="history"></i>
-                    <a href="/history">Historik</a>
-                </li>
-
+                    <li>
+                        <i data-lucide="check-square"></i>
+                        <a href="/serviceplan">Serviceplan</a>
+                    </li>
+                    <li>
+                        <i data-lucide="history"></i>
+                        <a href="/history">Historik</a>
+                    </li>
             {{/if}}
-
-            <li><button onclick="logout()">Log ud</button></li>
 
         </ul>
     </nav>
+        {{! logud knap }}
+        <div class="logout-container">
+            <button class="logout-btn" onclick="logout()">Log ud</button>
+        </div>
 </aside>
 {{/if}}
 
-<script>
-    function logout() {
-    fetch('/logout', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => {
-        if (response.redirected) {
-            window.location.href = response.url;
-        } else {
-            window.location.href = '/';
-        }
-    })
-    .catch(error => {
-        console.error('Logout fejl:', error);
-    });
-}
-</script>

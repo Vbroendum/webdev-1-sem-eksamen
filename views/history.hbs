@@ -1,24 +1,23 @@
-<h1>Historik</h1>
+<ul class="list">
+    {{#each history}}
+        <li class="list-item history-row">
+            <div class="history-thumb">
+                {{#if images.length}}
+                    <img src="{{images.[0].filepath}}" alt="thumbnail">
+                {{else}}
+                    <div class="no-image">Ingen</div>
+                {{/if}}
+            </div>
 
-{{#each history}}
-<div class="history-item">
+            <div class="history-text">
+                <div class="history-title">{{station.station_name}}</div>
+                <div class="history-date">Udført: {{serviceplan_done_at}}</div>
 
-    {{!-- Hvis der findes billeder, vis det første --}}
-    {{#if images.length}}
-        <img src="{{images.[0].filepath}}" class="history-img" alt="Billede">
-    {{else}}
-        <p>Ingen billeder</p>
-    {{/if}}
-
-    <h2>{{station.station_name}}</h2>
-
-    <p><strong>Udført:</strong> {{serviceplan_done_at}}</p>
-
-    {{!-- Kun admin ser udført af --}}
-    {{#if (eq ../session.user.role_id 1)}}
-        <p><strong>Udført af:</strong> {{user.first_name}} {{user.last_name}}</p>
-    {{/if}}
-
-</div>
-{{/each}}
+                {{#if (eq ../user.role_id 1)}}
+                    <div class="history-user">Af: {{user.first_name}} {{user.last_name}}</div>
+                {{/if}}
+            </div>
+        </li>
+    {{/each}}
+</ul>
 

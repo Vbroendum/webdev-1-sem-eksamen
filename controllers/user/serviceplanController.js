@@ -35,7 +35,7 @@ exports.renderServiceplans = async (req, res) => {
       include: [{
         model: db.station,
         as: 'station',
-        attributes: ['station_name']
+        attributes: ['station_name', 'station_address']
       }]
     });
 
@@ -68,6 +68,24 @@ exports.acceptServiceplan = async (req, res) => {
   }
 };
 
+// UPDATE - annullere serviceplanen
+exports.cancelServiceplan = async (req, res) => {
+  try {
+    const plan = await db.serviceplan.findByPk(req.params.id);
+
+    await plan.update({
+      user_id: null
+    });
+
+    res.redirect('/serviceplan');
+
+  } catch(error) {
+    console.error('Fejl i anullering af serviceplan', error);
+    res.status(500).send('Databasefejl');
+
+  }
+};
+
 
 
 // RENDER - Viser serviceplanformen
@@ -97,9 +115,6 @@ exports.renderServiceplanForm = async (req, res) => {
       attributes: ['id', 'unit', 'short_unit']
     });
 
-    const user = await db.user.findByPk(req.session.user.id, {
-      attributes: ['id', 'first_name', 'last_name']
-    });
 
     const today = new Date().toISOString().slice(0, 10);
 
@@ -108,7 +123,6 @@ exports.renderServiceplanForm = async (req, res) => {
       products,
       units,
       defaultDate: today,
-      user
     });
 
   } catch (error) {

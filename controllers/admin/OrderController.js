@@ -15,7 +15,10 @@ exports.renderOrders = async (req, res) => {
 
     res.render('admin/orders/orders', {
       title: 'Ordreoversigt (Serviceopgaver)',
-      orders
+      items: orders,
+      fields: ['id'],
+      editUrl: '/orders/edit-order',
+      deleteUrl: '/orders'
     });
 
     } catch (error) {

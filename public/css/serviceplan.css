@@ -1,0 +1,412 @@
+.task-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+
+.serviceplan-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+    width: 100%;
+}
+
+.serviceplan-actions.single > * {
+    flex: 1;
+}
+
+.serviceplan-actions.has-cancel {
+    align-items: stretch;
+}
+
+.serviceplan-actions.has-cancel .btn-primary {
+    flex: 1;
+}
+
+.serviceplan-actions.has-cancel .btn-danger {
+    flex: 0 0 auto;
+    white-space: nowrap;
+}
+
+.serviceplan-actions form {
+    margin: 0;
+}
+
+.btn {
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn-primary {
+    background-color: #1B98E0;
+    color: #fff;
+}
+
+.btn-danger {
+    background-color: #E53935;
+    color: #fff;
+}
+
+
+.btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+
+.btn-primary {
+    background-color: #1B98E0;
+    color: #fff;
+}
+
+.btn-danger {
+    background-color: #E53935;
+    color: #fff;
+}
+
+
+.image {
+    margin-bottom: 24px;
+}
+
+.image input[type="file"] {
+    display: block;
+    margin-top: 8px;
+}
+
+#before-preview,
+#after-preview {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+/* Hver preview */
+#before-preview > div,
+#after-preview > div {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+}
+
+#before-preview img,
+#after-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#before-preview button,
+#after-preview button {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+#before-preview button:hover,
+#after-preview button:hover {
+    background: #E53935;
+}
+
+.image-sections {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-top: 20px;
+}
+
+@media (min-width: 900px) {
+    .image-sections {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.image-block label {
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.upload-area {
+    position: relative;
+    border: 2px dashed #d6d6d6;
+    border-radius: 12px;
+    padding: 32px 20px;
+    text-align: center;
+}
+
+.upload-area input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.upload-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.camera-icon svg {
+    stroke: #7F7F7F;
+    stroke-width: 1px;
+    width: 70px;
+    height: auto;
+}
+
+.upload-btn {
+    background: #4a97e0;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.upload-content small {
+    color: #777;
+}
+
+.preview-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.preview-item {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.preview-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Slet-knap */
+.preview-item button {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: none;
+    background: #000;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+
+#fill-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+@media (min-width: 900px) {
+    #fill-row {
+        flex-direction: row;
+    }
+
+    #fill-row select,
+    #fill-row input {
+        flex: 1;
+    }
+}
+
+@media (min-width: 600px) {
+    .task-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1000px) {
+    .task-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.task-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid #e6e6e6;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-title {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.task-address {
+    margin-top: 3px;
+    color: #666;
+    font-size: 15px;
+}
+
+.task-deadline {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #777;
+    font-size: 14px;
+}
+
+.task-button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 14px;
+    background: #3e9ae8;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.task-button:hover {
+    background: #2d82c7;
+}
+
+
+.logout-btn {
+    width: 100%;
+    padding: 12px 0;
+    background-color: #1B98E0;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.logout-btn:hover {
+    background-color: #157bb5;
+}
+
+/* Thumbnail til venstre */
+.history-thumb img {
+    width: 65px;
+    height: 65px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.history-thumb .no-image {
+    width: 65px;
+    height: 65px;
+    background: #ddd;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+    font-size: 12px;
+}
+
+.history-row {
+    display: flex;
+    justify-content: flex-start !important;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.history-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Thumbnail */
+.history-thumb img {
+    width: 65px;
+    height: 65px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.history-thumb .no-image {
+    width: 65px;
+    height: 65px;
+    background: #ddd;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+    font-size: 12px;
+}
+
+.history-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.history-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #39393A;
+}
+
+.history-date,
+.history-user {
+    font-size: 16px;
+    color: #7F7F7F;
+}
+
+
+.opgave {
+    background-color: #1B98E0;
+    padding: 50px;
+}
+
+.submit-btn {
+    margin-top: auto;
+}

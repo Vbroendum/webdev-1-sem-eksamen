@@ -1,6 +1,7 @@
 const db = require('../models');
 const { Op } = require('sequelize');
 
+// RENDER - viser historikken
 exports.renderHistory = async (req, res) => {
   try {
     const { id: userId, role_id: role } = req.session.user;
@@ -22,7 +23,6 @@ exports.renderHistory = async (req, res) => {
       order: [['serviceplan_done_at', 'DESC']]
     });
 
-    // ⭐ Forbered previewImage til hver serviceplan
     const cleanedHistory = history.map(plan => {
       let preview = null;
 
