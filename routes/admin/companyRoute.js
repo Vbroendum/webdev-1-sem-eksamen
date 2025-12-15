@@ -13,7 +13,7 @@ router.get('/new-company', CompanyController.renderCreateCompanyForm);
 router.get('/edit-Company/:id', CompanyController.renderEditCompany);
 
 // // POST - Delete virksomhed
-router.post('/:id/delete', CompanyController.deleteCompany);
+router.delete('/:id', CompanyController.deleteCompany);
 
 // // POST - opretter en ny virksomhed
 router.post('/', CompanyController.createCompany);

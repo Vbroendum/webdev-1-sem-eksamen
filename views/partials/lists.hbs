@@ -23,29 +23,33 @@
             <div class="separator"></div>
 
             {{!-- Slet fra liste --}}  
-            <button>
-                <a href="{{../deleteUrl}}/{{this.id}}/delete"
-                  class="action-icon delete"
-                  onclick="return confirm('Er du sikker på du vil slette?')">
-                    <i data-lucide="trash"></i>
-                </a>
+            <button onclick="deleteItem('{{../deleteUrl}}', {{this.id}})" class="action-icon delete" title="Slet">
+                <i data-lucide="trash"></i>
             </button>
         </div>
     </li>
 {{/each}}
 </ul>
-
-    {{!-- <script>
-  function deleteUser(user_id) {
-    fetch(`/users/${user_id}/delete`, {
-      method: 'POST'
-    })
-    .then(response => {
-      if (response.ok) {
-        location.reload();
-      } else {
-        alert('Fejl ved sletning af bruger');
-      }
-    });
+<script>
+  function deleteItem(deleteUrl, id) {
+    if (confirm('Er du sikker på du vil slette?')) {
+      fetch(`${deleteUrl}/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          location.reload();
+        } else {
+          alert('Fejl ved sletning');
+        }
+      })
+      .catch(error => {
+        console.error('Fejl:', error);
+        alert('Fejl ved sletning');
+      });
+    }
   }
-</script> --}}
+</script>

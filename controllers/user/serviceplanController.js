@@ -1,6 +1,8 @@
 // controllers/user/serviceplanController.js
 const db = require('../../models');
 const { Op } = require("sequelize");
+const transporter = require('../../services/mailer');
+const crypto = require('crypto');
 
 
 // RENDER - viser alle serviceplaner for brugerens stationer
@@ -187,6 +189,27 @@ exports.submitServiceplanForm = async (req, res) => {
         }
       }
     }
+
+    // Generer engangslink
+    const uuid = crypto.randomBytes(32).toString('hex');
+    const expiresAt = new Date(Date.now() + 48 * 60 * 60 * 1000); // 48 timer
+
+    await db.onetime_link.create({
+      uuid,
+      serviceplan_id: plan.id,
+      expiresAt
+    });
+
+    const link = `http://localhost:3000/serviceplan/verify/${uuid}`;
+
+    // Send mail
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER, // afsender
+      to: process.env.EMAIL_RECEIVER, // modtager
+      subject: `Serviceplan #${plan.id} er klar`,
+      text: `Din serviceplan er klar. Klik her for at se den: ${link}`,
+      html: `<p>Din serviceplan er klar.</p><p><a href="${link}">Se serviceplan</a></p>`
+    });
 
     return res.redirect('/serviceplan');
 

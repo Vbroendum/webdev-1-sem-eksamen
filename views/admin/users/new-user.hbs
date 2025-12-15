@@ -27,6 +27,17 @@
             <option value="2">Rengøringspersonale</option>
         </select>
     </div>
+    <div class="form-group">
+        <label>Vælg stationer</label>
+        <div class="checkbox-group">
+            {{#each stations}}
+                <label class="checkbox-label">
+                    <input type="checkbox" name="station_ids[]" value="{{this.id}}">
+                    {{this.station_name}}, {{this.station_address}}
+                </label>
+            {{/each}}
+        </div>
+    </div>
 
     <button type="submit" class="submit-btn">Opret bruger</button>
 </form>

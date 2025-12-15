@@ -53,7 +53,7 @@ app.engine('hbs', engine({
     helpers: {
         json: (context) => { return JSON.stringify(context); },
         eq: (a, b) => { return a == b; },
-        
+        includes: (array, value) => { return array && array.includes(value); }
     }
     
 }));

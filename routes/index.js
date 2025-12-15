@@ -6,6 +6,7 @@ const DashboardController = require('../controllers/admin/DashboardController');
 const ServiceplanController = require('../controllers/user/serviceplanController');
 const HistorikController = require('../controllers/HistorikController');
 const upload = require('../middleware/multer');
+const verifyRoutes = require('./verifyRoutes');
 
 // importering af routes
 const usersRoutes = require('./admin/userRoute');
@@ -43,4 +44,6 @@ router.use('/products', isAdmin, productsRoutes);
 router.use('/orders', isAdmin, ordersRoutes);
 router.use('/stations', isAdmin, stationsRoutes);
 router.use('/companies', isAdmin, companiesRoutes);
+
+router.use('/', verifyRoutes);
 module.exports = router;
