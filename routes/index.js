@@ -46,4 +46,5 @@ router.use('/stations', isAdmin, stationsRoutes);
 router.use('/companies', isAdmin, companiesRoutes);
 
 router.use('/', verifyRoutes);
+
 module.exports = router;

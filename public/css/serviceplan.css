@@ -4,54 +4,22 @@
     gap: 20px;
 }
 
-
 .serviceplan-actions {
     display: flex;
     gap: 10px;
     margin-top: 16px;
-    width: 100%;
-}
-
-.serviceplan-actions.single > * {
-    flex: 1;
-}
-
-.serviceplan-actions.has-cancel {
-    align-items: stretch;
-}
-
-.serviceplan-actions.has-cancel .btn-primary {
-    flex: 1;
-}
-
-.serviceplan-actions.has-cancel .btn-danger {
-    flex: 0 0 auto;
-    white-space: nowrap;
-}
-
-.serviceplan-actions form {
-    margin: 0;
-}
-
-.btn {
-    padding: 14px;
-    border-radius: 10px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
 }
 
 .btn-primary {
     background-color: #1B98E0;
     color: #fff;
+    text-decoration: none;
 }
 
 .btn-danger {
     background-color: #E53935;
     color: #fff;
 }
-
 
 .btn {
     width: 100%;
@@ -60,19 +28,8 @@
     font-size: 16px;
     border: none;
     cursor: pointer;
+    font-weight: 500;
 }
-
-
-.btn-primary {
-    background-color: #1B98E0;
-    color: #fff;
-}
-
-.btn-danger {
-    background-color: #E53935;
-    color: #fff;
-}
-
 
 .image {
     margin-bottom: 24px;
@@ -91,7 +48,6 @@
     flex-wrap: wrap;
 }
 
-/* Hver preview */
 #before-preview > div,
 #after-preview > div {
     position: relative;
@@ -212,7 +168,6 @@
     object-fit: cover;
 }
 
-/* Slet-knap */
 .preview-item button {
     position: absolute;
     top: -6px;
@@ -309,26 +264,10 @@
     background: #2d82c7;
 }
 
-
-.logout-btn {
-    width: 100%;
-    padding: 12px 0;
-    background-color: #1B98E0;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
-    text-align: center;
-    font-weight: 600;
-    transition: background 0.2s;
-}
-
 .logout-btn:hover {
     background-color: #157bb5;
 }
 
-/* Thumbnail til venstre */
 .history-thumb img {
     width: 65px;
     height: 65px;
@@ -363,7 +302,6 @@
     gap: 15px;
 }
 
-/* Thumbnail */
 .history-thumb img {
     width: 65px;
     height: 65px;
@@ -399,14 +337,4 @@
 .history-user {
     font-size: 16px;
     color: #7F7F7F;
-}
-
-
-.opgave {
-    background-color: #1B98E0;
-    padding: 50px;
-}
-
-.submit-btn {
-    margin-top: auto;
 }
