@@ -1,4 +1,4 @@
-{{#if user}}
+{{#if currentUser}}
 <div class="topbar">
     <button id="back-button" class="back-button">
         <i data-lucide="arrow-left"></i>
@@ -16,7 +16,7 @@
     <nav>
         <ul>
             {{! admin menupunkter}}
-            {{#if (eq user.role_id 1)}}
+            {{#if (eq currentUser.role_id 1)}}
                 <p class="menu-category">Oversigt</p>
                     <li><i data-lucide="house"></i><a href="/dashboard">Dashboard</a></li>
                     <li><i data-lucide="user"></i><a href="/users">Brugere</a></li>
@@ -26,26 +26,26 @@
                     <li><i data-lucide="building-2"></i><a href="/companies">Virksomheder</a></li>
                     <li><i data-lucide="history"></i><a href="/history">Historik</a></li>
 
-                <p class="menu-category">Genveje</p>
+                 <p class="menu-category">Genveje</p>
                     <li class="submenu-toggle">
-                        <i data-lucide="plus"></i>
-                        <span>Opret</span>
-                        <i data-lucide="chevron-down" class="chevron"></i>
+                        <div class="submenu-header">
+                            <i data-lucide="plus"></i>
+                            <span>Opret</span>
+                            <i data-lucide="chevron-down" class="chevron"></i>
+                        </div>
                     </li>
 
-                <li class="submenu-wrapper">
-                    <ul class="submenu">
-                        <li><a href="/users/new-user">Opret bruger</a></li>
-                        <li><a href="/stations/new-station">Opret station</a></li>
-                        <li><a href="/products/new-product">Opret produkt</a></li>
-                        <li><a href="/companies/new-company">Opret virksomhed</a></li>
-                    </ul>
-                </li>
+                    <li class="submenu-wrapper">
+                        <ul class="submenu">
+                            <li><a href="/users/new-user">Opret bruger</a></li>
+                            <li><a href="/stations/new-station">Opret station</a></li>
+                            <li><a href="/products/new-product">Opret produkt</a></li>
+                            <li><a href="/companies/new-company">Opret virksomhed</a></li>
+                        </ul>
+                    </li>
             {{/if}}
-
-
             {{! bruger menupunkter}}
-            {{#if (eq user.role_id 2)}}
+            {{#if (eq currentUser.role_id 2)}}
 
                 <p class="menu-category">Opgaver</p>
                     <li>
@@ -57,12 +57,11 @@
                         <a href="/history">Historik</a>
                     </li>
             {{/if}}
-
         </ul>
     </nav>
         {{! logud knap }}
         <div class="logout-container">
-            <button class="logout-btn" onclick="logout()">Log ud</button>
+            <button class="logout-btn" onclick="logout()"><i data-lucide="log-out" class="logout-icon"></i>Log ud</button>
         </div>
 </aside>
 {{/if}}

@@ -1,32 +1,67 @@
-{{#if serviceplans.length}}
+{{!-- I GANG --}}
+{{#if inProgressPlans.length}}
+<h2 class="task-section-title">Igangværende opgaver</h2>
 <div class="task-grid">
-    {{#each serviceplans}}
+    {{#each inProgressPlans}}
         <div class="task-card">
             <div class="task-header">
                 <div>
+                    <span class="task-status in-progress">I gang</span>
                     <h3 class="task-title">{{station.station_name}}</h3>
-                    <p class="task-address">{{station.station_address}}</p> 
+                    <p class="task-address">{{station.station_address}}</p>
                 </div>
+
+                {{#if expiresAtFormatted}}
+                <div class="task-time">
+                    <i data-lucide="clock"></i>
+                    <span>{{expiresAtFormatted}}</span>
+                </div>
+                {{/if}}
             </div>
 
-        <div class="serviceplan-actions {{#if user_id}}has-cancel{{/if}}">
-            {{#if user_id}}
-                <a href="/serviceplan/{{id}}" class="btn btn-primary">Udfyld opgave</a>
+            <div class="serviceplan-actions has-cancel">
+                <a href="/serviceplan/{{id}}" class="btn btn-primary">
+                    Udfyld opgave
+                </a>
 
                 <form action="/serviceplan/cancel/{{id}}" method="POST">
-                    <button class="btn btn-danger" type="submit">Annuller</button>
+                    <button class="btn btn-danger" type="submit">
+                        Annuller
+                    </button>
                 </form>
-            {{else}}
-                <form action="/serviceplan/accept/{{id}}" method="POST">
-                    <button class="btn btn-primary full-width" type="submit">Accepter</button>
-                </form>
-            {{/if}}
+            </div>
         </div>
     {{/each}}
 </div>
-
-{{else}}
-    <p>Du har ingen opgaver endnu.</p>
 {{/if}}
 
-<script src="/js/serviceplan.js"></script>
+{{!-- ALLE OPGAVER --}}
+<h2 class="task-section-title">Alle opgaver</h2>
+<div class="task-grid">
+    {{#each availablePlans}}
+        <div class="task-card">
+            <div class="task-header">
+                <div>
+                    <span class="task-status available">Ledig</span>
+                    <h3 class="task-title">{{station.station_name}}</h3>
+                    <p class="task-address">{{station.station_address}}</p>
+                </div>
+
+                {{#if expiresAtFormatted}}
+                <div class="task-time">
+                    <i data-lucide="clock"></i>
+                    <span>{{expiresAtFormatted}}</span>
+                </div>
+                {{/if}}
+            </div>
+
+            <div class="serviceplan-actions">
+                <form action="/serviceplan/accept/{{id}}" method="POST">
+                    <button class="btn btn-primary" type="submit">
+                        Accepter
+                    </button>
+                </form>
+            </div>
+        </div>
+    {{/each}}
+</div>

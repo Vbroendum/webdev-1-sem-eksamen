@@ -2,32 +2,70 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap');
 
-*{
+
+* {
     font-family: "Inter", sans-serif;
 }
 
+html,
 body {
-    background-color: #FBFBFD;;
-}
-
-html, body {
     height: 100%;
     margin: 0;
     padding: 0;
 }
 
+
+/* Layout */
+
 .layout {
     display: flex;
     height: 100vh;
     padding: 2rem;
+    box-sizing: border-box;
 }
 
 .page-content {
-    box-sizing: border-box;
     width: calc(100% - 220px);
     margin-left: 220px;
+    box-sizing: border-box;
     overflow-y: auto;
 }
+
+
+/* Titler */
+
+.title {
+    display: flex;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.page-title {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+
+/* Knapper */
+
+.new-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-bottom: 20px;
+    padding: 12px;
+
+    background-color: #1B98E0;
+    color: #ffffff;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+
+/* Mobil */
 
 @media (max-width: 768px) {
 
@@ -36,87 +74,7 @@ html, body {
         margin-left: 0;
         padding: 0;
     }
-}
 
-.title {
- font-size: 14px;
- display: flex;
- justify-content: center;
- font-weight: 500;
-}
-
-.page-title {
-    font-size: 30px;
-    font-weight: 500;
-}
-
-.test-btn {
-    background-color: #ff1493;
-    color: #ffffff;
-    border-radius: 10px;
-    border: none;
-    padding: 10px;
-}
-
-
-.login {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-    gap: 10px;
-}
-
-.login-button {
-    background-color: #ff1493 /*#39393A*/;
-    color: #ffffff;
-    border-radius: 10px;
-    border: none;
-    padding: 10px;
-}
-
-.add-user {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-    gap: 10px;
-}
-
-.add-user .form-group {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.add-user label {
-    display: inline-block;
-    width: 100px;
-    text-align: left;
-}
-
-.add-user input[type="text"],
-.add-user input[type="email"],
-.add-user input[type="password"] {
-    flex: 1;
-}
-
-#role_id {
-    margin: 0;
-}
-.new-btn {
-    background-color: #1B98E0;
-    color: #ffffff;
-    padding: 12px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 16px;
-    display: inline-block;
-    margin-bottom: 20px;
-    display: inline-flex;
-    align-items: center; 
-    gap: 8px;  
-}
-
-@media (max-width: 768px) {
     .page-title {
         display: none;
     }

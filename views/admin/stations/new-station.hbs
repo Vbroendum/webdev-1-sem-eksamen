@@ -27,15 +27,22 @@
         </select>
     </div>
 
-    <div class="form-group">
-        <label>
-            <input type="checkbox" name="station_has_bay">
-            Station har forplads
-        </label>
-    </div>
+        <div class="form-group">
+            <label>Forplads</label>
 
-    <button class="test-btn new-station-button" type="submit">
-        Gem ny station
-    </button>
+            <div class="checkbox-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" name="station_has_bay">
+                    <span class="checkbox-text">
+                        Station har forplads
+                    </span>
+                </label>
+            </div>
+        </div>
+    <div class="submit-row">
+        <button class="submit-btn" type="submit">
+            Opret station
+        </button>
+    </div>
 
 </form>

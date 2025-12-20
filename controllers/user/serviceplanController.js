@@ -20,7 +20,7 @@ exports.renderServiceplans = async (req, res) => {
 
     if (stationIds.length === 0) {
       return res.render("users/serviceplan", {
-        title: "Mine Opgaver",
+        title: "Serviceplaner",
         serviceplans: []
       });
     }
@@ -41,9 +41,37 @@ exports.renderServiceplans = async (req, res) => {
       }]
     });
 
+    serviceplans.forEach(plan => {
+      if (!plan.serviceplan_expired_at) return;
+    
+      const date = new Date(plan.serviceplan_expired_at);
+    
+      plan.expiresAtFormatted = date.toLocaleString('da-DK', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+    });
+
+    const inProgress = [];
+const available = [];
+
+serviceplans.forEach(plan => {
+  if (plan.user_id) {
+    inProgress.push(plan);
+  } else {
+    available.push(plan);
+  }
+});
+
+
     res.render("users/serviceplan", {
       title: "Mine Opgaver",
-      serviceplans
+      serviceplans,
+      inProgressPlans: inProgress,
+      availablePlans: available
     });
 
   } catch (error) {

@@ -1,3 +1,14 @@
-{{#each buttons}}
-    <button class="test-btn" onclick="location.href='{{this.link}}'">{{this.text}}</button>
-{{/each}}
+<link rel="stylesheet" href="/css/dashboard.css">
+
+<div class="dashboard-shortcuts">
+    {{#each buttons}}
+        <button
+            class="shortcut-card"
+            onclick="location.href='{{this.link}}'">
+
+            <i data-lucide="{{this.icon}}" class="shortcut-icon"></i>
+            <span class="shortcut-text">{{this.text}}</span>
+
+        </button>
+    {{/each}}
+</div>

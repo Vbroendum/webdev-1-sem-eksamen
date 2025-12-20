@@ -2,7 +2,7 @@ const db = require('../models');
 const bcrypt = require('bcrypt');
 
 exports.renderLogin = (req, res) => {
-    res.render('admin/login', { title: 'Login' });
+    res.render('admin/login');
 };
 
 exports.login = async (req, res) => {

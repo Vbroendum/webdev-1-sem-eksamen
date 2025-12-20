@@ -10,7 +10,10 @@ exports.renderCompanies = async (req, res) => {
 
     res.render('admin/companies/companies', {
       title: 'Virksomheder',
-      companies
+      items: companies,
+      fields: ['name', 'cvr'],
+      editUrl: '/companies/edit-company',
+      deleteUrl: '/companies'
     });
   } catch (error) {
     console.error('Fejl ved hentning af virksomheder:', error);

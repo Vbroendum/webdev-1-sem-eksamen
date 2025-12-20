@@ -1,3 +1,5 @@
+/* Log ud funktion */
+
 function logout() {
     fetch('/logout', {
         method: 'POST',

@@ -1,72 +1,87 @@
-document.addEventListener("change", function(e) {
-    if (
+/* Funktionalitet til serviceplan */
+
+
+/* Dynamiske produkt-rækker */
+document.addEventListener("change", (e) => {
+
+    const isRelevantField =
         e.target.classList.contains("product-select") ||
         e.target.classList.contains("quantity-input") ||
-        e.target.classList.contains("unit-select")
-    ) 
-    {
-        const container = document.getElementById("rows-container");
-        const rows = container.querySelectorAll(".row");
-        const last = rows[rows.length - 1];
+        e.target.classList.contains("unit-select");
 
-        // Tjek om sidste række er udfyldt
-        const product = last.querySelector(".product-select").value;
-        const quantity = last.querySelector(".quantity-input").value;
-        const unit = last.querySelector(".unit-select").value;
+    if (!isRelevantField) return;
 
-        if (product && quantity && unit) {
-            // Klon rækken
-            const clone = last.cloneNode(true);
+    const container = document.getElementById("rows-container");
+    if (!container) return;
 
-            // Nulstil værdier
-            clone.querySelector(".product-select").value = "";
-            clone.querySelector(".quantity-input").value = "";
-            clone.querySelector(".unit-select").value = "";
+    const rows = container.querySelectorAll(".row");
+    const lastRow = rows[rows.length - 1];
 
-            container.appendChild(clone);
-        }
+    if (!lastRow) return;
+
+    const product = lastRow.querySelector(".product-select")?.value;
+    const quantity = lastRow.querySelector(".quantity-input")?.value;
+    const unit = lastRow.querySelector(".unit-select")?.value;
+
+    // Hvis sidste række er udfyldt, tilføjes en ny
+    if (product && quantity && unit) {
+        const clone = lastRow.cloneNode(true);
+
+        clone.querySelector(".product-select").value = "";
+        clone.querySelector(".quantity-input").value = "";
+        clone.querySelector(".unit-select").value = "";
+
+        container.appendChild(clone);
     }
 });
 
+
+/* Preview af billeder (simpel) */
+
 function previewImages(input, previewId) {
     const preview = document.getElementById(previewId);
+    if (!preview) return;
+
     preview.innerHTML = "";
 
-    Array.from(input.files).forEach((file, index) => {
+    Array.from(input.files).forEach(file => {
         const reader = new FileReader();
 
-        reader.onload = e => {
-            const div = document.createElement("div");
-            div.className = "preview-item";
+        reader.onload = (e) => {
+            const item = document.createElement("div");
+            item.className = "preview-item";
 
-            div.innerHTML = `
+            item.innerHTML = `
                 <img src="${e.target.result}">
                 <button type="button" class="remove-btn">✕</button>
             `;
 
-            div.querySelector(".remove-btn").onclick = () => {
-                div.remove();
+            item.querySelector(".remove-btn").onclick = () => {
+                item.remove();
             };
 
-            preview.appendChild(div);
+            preview.appendChild(item);
         };
 
         reader.readAsDataURL(file);
     });
 }
 
+
+/* Billedupload med mulighed for at fjerne filer */
+
 function setupImageInput(inputId, previewId) {
     const input = document.getElementById(inputId);
     const preview = document.getElementById(previewId);
 
+    if (!input || !preview) return;
+
     let files = [];
 
     input.addEventListener("change", () => {
-        // Tilføj nye filer
         for (const file of input.files) {
             files.push(file);
         }
-
         render();
     });
 
@@ -76,7 +91,7 @@ function setupImageInput(inputId, previewId) {
         files.forEach((file, index) => {
             const reader = new FileReader();
 
-            reader.onload = e => {
+            reader.onload = (e) => {
                 const wrapper = document.createElement("div");
 
                 const img = document.createElement("img");
@@ -86,6 +101,7 @@ function setupImageInput(inputId, previewId) {
                 const removeBtn = document.createElement("button");
                 removeBtn.type = "button";
                 removeBtn.textContent = "✕";
+
                 removeBtn.onclick = () => {
                     files.splice(index, 1);
                     render();
@@ -99,13 +115,15 @@ function setupImageInput(inputId, previewId) {
             reader.readAsDataURL(file);
         });
 
-        // Opdater input så kun de valgte filer sendes
+        // Synkroniser input med valgte filer
         const dataTransfer = new DataTransfer();
-        files.forEach(f => dataTransfer.items.add(f));
+        files.forEach(file => dataTransfer.items.add(file));
         input.files = dataTransfer.files;
     }
 }
 
-// Init
+
+/* Init */
+
 setupImageInput("before_image", "before-preview");
 setupImageInput("after_image", "after-preview");

@@ -12,7 +12,7 @@ exports.renderProducts = async (req, res) => {
             title: 'Produkter',
             items: products,
             fields: ['products_name'],
-            editUrl: '/products/edit-product',
+            editUrl: '/products/edit',
             deleteUrl: '/products'
         });
 

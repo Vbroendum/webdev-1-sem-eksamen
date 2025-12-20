@@ -36,8 +36,7 @@ app.use((req, res, next) => {
 
 // Gør brugerdata tilgængelig i alle views via middleware
 app.use((req, res, next) => {
-  res.locals.user = req.session.user || null;
-  console.log(req.session);
+  res.locals.currentUser = req.session.user || null;
   next();
 });
 

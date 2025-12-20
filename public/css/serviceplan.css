@@ -1,13 +1,164 @@
+/* serviceplan.css */
+
 .task-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
 }
 
+@media (min-width: 600px) {
+    .task-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1000px) {
+    .task-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.task-section-title {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+
+/* Task card */
+
+.task-card {
+    position: relative;
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid #e6e6e6;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+    display: flex;
+    flex-direction: column;
+
+    animation: slideFadeIn 0.3s ease;
+    transition:
+        transform 0.25s ease,
+        opacity 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-title {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.task-address {
+    margin-top: 3px;
+    font-size: 15px;
+    color: #666;
+}
+
+.task-deadline {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: #777;
+}
+
+
+/* Task status og tid */
+
+.task-status {
+    display: inline-block;
+    margin-bottom: 6px;
+
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    padding: 4px 10px;
+    border-radius: 999px;
+}
+
+.task-status.available {
+    color: #1B98E0;
+    background: rgba(27, 152, 224, 0.12);
+}
+
+.task-status.in-progress {
+    color: #2E7D32;
+    background: rgba(46, 125, 50, 0.15);
+}
+
+.task-time {
+    position: absolute;
+    top: 18px;
+    right: 16px;
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    font-size: 13px;
+    font-weight: 500;
+    color: #4a4a4a;
+
+    background: #f2f6fa;
+    padding: 6px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.task-time svg {
+    width: 14px;
+    height: 14px;
+    stroke: #4a4a4a;
+}
+
+
+/* Task handling */
+
+.task-button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 14px;
+
+    background: #3e9ae8;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.task-button:hover {
+    background: #2d82c7;
+}
+
+
+/* Serviceplan actions */
+
 .serviceplan-actions {
     display: flex;
     gap: 10px;
     margin-top: 16px;
+}
+
+.serviceplan-actions .btn {
+    padding: 10px 14px;
+    font-size: 14px;
+    font-weight: 500;
+
+    border-radius: 5px;
+    border: none;
+    width: auto;
 }
 
 .btn-primary {
@@ -21,15 +172,12 @@
     color: #fff;
 }
 
-.btn {
-    width: 100%;
-    padding: 14px;
-    border-radius: 10px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    font-weight: 500;
+.serviceplan-actions form:active .btn-primary {
+    transform: scale(0.97);
 }
+
+
+/* Billeder */
 
 .image {
     margin-bottom: 24px;
@@ -38,52 +186,6 @@
 .image input[type="file"] {
     display: block;
     margin-top: 8px;
-}
-
-#before-preview,
-#after-preview {
-    display: flex;
-    gap: 10px;
-    margin-top: 12px;
-    flex-wrap: wrap;
-}
-
-#before-preview > div,
-#after-preview > div {
-    position: relative;
-    width: 80px;
-    height: 80px;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid #ddd;
-}
-
-#before-preview img,
-#after-preview img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-#before-preview button,
-#after-preview button {
-    position: absolute;
-    top: 4px;
-    right: 4px;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    border: none;
-    background: rgba(0,0,0,0.7);
-    color: white;
-    font-size: 14px;
-    cursor: pointer;
-    line-height: 1;
-}
-
-#before-preview button:hover,
-#after-preview button:hover {
-    background: #E53935;
 }
 
 .image-sections {
@@ -100,16 +202,20 @@
 }
 
 .image-block label {
-    font-weight: 600;
-    margin-bottom: 10px;
     display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
 }
+
+
+/* Upload area */
 
 .upload-area {
     position: relative;
+    padding: 32px 20px;
+
     border: 2px dashed #d6d6d6;
     border-radius: 12px;
-    padding: 32px 20px;
     text-align: center;
 }
 
@@ -128,18 +234,20 @@
 }
 
 .camera-icon svg {
-    stroke: #7F7F7F;
-    stroke-width: 1px;
     width: 70px;
     height: auto;
+    stroke: #7F7F7F;
+    stroke-width: 1px;
 }
 
 .upload-btn {
+    padding: 12px 20px;
+
     background: #4a97e0;
-    color: white;
+    color: #fff;
     border: none;
     border-radius: 10px;
-    padding: 12px 20px;
+
     font-size: 14px;
     font-weight: 600;
 }
@@ -148,40 +256,59 @@
     color: #777;
 }
 
-.preview-row {
+
+/* Preview */
+
+#before-preview,
+#after-preview {
     display: flex;
     gap: 10px;
     margin-top: 12px;
+    flex-wrap: wrap;
 }
 
-.preview-item {
+#before-preview > div,
+#after-preview > div {
     position: relative;
-    width: 70px;
-    height: 70px;
-    border-radius: 10px;
+    width: 80px;
+    height: 80px;
+
+    border-radius: 8px;
     overflow: hidden;
+    border: 1px solid #ddd;
 }
 
-.preview-item img {
+#before-preview img,
+#after-preview img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.preview-item button {
+#before-preview button,
+#after-preview button {
     position: absolute;
-    top: -6px;
-    right: -6px;
+    top: 4px;
+    right: 4px;
+
     width: 22px;
     height: 22px;
     border-radius: 50%;
     border: none;
-    background: #000;
+
+    background: rgba(0, 0, 0, 0.7);
     color: #fff;
     font-size: 14px;
     cursor: pointer;
 }
 
+#before-preview button:hover,
+#after-preview button:hover {
+    background: #E53935;
+}
+
+
+/* Fill row */
 
 #fill-row {
     display: flex;
@@ -200,108 +327,17 @@
     }
 }
 
-@media (min-width: 600px) {
-    .task-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
 
-@media (min-width: 1000px) {
-    .task-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-.task-card {
-    background: white;
-    border-radius: 16px;
-    padding: 20px;
-    border: 1px solid #e6e6e6;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    display: flex;
-    flex-direction: column;
-}
-
-.task-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.task-title {
-    font-size: 20px;
-    font-weight: 600;
-}
-
-.task-address {
-    margin-top: 3px;
-    color: #666;
-    font-size: 15px;
-}
-
-.task-deadline {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    color: #777;
-    font-size: 14px;
-}
-
-.task-button {
-    margin-top: 20px;
-    width: 100%;
-    padding: 14px;
-    background: #3e9ae8;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.task-button:hover {
-    background: #2d82c7;
-}
-
-.logout-btn:hover {
-    background-color: #157bb5;
-}
-
-.history-thumb img {
-    width: 65px;
-    height: 65px;
-    object-fit: cover;
-    border-radius: 6px;
-}
-
-.history-thumb .no-image {
-    width: 65px;
-    height: 65px;
-    background: #ddd;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #777;
-    font-size: 12px;
-}
+/* Historik */
 
 .history-row {
     display: flex;
-    justify-content: flex-start !important;
     align-items: center;
     gap: 15px;
     padding: 15px 0;
     border-bottom: 1px solid #ddd;
 }
 
-.history-row {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
 .history-thumb img {
     width: 65px;
     height: 65px;
@@ -314,9 +350,11 @@
     height: 65px;
     background: #ddd;
     border-radius: 6px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     color: #777;
     font-size: 12px;
 }
@@ -337,4 +375,18 @@
 .history-user {
     font-size: 16px;
     color: #7F7F7F;
+}
+
+
+/* Animation */
+
+@keyframes slideFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

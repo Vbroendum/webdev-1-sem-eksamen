@@ -41,18 +41,25 @@
 
     </div>
 
-    <div class="form-group">
-        <label>
-            <input type="checkbox"
-                   name="station_has_bay"
-                   value="on"
-                   {{#if station.station_has_bay}}checked{{/if}}>
-            Station har forplads
-        </label>
-    </div>
+  <div class="form-group">
+      <label>Forplads</label>
 
-    <button class="test-btn edit-station-button" type="submit">
-        Gem ændringer
-    </button>
+      <div class="checkbox-group">
+          <label class="checkbox-label">
+              <input type="checkbox"
+                    name="station_has_bay"
+                    {{#if station.station_has_bay}}checked{{/if}}>
+              <span class="checkbox-text">
+                  Station har forplads
+              </span>
+          </label>
+      </div>
+  </div>
+
+    <div class="submit-row">
+        <button class="submit-btn" type="submit">
+            Gem ændringer
+        </button>
+    </div>
 
 </form>

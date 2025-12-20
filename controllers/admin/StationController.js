@@ -77,7 +77,7 @@ exports.createStation = async (req, res) => {
     }
 };
 
-// RENDER - Viser formular til redigering af en station
+// READ - Viser formular til redigering af en station
 exports.renderEditStation = async (req, res) => {
     try {
         const station = await db.station.findByPk(req.params.id, {

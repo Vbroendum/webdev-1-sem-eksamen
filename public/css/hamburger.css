@@ -1,3 +1,5 @@
+/* Sidebar */
+
 .sidebar {
     position: fixed;
     top: 0;
@@ -15,6 +17,9 @@
 .page-content {
     margin-left: 240px;
 }
+
+
+/* Topbar / hamburger */
 
 .topbar {
     position: fixed;
@@ -40,7 +45,6 @@
     z-index: 10000;
 }
 
-/* ikon-toggle */
 .icon-close {
     display: none;
 }
@@ -52,6 +56,9 @@
 .hamburger.open .icon-close {
     display: block;
 }
+
+
+/* Menu liste */
 
 .sidebar ul {
     list-style: none;
@@ -79,21 +86,27 @@
     font-weight: 500;
 }
 
-.sidebar li:hover {
+
+/* Hover / active */
+
+.sidebar > nav > ul > li:not(.submenu-wrapper):hover {
     background-color: #e3f2fd;
 }
 
-.sidebar li:hover a,
-.sidebar li:hover svg {
+.sidebar li:hover > a,
+.sidebar li:hover > svg {
     color: #1B98E0;
     stroke: #1B98E0;
 }
 
-.sidebar li.active a,
+.sidebar li.active > a,
 .sidebar li.active svg {
     color: #1B98E0;
     stroke: #1B98E0;
 }
+
+
+/* Kategorier */
 
 .menu-category {
     margin: 20px 0 12px 12px;
@@ -102,16 +115,11 @@
     text-transform: uppercase;
 }
 
+
+/* Submenu */
+
 .submenu-toggle {
     cursor: pointer;
-}
-
-.submenu-wrapper {
-    display: none;
-}
-
-.submenu-wrapper.open {
-    display: block;
 }
 
 .submenu {
@@ -122,6 +130,29 @@
     flex-direction: column;
     gap: 12px;
 }
+
+.submenu-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.submenu-toggle:hover {
+    background-color: #e3f2fd;
+}
+
+.chevron {
+    margin-left: auto;
+    transition: transform 0.2s ease;
+}
+
+.submenu-toggle.open .chevron {
+    transform: rotate(180deg);
+}
+
+
+/* Logout */
 
 .logout-container {
     margin-top: auto;
@@ -137,7 +168,21 @@
     border-radius: 6px;
     font-weight: 600;
     cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
+
+.logout-icon {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2;
+}
+
+
+/* Back button */
 
 .back-button {
     display: none;
@@ -146,6 +191,9 @@
     background: none;
     border: none;
 }
+
+
+/* Mobil */
 
 @media (max-width: 768px) {
 
@@ -165,8 +213,8 @@
 
     .sidebar {
         top: 60px;
-        left: auto;
         right: 0;
+        left: auto;
         width: 260px;
         height: calc(100vh - 60px);
         transform: translateX(100%);

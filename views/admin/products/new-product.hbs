@@ -1,5 +1,5 @@
 
-<form action="/products/create" method="POST">
+<form action="/products/create" method="POST" class="input-form">
     <div class="form-group">
         <label for="products_name">Produktnavn</label>
         <input type="text" name="products_name" required placeholder="Produktnavn">
@@ -15,5 +15,9 @@
         </select>
     </div>
 
-    <button type="submit" class="submit-btn">Opret produkt</button>
+    <div class="submit-row">
+        <button class="submit-btn" type="submit">
+            Opret produkt
+        </button>
+    </div>
 </form>
