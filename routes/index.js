@@ -1,9 +1,9 @@
 // index.js
 const express = require('express');
 const router = express.Router();
-const LoginController = require('../controllers/loginController');
+const LoginController = require('../controllers/LoginController');
 const DashboardController = require('../controllers/admin/DashboardController');
-const ServiceplanController = require('../controllers/user/serviceplanController');
+const ServiceplanController = require('../controllers/user/ServiceplanController');
 const HistorikController = require('../controllers/HistorikController');
 const upload = require('../middleware/multer');
 const verifyRoutes = require('./verifyRoutes');
