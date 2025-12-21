@@ -6,7 +6,7 @@ const DashboardController = require('../controllers/admin/DashboardController');
 const ServiceplanController = require('../controllers/user/ServiceplanController');
 const HistorikController = require('../controllers/HistorikController');
 const upload = require('../middleware/multer');
-const verifyRoutes = require('./verifyRoutes');
+const verifyRoutes = require('./verifyRoutes.js');
 
 // importering af routes
 const usersRoutes = require('./admin/userRoute');
