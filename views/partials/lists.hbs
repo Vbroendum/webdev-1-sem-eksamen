@@ -1,4 +1,11 @@
 {{!Dynamisk liste til oversigter}}
+<input 
+type="text"
+id="searchBar"
+placeholder="Søg"
+class="search-bar"
+>
+
 <ul class="list">
     {{#each items}}
     <li class="list-item">
@@ -30,5 +37,27 @@
     </li>
 {{/each}}
 </ul>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const searchBar = document.getElementById("searchBar");
+  const lists = document.querySelectorAll(".list");
+
+  if (!searchBar || lists.length === 0) return;
+
+  searchBar.addEventListener("keyup", function() {
+    const filter = this.value.toLowerCase();
+
+    lists.forEach(list => {
+      const listItems = list.querySelectorAll(".list-item");
+
+      listItems.forEach(item => {
+        const text = item.innerText.toLowerCase();
+        item.style.display = text.includes(filter) ? "" : "none";
+      });
+    });
+  });
+});
+</script>
 
 <script src="/js/delete.js"></script>
